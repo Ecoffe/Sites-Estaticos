@@ -1,0 +1,174 @@
+.poppins-medium {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.poppins-semibold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+body {
+    background-image: url(assets/imgs/login.svg);
+    background-color: #527853;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Poppins";
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+input {
+    font-family: "Poppins";
+    font-weight: 700;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .box {
+    width: 520px;
+    height: 475px;
+    background-color: #FBF7F5;
+    border-radius: 15px;
+}
+
+.container .box .btnVoltar{
+    padding: 18px 1px 1px 13px;
+}
+.container .box .btnVoltar .btnBack:hover{
+    cursor:pointer
+}
+
+.container .box .infoLogin {
+    padding: 10px 68px 81px 98px;
+}
+
+.container .box .infoLogin .tituloLogin p {
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.container .box .infoLogin .formsLogin {
+    display: flex;
+    flex-direction: column;
+}
+
+.container .box .infoLogin .formsLogin .nomesEmpresa {
+    margin: 5px;
+}
+
+.container .box .infoLogin .formsLogin .nomesEmpresa input {
+    margin: 2px;
+    border: 2px #2C3333 solid;
+    height: 35px;
+    border-radius: 10px;
+    padding: 3px;
+    padding-left: 5px;
+}
+
+.container .box .infoLogin .formsLogin .cnpj {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.container .box .infoLogin .formsLogin .cnpj .inputEmail {
+    margin-bottom: 8px;
+}
+
+.container .box .infoLogin .formsLogin .cnpj input {
+    margin: 2px;
+    border: 2px #2C3333 solid;
+    height: 35px;
+    border-radius: 10px;
+    padding: 3px;
+    width: 310px;
+    padding-left: 5px;
+}
+
+.container .box .infoLogin .formsLogin .senha {
+    margin: 5px;
+}
+
+.container .box .infoLogin .formsLogin .senha input {
+    margin: 2px;
+    border: 2px #2C3333 solid;
+    height: 35px;
+    padding: 3px;
+    border-radius: 10px;
+    padding-left: 5px;
+    width: 310px;
+}
+
+.container .box .infoLogin .temConta {
+    margin: 5px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.container .box .infoLogin .temConta a {
+    color: #EE7214;
+}
+
+.container .box .infoLogin .btnEntrar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.container .box .infoLogin .btnEntrar .btnLogin{
+    background-color: #2C3333;
+    color: #FFF;
+    width: 327px;
+    height: 35px;
+    font-family: 'Poppins';
+    border-radius: 25px;
+    border: 2px solid black;
+    font-weight: 700;
+    transition: 800ms;
+}
+.container .box .infoLogin .btnEntrar .btnLogin:hover{
+    transition: 800ms;
+    background-color: #FFF;
+    color: #2C3333;
+    font-family: 'Poppins';
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.container .box .infoLogin .btnEntrar .btnEsqSenha{
+    margin-top: 10px;
+    background-color: #FFF;
+    color: #2C3333;
+    width: 327px;
+    height: 35px;
+    font-family: 'Poppins';
+    border-radius: 25px;
+    border: 2px solid black;
+    font-weight: 700;
+    transition: 800ms;
+}
+.container .box .infoLogin .btnEntrar .btnEsqSenha:hover{
+    transition: 800ms;
+    background-color: #2C3333;
+    color: #FFF;
+    font-family: 'Poppins';
+    font-weight: 700;
+    cursor: pointer;
+}

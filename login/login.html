@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="btnVoltar">
+                <img class="btnBack" href="#" src="./assets/imgs/iconVoltar.svg" alt="">
+            </div>
+            <div class="infoLogin">
+                <div class="tituloLogin">
+                    <p>Entrar na ecoffe</p>
+                </div>
+                <div class="formsLogin">
+                    <div class="cnpj">
+                        <input type="text" placeholder="CNPJ" maxlength="18" id="inputCnpjtEmp">
+                    </div>
+                    <div class="senha">
+                        <input type="password" placeholder="Senha" id="inputSenha">
+                    </div>
+                </div>
+                <div class="btnEntrar">
+                    <button class="btnLogin">Entrar</button>
+                    <button class="btnEsqSenha">Esqueceu a senha?</button>
+                </div>
+                <div class="temConta">
+                    <span>Crie uma conta na <a href="../cadastro/cadastro.html">ecoffe?</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var inputCnpj = document.getElementById('inputCnpjtEmp');
+        
+        inputCnpj.addEventListener('input', function() {
+            var value = inputCnpj.value.replace(/\D/g, '');
+            if (value.length > 14) {
+                value = value.slice(0, 14);
+            }
+            value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+            inputCnpj.value = value;
+        });
+    });
+</script>
+
+</html>
