@@ -28,7 +28,7 @@
                     </div>
                     <div class="emailCnpj">
                         <input type="text" class="inputEmail" placeholder="email" id="inputEmailEmp">
-                        <input type="text" placeholder="cnpj" id="inputCnpjEmp">
+                        <input type="text" placeholder="cnpj" maxlength="18" id="inputCnpjtEmp">
                     </div>
                     <div class="senhas">
                         <input type="password" placeholder="senha" id="inputSenha">
@@ -45,5 +45,19 @@
         </div>
     </div>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var inputCnpj = document.getElementById('inputCnpjtEmp');
+        
+        inputCnpj.addEventListener('input', function() {
+            var value = inputCnpj.value.replace(/\D/g, '');
+            if (value.length > 14) {
+                value = value.slice(0, 14);
+            }
+            value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+            inputCnpj.value = value;
+        });
+    });
+</script>
 
 </html>
