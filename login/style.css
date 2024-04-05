@@ -33,6 +33,11 @@ input {
     font-weight: 700;
 }
 
+.spnErro{
+    color: red;
+    font-size: 12px;
+}
+
 .container {
     height: 100%;
     display: flex;

@@ -41,8 +41,8 @@ input {
 }
 
 .container .box {
-    width: 600px;
-    height: 590px;
+    width: 550px;
+    height: 540px;
     background-color: #FBF7F5;
     border-radius: 15px;
 }
@@ -55,9 +55,8 @@ input {
 }
 
 .container .box .infoCadastro {
-    padding: 25px 79px 81px 88px;
+    padding: 0px 52px 81px 65px;
 }
-
 .container .box .infoCadastro .tituloLogin p {
     font-weight: 700;
     font-size: 30px;

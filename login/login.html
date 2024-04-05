@@ -26,6 +26,7 @@
                     </div>
                     <div class="senha">
                         <input type="password" placeholder="Senha" id="inputSenha">
+                        <div id="divErro"></div>
                     </div>
                 </div>
                 <div class="btnEntrar">
@@ -64,7 +65,7 @@
         if( cnpj == cnpjValido && senha == senhaValido){
         window.location.href = botao.href;
         }else{
-        alert("CNPJ ou senha invalido")
+        divErro.innerHTML = `<span class="spnErro">CNPJ ou senha invalido</span>`
         }
     }
 </script>
