@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="btnEntrar">
-                    <button class="btnLogin">Entrar</button>
+                    <button class="btnLogin" id="btnLogin" onclick="login()">Entrar</button>
                     <button class="btnEsqSenha">Esqueceu a senha?</button>
                 </div>
                 <div class="temConta">
@@ -52,6 +52,22 @@
             inputCnpj.value = value;
         });
     });
+
+    function login() {
+        var cnpj = inputCnpjtEmp.value;
+        var senha = inputSenha.value;
+        var cnpjValido = "12.312.312/0001-20";
+        var senhaValido = "amocafe";
+        var botao = document.getElementById("btnLogin")
+
+        botao.href = ""
+        if( cnpj == cnpjValido && senha == senhaValido){
+        alert("conta validada");
+        }else{
+        alert("CNPJ ou senha invalido")
+        }
+    }
 </script>
+
 
 </html>
