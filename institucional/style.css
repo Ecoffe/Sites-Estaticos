@@ -3,6 +3,7 @@ body {
     padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     overflow-x: hidden;
+    background-color: #f9e8d9;
 }
 
 
@@ -21,7 +22,7 @@ body {
 .titulo {
     color: black;
     width: fit-content;
-    font-weight: 100;
+    font-weight: bold;
     font-size: 24px;
     align-items: start;
     flex-direction: row;
@@ -47,6 +48,7 @@ body {
 
 .navbar{
     color: black;
+    font-weight: bold;
     text-decoration: none;
 }
 
@@ -75,9 +77,34 @@ a{
 }
 
 .banner {
-    background-image: url(./assets/img/inicio.svg);
+    background-image: url(./assets/img/inicio.png);
     height: 800px;
     background-repeat: no-repeat;
     background-size: cover;
 
+}
+
+.container2 p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 300;
+}
+
+.container2 button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 300;
+}
+
+button {
+    border-radius: 50px;
+    justify-content: space-around;
+    width: 250px;
+    background-color: #527853;
+    color: white;
+    border: none;
 }
