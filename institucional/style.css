@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
 body {
     margin: 0;
     padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     overflow-x: hidden;
     background-color: #f9e8d9;
+    font-family: 'Poppins', sans-serif;
 }
 
 
@@ -90,6 +94,12 @@ a{
     align-items: center;
     font-size: 40px;
     font-weight: 300;
+    text-shadow: 
+        -1.5px -1.5px 0 #527853,  
+         1.5px -1.5px 0 #527853,
+        -1.5px  1.5px 0 #527853,
+         1.5px  1.5px 0 #527853; 
+    color: #f9e8d9;
 }
 
 .container2 button{

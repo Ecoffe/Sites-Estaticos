@@ -46,17 +46,27 @@
     </div>
 </body>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var inputCnpj = document.getElementById('inputCnpjtEmp');
-        
-        inputCnpj.addEventListener('input', function() {
-            var value = inputCnpj.value.replace(/\D/g, '');
-            if (value.length > 14) {
-                value = value.slice(0, 14);
-            }
-            value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
-            inputCnpj.value = value;
-        });
+    inputCnpjtEmp.addEventListener('input', function (event) {
+        var cnpj = event.target.value;
+
+        // Remove todos os caracteres não numéricos
+        cnpj = cnpj.replace(/\D/g, '');
+        // Adiciona a máscara de CNPJ
+        if (cnpj.length > 2) {
+            cnpj = cnpj.substring(0, 2) + '.' + cnpj.substring(2);
+        }
+        if (cnpj.length > 6) {
+            cnpj = cnpj.substring(0, 6) + '.' + cnpj.substring(6);
+        }
+        if (cnpj.length > 10) {
+            cnpj = cnpj.substring(0, 10) + '/' + cnpj.substring(10);
+        }
+        if (cnpj.length > 15) {
+            cnpj = cnpj.substring(0, 15) + '-' + cnpj.substring(15);
+        }
+
+        // Atualiza o valor do input com a máscara aplicada
+        event.target.value = cnpj;
     });
 
 
