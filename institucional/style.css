@@ -13,15 +13,20 @@ body {
 
 /* HEADER */
 .header {
-    border-bottom: 3px black solid;
+    position: absolute;
+    z-index: 2;
+    border-bottom: 1px black solid;
 }
 
 .container {
     background-color: #f7b787;
     width: 100%;
+    height: 55px;
     margin: auto;
     display: flex;
+    align-items: center;
 }
+
 
 .titulo {
     color: black;
@@ -81,11 +86,12 @@ a{
 }
 
 .banner {
+    position: relative;
     background-image: url(./assets/img/inicio.png);
-    height: 800px;
+    z-index: 1;
+    height: 680px;
     background-repeat: no-repeat;
     background-size: cover;
-
 }
 
 .container2 p{
