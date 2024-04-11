@@ -4,7 +4,6 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     overflow-x: hidden;
     background-color: #f9e8d9;
     font-family: 'Poppins', sans-serif;
@@ -13,7 +12,10 @@ body {
 
 /* HEADER */
 .header {
+    width: 100%;
     border-bottom: 3px black solid;
+    z-index: 2;
+    position: absolute;
 }
 
 .container {
@@ -85,7 +87,8 @@ a{
     height: 800px;
     background-repeat: no-repeat;
     background-size: cover;
-
+    z-index: 1;
+    position: relative;
 }
 
 .container2 p{
@@ -106,15 +109,99 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 40px;
+    font-size: 20px;
     font-weight: 300;
+    cursor: pointer;
 }
 
 button {
     border-radius: 50px;
     justify-content: space-around;
+    height: 50px;
     width: 250px;
     background-color: #527853;
     color: white;
     border: none;
 }
+
+.butao {
+    display: flex;
+    justify-content: center;
+}
+
+.bannerSN {
+    display: flex;
+    height: 810px;
+    width: 100%;
+    background-image: url(assets/img/sobre\ nos.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.container3 {
+    display: flex;
+    width: 500px;
+    height: 570px;
+    margin-right: 100px;
+    box-shadow: 20px 20px #EE7214;
+    background-color: #527853;
+}
+
+.container3 .texto {
+    color: #FFFFFF;
+    margin: 5%;
+    font-size: 19px;
+}
+
+.bannerP {
+    background-image: url(./assets/img/projeto.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 720px;
+    width: auto;
+}
+.bannerP .containerP {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 720px;
+}
+
+.detalhesT {
+    background-image: url(./assets/img/detalhesP.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+}
+
+.bannerP .box {
+    display: flex;
+    width: 80rem;
+    height: 28rem;
+    background-color: #F9E8D9;
+    border-radius: 15px;
+    padding: 20px;
+    align-items: flex-start;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: center;
+}
+
+.bannerP .box .tituloP{
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.bannerP .box .tituloP p{ 
+    margin: 0px;
+}
+
+.bannerP .box .texto{
+    font-size: 19px;
+}
+
