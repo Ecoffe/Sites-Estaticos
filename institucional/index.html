@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecoffe</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,13 +15,13 @@
         <div class="container">
             <img src="./assets/img/icon - grão.png" alt="Logo" width="40px" height="40px">
 
-            <h1 class="titulo">Ecoffe</h1>
+            <a class="titulo" href="#inicio">Ecoffe</a>
 
             <ul class="navbar">
                 <div class="sobre">
-                    <a href=""> sobre nós </a> <br>
-                    <a href=""> projeto </a> <br>
-                    <a href=""> equipe </a> <br>
+                    <a href="#sobreNos"> sobre nós </a> <br>
+                    <a href="#projeto"> projeto </a> <br>
+                    <a href="#equipe"> equipe </a> <br>
                     <a href=""> calculadora </a>
                 </div>
 
@@ -33,7 +33,7 @@
     </div>
 
     <!-- BANNER -->
-
+<div class="inicio" id="inicio">
     <div class="banner"></div>
     <div class="container2">
         <p>"o cuidado com o grão reflete em cada sabor da sua xícara"</p>
@@ -41,10 +41,11 @@
             <button href="#sobreNos">conheça</button>
         </div>
     </div>
+</div>
 
     <!-- Sobre nos -->
-    <div class="sobreNos">
-        <div class="bannerSN" id="sobreNos">
+    <div class="sobreNos" id="sobreNos">
+        <div class="bannerSN">
             <div class="container3">
                 <div class="texto">
                     <h3>Sobre nós</h3>
@@ -64,7 +65,7 @@
     </div>
 
     <!-- projeto -->
-
+<div class="projeto" id="projeto">
     <div class="bannerP">
         <div class="detalhesT"></div>
         <div class="containerP">
@@ -92,7 +93,82 @@
             </div>
         </div>
     </div>
+</div>
 
+    <!-- equipe -->
+    <div class="equipe" id="equipe">
+    <div class="bannerE">
+        <div class="containerE">
+            <div class="box">
+                <div class="tituloE">
+                    <p>- Nossa Equipe</p>
+                </div>
+                <div class="texto">
+                    <p>A Ecoffe nasceu através de um projeto de Pesquisa e Inovação dentro da faculdade SPTech School.</p>
+                    <p>A equipe é constituída por excelentes profissionais, sendo eles:</p>
+                    <ul>
+                        <li>Antonio Souza</li>
+                        <li>Cauan Araruna</li>
+                        <li>Igor Chu</li>
+                        <li>Laise Martin</li>
+                        <li>Naomi Calisto</li> 
+                    </ul>
+                  
+                </div>
+            </div>
+            <div class="boxImg"></div>
+        </div>
+    </div>
+</div>
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="box">
+            <div class="anchors">
+                <a href="#sobreNos">sobre nós</a>
+                <a href="#projeto">projeto</a>
+                <a href="#equipe">equipe</a>
+                <a href="">calculadora</a>
+                <a href="../cadastro/cadastro.html">criar conta</a>
+                <a href="#inicio">Ecoffe ©</a>
+            </div>
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.288160205888!2d-46.6616751!3d-23.558092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59d2a5270055%3A0x3c7ea4f4c7d51fb6!2sRua%20Haddock%20Lobo%2C%20595%20-%20Cerqueira%20C%C3%A9sar%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001414-001!5e0!3m2!1spt-BR!2sbr!4v1712880078959!5m2!1spt-BR!2sbr" width="650" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="forms">
+                <p>insira seu email:</p>
+                    <input type="email" placeholder="email">
+                <p>insira sua mensagem:</p>
+                <textarea name="" id="" cols="30" rows="10" placeholder="mensagem"></textarea>
+                
+                <div class="btnForms">
+                    <button>Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+<script>
 
+    $(document).ready(function(){
+        // Adiciona a função de rolagem suave para os links da barra de navegação
+        $(".navbar a").on('click', function(event) {
+            if (this.hash !== "") {
+                event.preventDefault();
+    
+                // Armazena o hash
+                var hash = this.hash;
+    
+                // Usa a função animate() do jQuery para adicionar a animação de rolagem suave
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 800, function(){
+                    // Adiciona o hash (#) à URL quando terminar de rolar
+                    window.location.hash = hash;
+                });
+            }
+        });
+    });
+    </script>
+    
 </html>

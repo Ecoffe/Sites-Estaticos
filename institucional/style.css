@@ -13,7 +13,7 @@ body {
 /* HEADER */
 .header {
     width: 100%;
-    border-bottom: 3px black solid;
+    border-bottom: 1px black solid;
     z-index: 2;
     position: absolute;
 }
@@ -23,6 +23,7 @@ body {
     width: 100%;
     margin: auto;
     display: flex;
+    align-items: center;
 }
 
 .titulo {
@@ -52,13 +53,13 @@ body {
 
 }
 
-.navbar{
+.navbar {
     color: black;
     font-weight: bold;
     text-decoration: none;
 }
 
-.navbar a:hover{
+.navbar a:hover {
     color: #f9e8d9;
 }
 
@@ -77,7 +78,7 @@ body {
     margin-right: 40px;
 }
 
-a{
+a {
     text-decoration: none;
     color: black;
 }
@@ -91,21 +92,21 @@ a{
     position: relative;
 }
 
-.container2 p{
+.container2 p {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 40px;
     font-weight: 300;
-    text-shadow: 
-        -1.5px -1.5px 0 #527853,  
-         1.5px -1.5px 0 #527853,
-        -1.5px  1.5px 0 #527853,
-         1.5px  1.5px 0 #527853; 
+    text-shadow:
+        -1.5px -1.5px 0 #527853,
+        1.5px -1.5px 0 #527853,
+        -1.5px 1.5px 0 #527853,
+        1.5px 1.5px 0 #527853;
     color: #f9e8d9;
 }
 
-.container2 button{
+.container2 button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,7 +136,7 @@ button {
     width: 100%;
     background-image: url(assets/img/sobre\ nos.svg);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 94rem;
     align-items: center;
     justify-content: flex-end;
 }
@@ -157,11 +158,12 @@ button {
 
 .bannerP {
     background-image: url(./assets/img/projeto.svg);
-    background-size: cover;
+    background-size: 110rem;
     background-repeat: no-repeat;
-    height: 720px;
+    height: 820px;
     width: auto;
 }
+
 .bannerP .containerP {
     display: flex;
     align-items: center;
@@ -182,7 +184,7 @@ button {
 .bannerP .box {
     display: flex;
     width: 80rem;
-    height: 28rem;
+    height: 19rem;
     background-color: #F9E8D9;
     border-radius: 15px;
     padding: 20px;
@@ -192,16 +194,108 @@ button {
     justify-content: center;
 }
 
-.bannerP .box .tituloP{
+.bannerP .box .tituloP {
     font-weight: 700;
     font-size: 22px;
 }
 
-.bannerP .box .tituloP p{ 
+.bannerP .box .tituloP p {
     margin: 0px;
 }
 
-.bannerP .box .texto{
+.bannerP .box .texto {
     font-size: 19px;
 }
 
+.bannerE {
+    background-image: url(./assets/img/Equipe.svg);
+    background-size: cover;
+    height: 40rem;
+    width: 100%;
+}
+
+.bannerE .containerE {
+    display: flex;
+    height: 40rem;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.bannerE .containerE .box {
+    background-color: #F9E8D9;
+    width: 28rem;
+    height: 32rem;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.bannerE .containerE .box .tituloE {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.bannerE .containerE .box .texto {
+    font-size: 19px;
+}
+
+.bannerE .containerE .boxImg {
+    background-color: gray;
+    height: 23rem;
+    width: 38rem;
+}
+
+.footer {
+    height: 400px;
+    background-color: #F7B787;
+}
+
+.footer .box {
+    display: flex;
+    align-items: center;
+    height: 400px;
+    justify-content: space-evenly;
+    font-weight: 600;
+}
+
+.footer .box .anchors {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 400px;
+}
+
+.footer .box .forms p {
+    margin: 0px;
+}
+
+
+.footer .box .forms input {
+    width: 275px;
+    height: 33px;
+    background-color: #F9E8D9;
+    border: 2px solid #527853;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.footer .box .forms textarea {
+    padding: 5px;
+    width: 275px;
+    background-color: #F9E8D9;
+    border: 2px solid #527853;
+    font-size: 14px;
+    border-radius: 15px;
+}
+
+.footer .box .forms button {
+    border-radius: 15px;
+    justify-content: space-around;
+    height: 42px;
+    width: 131px;
+    background-color: #527853;
+    color: white;
+    border: none;
+    font-size: 19px;
+}
