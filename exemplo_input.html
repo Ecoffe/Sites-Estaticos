@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" oninput="testar()" id="ipt_teste">
+    <div id="div_teste"></div>
+
+</body>
+</html>
+
+<script>
+
+    var texto_final = "";
+
+    function testar() {
+        var teste = ipt_teste.value;
+
+        if (teste.length == 0) {
+            texto_final = "";
+        }    
+        if (teste.indexOf('a') >= 0) {
+            texto_final = teste;
+        }
+        
+        ipt_teste.value = texto_final;
+        div_teste.innerHTML = texto_final;
+    }
+</script>
