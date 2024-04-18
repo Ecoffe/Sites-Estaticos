@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleFunc.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
@@ -19,11 +19,11 @@
             </div>
             <div class="infoLogin">
                 <div class="tituloLogin">
-                    <p>Entrar na ecoffe</p>
+                    <p>Entrar na ecoffe funcionario</p>
                 </div>
                 <div class="formsLogin">
-                    <div class="cnpj">
-                        <input type="text" placeholder="CNPJ" maxlength="18" id="inputCnpjtEmp">
+                    <div class="cpf">
+                        <input type="text" placeholder="CPF" maxlength="14" id="inputCpfEmp">
                     </div>
                     <div class="senha">
                         <input type="password" placeholder="Senha" id="inputSenha">
@@ -38,47 +38,26 @@
                     <span>Crie uma conta na <a href="../cadastro/cadastro.html">ecoffe?</a></span>
                 </div>
                 <div class="temContaFunc">
-                    <span>Entrar na conta <a href="./loginFunc.html">funcionario</a></span>
+                    <span>Entrar na conta <a href="./login.html">empresa</a></span>
                 </div>
             </div>
         </div>
     </div>
 </body>
 <script>
-    inputCnpjtEmp.addEventListener('input', function (event) {
-        var cnpj = event.target.value;
-
-        // Adiciona a máscara de CNPJ
-        if (cnpj.length > 2) {
-            cnpj = cnpj.substring(0, 2) + '.' + cnpj.substring(2);
-        }
-        if (cnpj.length > 6) {
-            cnpj = cnpj.substring(0, 6) + '.' + cnpj.substring(6);
-        }
-        if (cnpj.length > 10) {
-            cnpj = cnpj.substring(0, 10) + '/' + cnpj.substring(10);
-        }
-        if (cnpj.length > 15) {
-            cnpj = cnpj.substring(0, 15) + '-' + cnpj.substring(15);
-        }
-
-        // Atualiza o valor do input com a máscara aplicada
-        event.target.value = cnpj;
-    });
-
 
     function login() {
-        var cnpj = inputCnpjtEmp.value;
+        var cpf = inputCpfEmp.value;
         var senha = inputSenha.value;
-        var cnpjValido = "12.312.312/0001-20";
+        var cpfValido = "";
         var senhaValido = "amocafe";
         var botao = document.getElementById("btnLogin")
 
         botao.href = "../institucional/index.html"
-        if (cnpj == cnpjValido && senha == senhaValido) {
+        if (cpf == cpfValido && senha == senhaValido) {
             window.location.href = botao.href;
         } else {
-            divErro.innerHTML = `<span class="spnErro">CNPJ ou senha invalido</span>`
+            divErro.innerHTML = `<span class="spnErro">CPF ou senha invalido</span>`
         }
     }
 </script>

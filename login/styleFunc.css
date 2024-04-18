@@ -18,8 +18,8 @@
 
 
 body {
-    background-image: url(assets/imgs/login.svg);
-    background-color: #527853;
+    background-image: url(assets/imgs/fundoFunc.svg);
+    background-color: #F7B787;
     background-repeat: no-repeat;
     background-size: cover;
     font-family: "Poppins";
@@ -32,9 +32,8 @@ input {
     font-family: "Poppins";
     font-weight: 700;
 }
-
 p{
-    margin: 1;
+    margin: 1px;
 }
 
 .spnErro{
@@ -90,17 +89,17 @@ p{
     padding-left: 5px;
 }
 
-.container .box .infoLogin .formsLogin .cnpj {
+.container .box .infoLogin .formsLogin .cpf {
     display: flex;
     flex-direction: column;
     margin: 5px;
 }
 
-.container .box .infoLogin .formsLogin .cnpj .inputEmail {
+.container .box .infoLogin .formsLogin .cpf .inputEmail {
     margin-bottom: 8px;
 }
 
-.container .box .infoLogin .formsLogin .cnpj input {
+.container .box .infoLogin .formsLogin .cpf input {
     margin: 2px;
     border: 2px #2C3333 solid;
     height: 35px;
@@ -131,7 +130,7 @@ p{
 }
 
 .container .box .infoLogin .temConta a {
-    color: #EE7214;
+    color: #527853;
     margin: 0;
 }
 
@@ -142,7 +141,7 @@ p{
 }
 
 .container .box .infoLogin .temContaFunc a {
-    color: #EE7214;
+    color: #527853;
     margin: 0;
 }
 
