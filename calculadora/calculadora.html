@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="fundo">
+
+    <div class="tela"> 
+        
+        <div class="box" id="divMsg" style="display:none"></div>
+        <div class="container" id="divForms">
+            <div class="xizin">
+                <a href="../institucional/index.html">
+                    <img src="./assets/imagens/Vector 11.svg" alt="" />
+                </a>
+            </div>
+
+            <div class="titulo"><h1>Faça uma simulação dos seus <span>ganhos!</span></h1></div>
+            <p> Quanto você produz de café (em sacas): </p> <input class="input" type="text" id="inpProduzir" placeholder="R$"> <br>
+            <p> Qual café você produz? </p><select id="selTipoCafe">
+                <option value="0" selected>Tipo de café</option>
+                <option value="1">Conilon</option>
+                <option value="2">Arábica</option>
+            </select> <br>
+            <button onclick="calculo()">Calcular</button> <br>
+        </div>
+       
+    </div>
+
+  
+
+</body>
+</html>
+
+<script>
+
+    function calculo() {
+        var precoConilon = Number(1029.00)
+        var precoArabica = Number(1126.70)
+        
+        var producao = inpProduzir.value
+        var tipoCafe = selTipoCafe.value
+
+        var kgProd = producao * 60
+        var ganhoPosPKGsem = kgProd * 0.75
+        var ganhoPosPKGcom = kgProd * 0.9
+        var ganhoPosPSsem = 0
+        var ganhoPosPScom = 0
+        var lucro = 0
+        var lucro10 = 0
+        var lucroSem = 0
+        var lucro10sem = 0
+        var diferença = 0
+
+
+        divMsg.innerHTML = ``
+
+        if (tipoCafe == 0) {
+            alert('Selecione um tipo de café valido')
+        } else if (tipoCafe == 1) {
+            ganhoPosPSsem = ganhoPosPKGsem / 60
+            lucroSem = ganhoPosPSsem * precoConilon
+            lucro10sem = lucroSem * 10
+            ganhoPosPScom = ganhoPosPKGcom / 60
+            lucro = ganhoPosPScom * precoConilon
+            lucro10 = lucro * 10
+            diferença = lucro10 - lucro10sem
+        } else if (tipoCafe == 2) {
+            ganhoPosPSsem = ganhoPosPKGsem / 60
+            lucroSem = (ganhoPosPSsem * precoArabica) * 2
+            lucro10sem = lucroSem * 10
+            ganhoPosPScom = ganhoPosPKGcom / 60
+            lucro = (ganhoPosPScom * precoArabica) * 2
+            lucro10 = lucro * 10 
+            diferença = lucro10 - lucro10sem
+        }
+
+        if (tipoCafe != 0) {
+        divMsg.style.display = "flex"
+        divForms.style.display = "none"
+
+        
+        divMsg.innerHTML = `<p> Produzindo ${producao} sacas sem o nosso serviço você ganha: <b>R$${lucroSem.toFixed(2).replace(".", ",")}</b> e em um total de 10 anos resultaria em: <b>R$${lucro10sem.toFixed(2).replace(".", ",")}</b>
+            <br> Ja com o nosso produto você ganha: <b>R$${lucro.toFixed(2).replace(".", ",")}</b> e em um total de 10 anos resultaria em: <b>R$${lucro10.toFixed(2).replace(".", ",")}</b> <br>
+            gerando um lucro de <b><span>R$${diferença.toFixed(2).replace(".", ",")}</span></b> ao total de 10 anos </p> <br> <br>
+            <p> Fizemos esse calculo tendo em base a pesquisa do globo rural em que o produtor perde cerca de 25% do que produz devido
+            a má temperatura e umidade, mas nos conseguimos reduzir essa perda para cerca de 10%. <br>
+            Com isso pegando o quanto você produz e tirando sua perda e fazendo vezes o valor medio do cafe chegamos no seu lucro </p>
+            <button onclick="voltar()">voltar</button>        `}
+    }  
+
+    function voltar() {
+        divForms.style.display = "flex"
+        divMsg.style.display = "none"
+    }
+
+</script>
