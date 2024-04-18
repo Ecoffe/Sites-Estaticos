@@ -1,0 +1,131 @@
+.poppins-medium {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.poppins-semibold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.fundo {
+    background-image: url(./assets/imagens/fundo.svg);
+    background-color: #527853;
+    background-repeat: no-repeat;
+    background-size: 110%;
+    overflow-x: hidden;
+}
+
+.tela {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 210vh;
+    justify-content: space-between;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px ;
+    border: solid;
+    border-radius: 16px;
+    background-color: white;
+    border-color: white;
+    height: 565px;
+    width: 475px;
+}
+
+.box {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px ;
+    border: solid;
+    border-radius: 16px;
+    background-color: white;
+    border-color: white;
+    height: 700px;
+    width: 475px;
+}
+
+.xizin {
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-right: 410px;
+    margin-top: 20px;
+}
+
+.titulo {
+    font-family: "Poppins";
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+}
+
+.container p {
+    font-weight: 700;
+    font-family: "Poppins";
+}
+
+.box p {
+    font-family: "Poppins";
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+}
+
+.container span {
+    color: #EE7214;
+}
+
+.box b {
+    font-weight: 600;
+    color: #EE7214;
+}
+
+.box span {
+    font-size: 17px;
+    font-weight: 900;
+}
+
+input {
+    border: solid;
+    width: 70%;
+    border-radius: 6px;
+    border-color: #d3d3d3;
+    border-width: 1px;
+    height: 30px;
+}
+
+select {
+    width: 70%;
+    border-radius: 6px;
+    font-family: "Poppins";
+    border-width: 1;
+    height: 30px;
+}
+
+button {
+    border-radius: 16px;
+    background-color: #2C3333;
+    border: none;
+    width: 70%;
+    color: white;
+    font-family: "Poppins";
+    height: 30px;
+    font-weight: 600;
+    margin-top: 50px;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background-color: #EE7214;
+}
