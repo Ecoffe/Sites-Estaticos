@@ -13,6 +13,7 @@
     <div class="header">
         <div class="container">
             <a class="titulo" href="#inicio">Ecoffe</a>
+            <p>Nome Empresa</p>
         </div>
     </div>
 
@@ -36,18 +37,34 @@
     <div class="dashboard">
         <div class="container3">
             <div class="box">
-                <h1>Grafico de umidade e temperatura da </h1>
-                <p>Estufa: <select name="" id="">
-                    <option value="#">Selecione uma estufa</option>
-                    <option value="1">Estufa S1</option>
-                </select>.</p>
-                <p>Sensor: <select name="" id="">
-                    <option value="#">Selecione um sensor</option>
-                    <option value="1">Sensor D1</option>
-                </select>.</p>
+                <h1>Grafico de umidade e temperatura da 
+                Estufa: <select name="" id="">
+                        <option value="#">Selecione uma estufa</option>
+                        <option value="1">Estufa S1</option>
+                    </select>
+                Sensor: <select name="" id="">
+                        <option value="#">Selecione um sensor</option>
+                        <option value="1">Sensor D1</option>
+                    </select></h1>
                 <div class="tabela">
                     <div>
                         <canvas id="myChart1" style="position: relative; height:30vh; width:50vw"></canvas>
+                    </div>
+                </div>
+                <div class="indicadores">
+                    <div class="boxKpi">
+                        <p>Temperatura atual</p>
+                        <div class="kpi">
+                            <img src="./assets/imgs/iconTemp.svg" alt="" style="height: 80px; width: 80px;">
+                            <p>19º</p>
+                        </div>
+                    </div>
+                    <div class="boxKpi">
+                        <p>Umidade atual</p>
+                        <div class="kpi">
+                            <img src="./assets/imgs/iconUmi.svg" alt=""style="height: 80px; width: 80px;">
+                            <p>83%</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,7 +98,7 @@
                 y: {
                     beginAtZero: true
                 }
-            },        
+            },
         }
     });
 </script>

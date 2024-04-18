@@ -27,6 +27,7 @@ a{
     display: flex;
     align-items: center;
     height: 50px;
+    justify-content: space-around;
 }
 
 .titulo {
@@ -37,7 +38,7 @@ a{
     align-items: start;
     flex-direction: row;
     width: 800px;
-    margin-left: 90px;
+
 }
 
 .leftInfo {
@@ -143,6 +144,30 @@ a{
 
 .dashboard .container3 .box select{
     background-color: #FFFFF4;
-    height: 20px;
+    height: 30px;
     border-radius: 10px;
+}
+
+.dashboard .container3 .box .indicadores{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+.dashboard .container3 .box .indicadores .boxKpi p{
+    margin: 0;
+    font-weight: bold;
+}
+
+.dashboard .container3 .box .indicadores .boxKpi .kpi {
+    width: 200px;
+    height: 115px;
+    background-color: #F9E8D9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+.dashboard .container3 .box .indicadores .boxKpi .kpi p{
+    font-size: 45px;
 }
