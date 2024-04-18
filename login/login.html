@@ -15,7 +15,9 @@
     <div class="container">
         <div class="box">
             <div class="btnVoltar">
-                <img class="btnBack" href="../institucional/index.html" src="./assets/imgs/iconVoltar.svg" alt="">
+                <a href="../institucional/index.html">
+                    <img class="btnBack" src="./assets/imgs/iconVoltar.svg" alt="">
+                </a>
             </div>
             <div class="infoLogin">
                 <div class="tituloLogin">
@@ -49,18 +51,18 @@
         var cnpj = event.target.value;
 
         // Adiciona a máscara de CNPJ
-        if (cnpj.length > 2) {
-            cnpj = cnpj.substring(0, 2) + '.' + cnpj.substring(2);
-        }
-        if (cnpj.length > 6) {
-            cnpj = cnpj.substring(0, 6) + '.' + cnpj.substring(6);
-        }
-        if (cnpj.length > 10) {
-            cnpj = cnpj.substring(0, 10) + '/' + cnpj.substring(10);
-        }
-        if (cnpj.length > 15) {
-            cnpj = cnpj.substring(0, 15) + '-' + cnpj.substring(15);
-        }
+        // if (cnpj.length > 2) {
+        //     cnpj = cnpj.substring(0, 2) + '.' + cnpj.substring(2);
+        // }
+        // if (cnpj.length > 6) {
+        //     cnpj = cnpj.substring(0, 6) + '.' + cnpj.substring(6);
+        // }
+        // if (cnpj.length > 10) {
+        //     cnpj = cnpj.substring(0, 10) + '/' + cnpj.substring(10);
+        // }
+        // if (cnpj.length > 15) {
+        //     cnpj = cnpj.substring(0, 15) + '-' + cnpj.substring(15);
+        // }
 
         // Atualiza o valor do input com a máscara aplicada
         event.target.value = cnpj;
@@ -74,7 +76,7 @@
         var senhaValido = "amocafe";
         var botao = document.getElementById("btnLogin")
 
-        botao.href = "../institucional/index.html"
+        botao.href = "../dashboard/dashboard.html"
         if (cnpj == cnpjValido && senha == senhaValido) {
             window.location.href = botao.href;
         } else {

@@ -85,11 +85,15 @@ a {
 
 .banner {
     background-image: url(./assets/img/inicio.png);
-    height: 800px;
+    height: 570px;
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 1;
     position: relative;
+}
+
+.container2{
+    margin-bottom: 15px;
 }
 
 .container2 p {
@@ -104,6 +108,7 @@ a {
         -1.5px 1.5px 0 #527853,
         1.5px 1.5px 0 #527853;
     color: #f9e8d9;
+    margin: 10px;
 }
 
 .container2 button {

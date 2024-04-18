@@ -131,15 +131,17 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 10px;
 }
 
 .dashboard .container3 .box {
-    width: 970px;
-    height: 510px;
+    width: 1160px;
+    height: 590px;
     background-color: #FFFFF4;
     border-radius: 15px;
     padding: 20px;
     padding-top: 5px;
+    margin-top: 50px;
 }
 
 .dashboard .container3 .box select{
