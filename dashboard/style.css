@@ -11,6 +11,9 @@ body {
 h1{
     font-size: 24px;
 }
+a{
+    text-decoration: none;
+}
 
 .header {
     width: 100%;
@@ -135,4 +138,11 @@ h1{
     background-color: #FFFFF4;
     border-radius: 15px;
     padding: 20px;
+    padding-top: 5px;
+}
+
+.dashboard .container3 .box select{
+    background-color: #FFFFF4;
+    height: 20px;
+    border-radius: 10px;
 }

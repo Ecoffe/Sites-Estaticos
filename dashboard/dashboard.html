@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -36,11 +37,53 @@
         <div class="container3">
             <div class="box">
                 <h1>Grafico de umidade e temperatura da </h1>
-                    <p>Estufa: X . </p>
-                    <p>Sensor: X .</p>
+                <p>Estufa: <select name="" id="">
+                    <option value="#">Selecione uma estufa</option>
+                    <option value="1">Estufa S1</option>
+                </select>.</p>
+                <p>Sensor: <select name="" id="">
+                    <option value="#">Selecione um sensor</option>
+                    <option value="1">Sensor D1</option>
+                </select>.</p>
+                <div class="tabela">
+                    <div>
+                        <canvas id="myChart1" style="position: relative; height:30vh; width:50vw"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </body>
+<script>
+    const ctx1 = document.getElementById('myChart1');
+
+    new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            datasets: [{
+                label: 'Temperatura(ºC)',
+                data: [17, 19, 19, 18, 16, 19],
+                borderWidth: 4,
+                borderColor: '#EE7214',
+                backgroundColor: '#EE7214'
+            }, {
+                label: 'Umidade(%)',
+                data: [80, 82, 80, 85, 80, 83], // Novos dados adicionados aqui
+                borderWidth: 4,
+                borderColor: '#527853',
+                backgroundColor: '#527853'
+            }]
+
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },        
+        }
+    });
+</script>
 
 </html>
