@@ -23,7 +23,7 @@
                 </div>
                 <div class="formsLogin">
                     <div class="cpf">
-                        <input type="text" placeholder="CPF" maxlength="14" id="inputCpfEmp">
+                        <input type="text" placeholder="CPF" maxlength="14" id="inputCpf">
                     </div>
                     <div class="senha">
                         <input type="password" placeholder="Senha" id="inputSenha">
@@ -45,6 +45,37 @@
     </div>
 </body>
 <script>
+
+    // Adiciona um event listener ao elemento HTML com o id "inputCpf"
+    inputCpf.addEventListener('input', function (event) {
+        // Obtém o valor atual do campo de entrada quando o evento "input" é acionado
+        var cpf = event.target.value;
+
+        // Expressões regulares são padrões de busca utilizados em strings. Aqui, /\D/g é uma expressão regular que representa:
+        // \D: Qualquer caractere que não seja um dígito
+        // g: Modificador global, que faz com que a busca seja feita em toda a string
+        // Assim, a expressão /\D/g é usada para substituir todos os caracteres não numéricos da string cpf por uma string vazia, removendo-os efetivamente.
+        cpf = cpf.replace(/\D/g, '');
+
+        // Adiciona a máscara de CPF à string cpf em posições específicas
+        // Por exemplo, se o comprimento da string cpf for maior que 3, significa que já temos pelo menos 3 dígitos, então adicionamos um ponto depois do terceiro dígito.
+        if (cpf.length > 3) {
+            cpf = cpf.substring(0, 3) + '.' + cpf.substring(3);
+        }
+        // O mesmo raciocínio é aplicado para adicionar o segundo conjunto de números, após o sexto dígito.
+        if (cpf.length > 7) {
+            cpf = cpf.substring(0, 7) + '.' + cpf.substring(7);
+        }
+        // E o terceiro conjunto de números, após o décimo primeiro dígito, é adicionado juntamente com o hífen.
+        if (cpf.length > 11) {
+            cpf = cpf.substring(0, 11) + '-' + cpf.substring(11);
+        }
+
+        // Atualiza o valor do campo de entrada com a string cpf já formatada com a máscara de CPF
+        event.target.value = cpf;
+    });
+
+
 
     function login() {
         var cpf = inputCpfEmp.value;

@@ -47,27 +47,31 @@
     </div>
 </body>
 <script>
-    inputCnpjtEmp.addEventListener('input', function (event) {
-        var cnpj = event.target.value;
+    // Adiciona um event listener ao elemento HTML com o id "inputCpf"
+    inputCpf.addEventListener('input', function (event) {
+        // Obtém o valor atual do campo de entrada quando o evento "input" é acionado
+        var cpf = event.target.value;
 
-        // Adiciona a máscara de CNPJ
-        // if (cnpj.length > 2) {
-        //     cnpj = cnpj.substring(0, 2) + '.' + cnpj.substring(2);
-        // }
-        // if (cnpj.length > 6) {
-        //     cnpj = cnpj.substring(0, 6) + '.' + cnpj.substring(6);
-        // }
-        // if (cnpj.length > 10) {
-        //     cnpj = cnpj.substring(0, 10) + '/' + cnpj.substring(10);
-        // }
-        // if (cnpj.length > 15) {
-        //     cnpj = cnpj.substring(0, 15) + '-' + cnpj.substring(15);
-        // }
+        // Remove todos os caracteres não numéricos da string cpf usando uma expressão regular
+        cpf = cpf.replace(/\D/g, '');
 
-        // Atualiza o valor do input com a máscara aplicada
-        event.target.value = cnpj;
+        // Adiciona a máscara de CPF à string cpf em posições específicas
+        // Por exemplo, se o comprimento da string cpf for maior que 3, significa que já temos pelo menos 3 dígitos, então adicionamos um ponto depois do terceiro dígito.
+        if (cpf.length > 3) {
+            cpf = cpf.substring(0, 3) + '.' + cpf.substring(3);
+        }
+        // O mesmo raciocínio é aplicado para adicionar o segundo conjunto de números, após o sexto dígito.
+        if (cpf.length > 7) {
+            cpf = cpf.substring(0, 7) + '.' + cpf.substring(7);
+        }
+        // E o terceiro conjunto de números, após o décimo primeiro dígito, é adicionado juntamente com o hífen.
+        if (cpf.length > 11) {
+            cpf = cpf.substring(0, 11) + '-' + cpf.substring(11);
+        }
+
+        // Atualiza o valor do campo de entrada com a string cpf já formatada com a máscara de CPF
+        event.target.value = cpf;
     });
-
 
     function login() {
         var cnpj = inputCnpjtEmp.value;
