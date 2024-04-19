@@ -7,6 +7,9 @@ body {
     overflow-x: hidden;
     background-color: #f9e8d9;
     font-family: 'Poppins', sans-serif;
+    background-image: url(./assets/img/fundo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
@@ -84,7 +87,7 @@ a {
 }
 
 .banner {
-    background-image: url(./assets/img/inicio.png);
+    /* background-image: url(./assets/img/inicio.png); */
     height: 570px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -139,7 +142,7 @@ button {
     display: flex;
     height: 810px;
     width: 100%;
-    background-image: url(assets/img/sobre\ nos.svg);
+    /* background-image: url(assets/img/sobre\ nos.svg); */
     background-repeat: no-repeat;
     background-size: 94rem;
     align-items: center;
@@ -162,7 +165,7 @@ button {
 }
 
 .bannerP {
-    background-image: url(./assets/img/projeto.svg);
+    /* background-image: url(./assets/img/projeto.svg); */
     background-size: 110rem;
     background-repeat: no-repeat;
     height: 820px;
@@ -177,7 +180,7 @@ button {
 }
 
 .detalhesT {
-    background-image: url(./assets/img/detalhesP.svg);
+    /* background-image: url(./assets/img/detalhesP.svg); */
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
@@ -213,7 +216,7 @@ button {
 }
 
 .bannerE {
-    background-image: url(./assets/img/Equipe.svg);
+    /* background-image: url(./assets/img/Equipe.svg); */
     background-size: cover;
     height: 40rem;
     width: 100%;
