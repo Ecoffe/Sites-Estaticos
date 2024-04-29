@@ -248,7 +248,10 @@ button {
 }
 
 .bannerE .containerE .boxImg {
-    background-color: gray;
+    background-image: url('assets/fotodogrupo.jpeg');
+    background-position: center;
+
+    background-size: cover;
     height: 23rem;
     width: 38rem;
 }
