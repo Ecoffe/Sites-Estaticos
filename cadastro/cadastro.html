@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <link rel="stylesheet" href="script.js">
-    
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,7 +48,7 @@
         </div>
     </div>
 </body>
-<script>
+<!-- <script>
     // Adiciona um event listener ao elemento HTML com o id "inputCpf"
     inputCpf.addEventListener('input', function (event) {
         // Obtém o valor atual do campo de entrada quando o evento "input" é acionado
@@ -75,6 +74,68 @@
         // Atualiza o valor do campo de entrada com a string cpf já formatada com a máscara de CPF
         event.target.value = cpf;
     });
-</script>
+</script> -->
 
 </html>
+
+<script>
+    function criar() {
+        var nomeEmpresa = inputNomeEmp.value
+        var nomeFantasia = inputNomeFant.value
+        var email = inputEmailEmp.value
+        var cnpj = inputCnpjtEmp.value
+        var senha = inputSenha.value
+        var senhaConf = inputConfSenha.value
+
+
+        // Validação dos campos preenchidos
+        if (nomeEmpresa == "" || nomeFantasia == "" || email == "" || senha == "" || senhaConf == "" || cnpj == "") {
+            alert('Erro')
+        }
+
+
+        // Validação dos nomes
+        var tam_nomeEmpresa = nomeEmpresa.length;
+        var tam_nomeFantasia = nomeFantasia.length;
+
+        if (tam_nomeEmpresa <= 1 || tam_nomeFantasia <= 1) {
+            if(tam_nomeEmpresa <= 1){
+                alert('Erro empresa')
+
+            } else if(tam_nomeFantasia <= 1){
+                alert('Erro fantasia')
+
+            }
+        }
+
+
+        // Validação do email
+        if (email.indexOf('@') == -1) {
+            alert('Erro email')
+
+        }
+
+
+        // Validação do CNPJ
+        cnpj.replaceAll('.', '')
+        cnpj.replaceAll('/', '')
+
+        var tam_cnpj = cnpj.length;
+
+        if (tam_cnpj < 14) {
+            alert('Erro cnpj')
+        } 
+
+
+        // Validação das senhas
+        var tam_senha = senha.length;
+
+        if (tam_senha <= 6) {
+            alert('Erro senha')
+        }
+
+        if (senha != senhaConf) {
+            alert('Erro conf')
+        }
+    }
+</script>
