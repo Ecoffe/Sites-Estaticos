@@ -11,6 +11,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 0;
+    background-position: 0px -35px;
 }
 
 
@@ -89,7 +90,7 @@ a {
 
 .banner {
     /* background-image: url(./assets/img/inicio.png); */
-    height: 570px;
+    height: 535px;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -139,7 +140,7 @@ button {
 
 .bannerSN {
     display: flex;
-    height: 810px;
+    height: 695px;
     width: 100%;
     /* background-image: url(assets/img/sobre\ nos.svg); */
     background-repeat: no-repeat;
@@ -151,7 +152,7 @@ button {
 .container3 {
     display: flex;
     width: 500px;
-    height: 570px;
+    height: 582px;
     margin-right: 100px;
     box-shadow: 20px 20px #EE7214;
     background-color: #527853;
@@ -167,7 +168,7 @@ button {
     /* background-image: url(./assets/img/projeto.svg); */
     background-size: 110rem;
     background-repeat: no-repeat;
-    height: 820px;
+    height: 930px;
     width: auto;
 }
 
@@ -175,7 +176,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 720px;
+    height: 660px;
 }
 
 .detalhesT {
