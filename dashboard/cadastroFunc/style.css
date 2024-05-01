@@ -85,7 +85,7 @@ a{
     background-color: #FFFFF4;
     border-radius: 15px;
     border: none;
-    background-image: url(./assets/imgs/iconNot.svg);
+    background-image: url(./assets/imgs/calendario.svg);
     background-repeat: no-repeat;
     background-position: 15px 18px;
     padding-left: 50px;
@@ -101,7 +101,7 @@ a{
     background-color: #FFFFF4;
     border-radius: 15px;
     border: none;
-    background-image: url(./assets/imgs/iconFunc.svg);
+    background-image: url(./assets/imgs/iconNot.svg);
     background-repeat: no-repeat;
     padding-left: 50px;
     cursor: pointer;
@@ -118,6 +118,22 @@ a{
     border-radius: 15px;
     border: none;
     background-image: url(./assets/imgs/iconConfig.svg);
+    background-repeat: no-repeat;
+    background-position: 15px 19px;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.leftInfo .container2 .leftBtns .btnselecionado {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #f7b787;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/iconFunc.svg);
     background-repeat: no-repeat;
     background-position: 15px 19px;
     padding-left: 50px;

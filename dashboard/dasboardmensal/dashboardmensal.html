@@ -12,7 +12,7 @@
 <body>
     <div class="header">
         <div class="container">
-            <a class="titulo" href="../institucional/index.html">ecoffe</a>
+            <a class="titulo" href="../../institucional/index.html">ecoffe</a>
             <p>Nome Empresa</p>
         </div>
     </div>
@@ -20,19 +20,19 @@
     <div class="leftInfo">
         <div class="container2">
             <div class="leftBtns">
-                <button class="btnselecionado" href="#">Dashboards</button>
+                <a href="../dashboard.html"><button class="btns1">Dashboards</button></a>
             </div>
             <div class="leftBtns">
-                <a href="./dasboardmensal/dashboardmensal.html"><button class="btns1">Dados mensais</button></a>
+                <button class="btnselecionado">Dados mensais</button>
             </div>
             <div class="leftBtns">
-                <a href="./notificacoes/notify.html"><button class="btns2" href="#">Notificações</button></a>
+                <a href="../notificacoes/notify.html"><button class="btns2">Notificações</button></a>
             </div>
             <div class="leftBtns">
-                <a href="./cadastroFunc/cadastroFunc.html"><button class="btns3" href="#">Cadastrar</button></a>
+                <a href="../cadastroFunc/cadastroFunc.html"><button class="btns3">Cadastrar</button></a>
             </div>
             <div class="leftBtns">
-                <button class="btns4" href="#">Configurações</button>
+               <button class="btns4">Configurações</button>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
     <div class="dashboard">
         <div class="container3">
             <div class="box">
-                <h1>Grafico de umidade e temperatura da
+                <h1>Gráfico de umidade e temperatura da
                     Estufa: <select name="" id="">
                         <option value="#">Selecione uma estufa</option>
                         <option value="1">Estufa S1</option>
@@ -74,17 +74,18 @@
                         </div>
                     </div>
                     <div class="boxKpi">
-                        <p>Temperatura atual</p>
+                        <p>Mês critico</p>
                         <div class="kpi">
-                            <img src="./assets/imgs/iconTemp.svg" alt="" style="height: 80px; width: 80px;">
-                            <p>19º</p>
+                            <!-- <img src="./assets/imgs/iconTemp.svg" alt="" style="height: 80px; width: 80px;"> -->
+                            <p>Março</p>
                         </div>
                     </div>
                     <div class="boxKpi">
-                        <p>Umidade atual</p>
+                        <p>Medições do mês</p>
                         <div class="kpi2">
-                            <img src="./assets/imgs/iconUmi.svg" alt="" style="height: 80px; width: 80px;">
-                            <p>83%</p>
+                            <!-- <img src="./assets/imgs/iconUmi.svg" alt="" style="height: 80px; width: 80px;"> -->
+                            <p>Temperatura: 35°C</p>
+                            <p>Umidade do ar: 40%</p>
                         </div>
                     </div>
                 </div>
@@ -96,19 +97,19 @@
     const ctx1 = document.getElementById('myChart1');
 
     new Chart(ctx1, {
-        type: 'line',
+        type: 'bar',
         data: {
-            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
             datasets: [{
                 label: 'Temperatura(ºC)',
-                data: [17, 19, 19, 18, 16, 19],
-                borderWidth: 4,
+                data: [17, 19, 35, 18, 16, 30],
+                // borderWidth: 4,
                 borderColor: '#EE7214',
                 backgroundColor: '#EE7214'
             }, {
                 label: 'Umidade(%)',
-                data: [80, 82, 80, 85, 80, 83], // Novos dados adicionados aqui
-                borderWidth: 4,
+                data: [73, 60, 40, 65, 60, 45], // Novos dados adicionados aqui
+                // borderWidth: 4,
                 borderColor: '#527853',
                 backgroundColor: '#527853'
             }]
