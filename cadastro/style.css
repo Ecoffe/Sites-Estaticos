@@ -147,3 +147,8 @@ input {
     font-weight: 700;
     cursor: pointer;
 }
+
+.spnErro{
+    color: red;
+    font-size: 12px;
+}
