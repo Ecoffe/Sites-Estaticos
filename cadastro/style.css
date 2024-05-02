@@ -42,7 +42,7 @@ input {
 
 .container .box {
     width: 550px;
-    height: 540px;
+    height: fit-content;
     background-color: #FBF7F5;
     border-radius: 15px;
 }
@@ -69,6 +69,7 @@ input {
 
 .container .box .infoCadastro .formsLogin .nomesEmpresa {
     margin: 5px;
+    display: flex;
 }
 
 .container .box .infoCadastro .formsLogin .nomesEmpresa input {
@@ -102,6 +103,7 @@ input {
 
 .container .box .infoCadastro .formsLogin .senhas {
     margin: 5px;
+    display: flex;
 }
 
 .container .box .infoCadastro .formsLogin .senhas input {
@@ -151,4 +153,14 @@ input {
 .spnErro{
     color: red;
     font-size: 12px;
+}
+
+.erro{
+    display: flex;
+    flex-direction: column;
+}
+.erroS{
+    display: flex;
+    flex-direction: column;
+    margin-left: 7px;
 }

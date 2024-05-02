@@ -26,22 +26,37 @@
                 </div>
                 <div class="formsLogin">
                     <div class="nomesEmpresa">
-                        <input type="text" placeholder="Nome empresa" id="inputNomeEmp">
-                        <div id="divErroNomeEmpresa"></div>
-                        <input type="text" placeholder="Nome fantasia" id="inputNomeFant">
-                        <div id="divErroNomeFant"></div>
+                        <div class="erro">
+                            <input type="text" placeholder="Nome empresa" id="inputNomeEmp">
+                            <div id="divErroNomeEmpresa"></div>
+                        </div>
+
+                        <div class="erro">
+                            <input type="text" placeholder="Nome fantasia" id="inputNomeFant">
+                            <div id="divErroNomeFant"></div>
+                        </div>
                     </div>
                     <div class="emailCnpj">
-                        <input type="text" class="inputEmail" placeholder="Exemplo@contato.com" id="inputEmailEmp">
-                        <div id="divErroEmail"></div>
-                        <input type="text" placeholder="CNPJ" maxlength="18" id="inputCnpjtEmp">
-                        <div id="divErroCnpj"></div>
+                        <div class="erro">
+                            <input type="text" class="inputEmail" placeholder="Exemplo@contato.com" id="inputEmailEmp">
+                            <div id="divErroEmail"></div>
+                        </div>
+
+                        <div class="erro">
+                            <input type="text" placeholder="CNPJ" maxlength="18" id="inputCnpjtEmp">
+                            <div id="divErroCnpj"></div>
+                        </div>
                     </div>
-                    <div class="senhas">
-                        <input type="password" placeholder="Senha" id="inputSenha">
-                        <div id="divErroSenha"></div>
-                        <input type="password" placeholder="Confirmar senha" id="inputConfSenha">
-                        <div id="divErroSenhaConf"></div>
+                    <div class="erro">
+                        <div class="senhas">
+                            <input type="password" placeholder="Senha" id="inputSenha">
+                            <input type="password" placeholder="Confirmar senha" id="inputConfSenha">
+
+                        </div>
+                        <div class="erroS">
+                            <div id="divErroSenhaConf"></div>
+                            <div id="divErroSenha"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="temConta">
@@ -105,11 +120,11 @@
         var tam_nomeFantasia = nomeFantasia.length;
 
         if (tam_nomeEmpresa <= 1 || tam_nomeFantasia <= 1) {
-            if(tam_nomeEmpresa <= 1){
+            if (tam_nomeEmpresa <= 1) {
                 divErroNomeEmpresa.innerHTML = `<span class="spnErro">Insira um nome válido</span>`
 
             }
-            if(tam_nomeFantasia <= 1){
+            if (tam_nomeFantasia <= 1) {
                 divErroNomeFant.innerHTML = `<span class="spnErro">Insira um nome válido</span>`
 
             }
@@ -131,7 +146,7 @@
 
         if (tam_cnpj < 14) {
             divErroCnpj.innerHTML = `<span class="spnErro">CNPJ inválido</span>`
-        } 
+        }
 
 
         // Validação das senhas
