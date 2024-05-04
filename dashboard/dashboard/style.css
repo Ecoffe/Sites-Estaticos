@@ -164,148 +164,91 @@ a{
     margin-top: 50px;
 }
 
-.dashboard .container3 .box .conteudo {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
+.dashboard .container3 .box select{
+    background-color: #FFFFF4;
+    height: 30px;
+    border-radius: 10px;
 }
 
-.dashboard .container3 .box .conteudo .indicadores{
+.dashboard .container3 .box .indicadores{
     display: flex;
-    flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
+    margin-top: 10px;
 }
 
-.dashboard .container3 .box .conteudo .indicadores .indi1{
-    width: 95px;
-    height: 50px;
-    background-color: red;
+.dashboard .container3 .box .indicadores .boxKpi p{
+    margin: 0;
+    font-weight: bold;
+}
+
+.dashboard .container3 .box .indicadores .boxKpi .kpi {
+    width: 200px;
+    height: 115px;
+    background-color: #F9E8D9;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-weight: bold;
-    border-radius: 10px;
+    border: 6px solid #010101;
+    border-radius: 15px;
 }
 
-.dashboard .container3 .box .conteudo .indicadores .indi2{
-    width: 95px;
-    height: 50px;
-    background-color: yellow;
+.dashboard .container3 .box .indicadores .boxKpi .kpi2 {
+    width: 200px;
+    height: 115px;
+    background-color: #F9E8D9;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    border-radius: 10px;
+    border: 6px solid rgb(255, 136, 0);
+    border-radius: 15px;
 }
 
-.dashboard .container3 .box .conteudo .indicadores .indi3{
-    width: 95px;
-    height: 50px;
-    background-color: green;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    border-radius: 10px;
+.dashboard .container3 .box .indicadores .boxKpi .kpi p{
+    font-size: 45px;
+}
+.dashboard .container3 .box .indicadores .boxKpi .kpi2 p{
+    font-size: 45px;
+}
+.dashboard .container3 .box .indicadores .legendaKPI{
+display: flex;
+flex-direction: column;
+align-items: flex-start;
 }
 
-.dashboard .container3 .box .conteudo .estufas {
+.dashboard .container3 .box .indicadores .legendaKPI .legenda{
     display: flex;
     align-items: center;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100%;
-    width: 100%;
+    justify-content: space-evenly;
 }
 
-.dashboard .container3 .box .conteudo .estufas .conjunto1 {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
+.dashboard .container3 .box .indicadores .legendaKPI .legenda p{
+    margin: 8px
 }
 
-.dashboard .container3 .box .conteudo .estufas .conjunto1 .estufa1{
-    width: 245px;
-    height: 155px;
-    border-radius: 10px;
-    background-color: red;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    font-size: 28px;
+.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor1{
+    height: 20px;
+    width: 40px;
+    border-radius: 15px;
+    border: 4px solid red;
+    background-color: #F9E8D9;
 }
-.dashboard .container3 .box .conteudo .estufas .conjunto1 .estufa2{
-    width: 245px;
-    height: 155px;
-    border-radius: 10px;
-    background-color: red;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    font-size: 28px;
-}
-.dashboard .container3 .box .conteudo .estufas .conjunto1 .estufa3{
-    width: 245px;
-    height: 155px;
-    border-radius: 10px;
-    background-color: yellow;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-weight: bold;
-    font-size: 28px;
+.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor2{
+    height: 20px;
+    width: 40px;
+    border-radius: 15px;
+    border: 4px solid rgb(255, 136, 0);
+    background-color: #F9E8D9;
+}.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor3{
+    height: 20px;
+    width: 40px;
+    border-radius: 15px;
+    border: 4px solid rgb(255, 208, 0);
+    background-color: #F9E8D9;
+}.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor4{
+    height: 20px;
+    width: 40px;
+    border-radius: 15px;
+    border: 4px solid #010101;
+    background-color: #F9E8D9;
 }
 
-.dashboard .container3 .box .conteudo .estufas .conjunto2 {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-}
-
-.dashboard .container3 .box .conteudo .estufas .conjunto2 .estufa1{
-    width: 245px;
-    height: 155px;
-    border-radius: 10px;
-    background-color: yellow;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-weight: bold;
-    font-size: 28px;
-}
-.dashboard .container3 .box .conteudo .estufas .conjunto2 .estufa2{
-    width: 245px;
-    height: 155px;
-    border-radius: 10px;
-    background-color: green;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    font-size: 28px;
-}
-.dashboard .container3 .box .conteudo .estufas .conjunto2 .estufa3{
-    width: 245px;
-    height: 155px;
-    border-radius: 10px;
-    background-color: green;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    border-radius: 10px;
-    font-size: 28px;
-}
