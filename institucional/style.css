@@ -166,7 +166,7 @@ button {
     /* background-image: url(./assets/img/projeto.svg); */
     background-size: 110rem;
     background-repeat: no-repeat;
-    height: 930px;
+    height: 799px;
     width: auto;
 }
 
@@ -174,7 +174,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 660px;
+    height: 501px;
 }
 
 .detalhesT {

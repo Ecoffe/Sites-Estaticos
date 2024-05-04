@@ -25,7 +25,7 @@
                 </div>
                 <div class="formsLogin">
                     <div class="cnpj">
-                        <input type="text" placeholder="CNPJ" maxlength="18" id="inputCnpjtEmp">
+                        <input type="text" placeholder="CNPJ" maxlength="18" id="inputCnpjEmp">
                     </div>
                     <div class="senha">
                         <input type="password" placeholder="Senha" id="inputSenha">
@@ -47,45 +47,50 @@
     </div>
 </body>
 <script>
-    // Adiciona um event listener ao elemento HTML com o id "inputCpf"
-    inputCpf.addEventListener('input', function (event) {
-        // Obtém o valor atual do campo de entrada quando o evento "input" é acionado
-        var cpf = event.target.value;
+    // // Adiciona um event listener ao elemento HTML com o id "inputCpj"
+    // inputCnpjEmp.addEventListener('input', function (event) {
+    //     // Obtém o valor atual do campo de entrada quando o evento "input" é acionado
+    //     var cnpj = event.target.value;
 
-        // Remove todos os caracteres não numéricos da string cpf usando uma expressão regular
-        cpf = cpf.replace(/\D/g, '');
+    //     // Remove todos os caracteres não numéricos da string cpf usando uma expressão regular
+    //     cnpj = cnpj.replace(/\D/g, '');
 
-        // Adiciona a máscara de CPF à string cpf em posições específicas
-        // Por exemplo, se o comprimento da string cpf for maior que 3, significa que já temos pelo menos 3 dígitos, então adicionamos um ponto depois do terceiro dígito.
-        if (cpf.length > 3) {
-            cpf = cpf.substring(0, 3) + '.' + cpf.substring(3);
-        }
-        // O mesmo raciocínio é aplicado para adicionar o segundo conjunto de números, após o sexto dígito.
-        if (cpf.length > 7) {
-            cpf = cpf.substring(0, 7) + '.' + cpf.substring(7);
-        }
-        // E o terceiro conjunto de números, após o décimo primeiro dígito, é adicionado juntamente com o hífen.
-        if (cpf.length > 11) {
-            cpf = cpf.substring(0, 11) + '-' + cpf.substring(11);
-        }
+    //     // Adiciona a máscara de CNPJ à string CNPJ em posições específicas
+    //     // Por exemplo, se o comprimento da string CNP for maior que 3, significa que já temos pelo menos 3 dígitos, então adicionamos um ponto depois do terceiro dígito.
+    //     if (cnpj.length > 3) {
+    //         cnpj = cnpj.substring(0, 3) + '.' + cnpj.substring(3);
+    //     }
+    //     // O mesmo raciocínio é aplicado para adicionar o segundo conjunto de números, após o sexto dígito.
+    //     if (cnpj.length > 7) {
+    //         cnpj = cnpj.substring(0, 7) + '.' + cnpj.substring(7);
+    //     }
+    //     // E o terceiro conjunto de números, após o décimo primeiro dígito, é adicionado juntamente com o hífen.
+    //     if (cnpj.length > 11) {
+    //         cnpj = cnpj.substring(0, 11) + '-' + cnpj.substring(11);
+    //     }
 
-        // Atualiza o valor do campo de entrada com a string cpf já formatada com a máscara de CPF
-        event.target.value = cpf;
-    });
+    //     // Atualiza o valor do campo de entrada com a string cnpj já formatada com a máscara de cnpj
+    //     event.target.value = cnpj;
+    // });
+
 
     function login() {
-        var cnpj = inputCnpjtEmp.value;
+        var cnpj = inputCnpjEmp.value;
         var senha = inputSenha.value;
+
         var cnpjValido = "12.123.123/0001-23";
         var senhaValido = "amocafe123";
+
         var botao = document.getElementById("btnLogin")
 
         botao.href = "../dashboard/dashboard.html"
+
         if (cnpj == cnpjValido && senha == senhaValido) {
             window.location.href = botao.href;
         } else {
-            divErro.innerHTML = `<span class="spnErro">CNPJ ou senha invalido</span>`
+            divErro.innerHTML = `<span class="spnErro">CNPJ ou senha inválida</span>`
         }
+
     }
 </script>
 

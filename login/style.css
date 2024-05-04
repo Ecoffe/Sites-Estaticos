@@ -94,6 +94,7 @@ p{
     display: flex;
     flex-direction: column;
     margin: 5px;
+    margin-left: -2px;
 }
 
 .container .box .infoLogin .formsLogin .cnpj .inputEmail {
@@ -112,6 +113,7 @@ p{
 
 .container .box .infoLogin .formsLogin .senha {
     margin: 5px;
+    margin-left: -2px;
 }
 
 .container .box .infoLogin .formsLogin .senha input {

@@ -26,16 +26,37 @@
                 </div>
                 <div class="formsLogin">
                     <div class="nomesEmpresa">
-                        <input type="text" placeholder="Nome empresa" id="inputNomeEmp">
-                        <input type="text" placeholder="Nome fantasia" id="inputNomeFant">
+                        <div class="erro">
+                            <input type="text" placeholder="Nome empresa" id="inputNomeEmp">
+                            <div id="divErroNomeEmpresa"></div>
+                        </div>
+
+                        <div class="erro">
+                            <input type="text" placeholder="Nome fantasia" id="inputNomeFant">
+                            <div id="divErroNomeFant"></div>
+                        </div>
                     </div>
                     <div class="emailCnpj">
-                        <input type="text" class="inputEmail" placeholder="Exemplo@contato.com" id="inputEmailEmp">
-                        <input type="text" placeholder="CNPJ" maxlength="18" id="inputCnpjtEmp">
+                        <div class="erro">
+                            <input type="text" class="inputEmail" placeholder="Exemplo@contato.com" id="inputEmailEmp">
+                            <div id="divErroEmail"></div>
+                        </div>
+
+                        <div class="erro">
+                            <input type="text" placeholder="CNPJ" maxlength="18" id="inputCnpjtEmp">
+                            <div id="divErroCnpj"></div>
+                        </div>
                     </div>
-                    <div class="senhas">
-                        <input type="password" placeholder="Senha" id="inputSenha">
-                        <input type="password" placeholder="Confirmar senha" id="inputConfSenha">
+                    <div class="erro">
+                        <div class="senhas">
+                            <input type="password" placeholder="Senha" id="inputSenha">
+                            <input type="password" placeholder="Confirmar senha" id="inputConfSenha">
+
+                        </div>
+                        <div class="erroS">
+                            <div id="divErroSenhaConf"></div>
+                            <div id="divErroSenha"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="temConta">
@@ -90,7 +111,7 @@
 
         // Validação dos campos preenchidos
         if (nomeEmpresa == "" || nomeFantasia == "" || email == "" || senha == "" || senhaConf == "" || cnpj == "") {
-            alert('Erro')
+            alert('Preencha todos os campos')
         }
 
 
@@ -99,11 +120,12 @@
         var tam_nomeFantasia = nomeFantasia.length;
 
         if (tam_nomeEmpresa <= 1 || tam_nomeFantasia <= 1) {
-            if(tam_nomeEmpresa <= 1){
-                alert('Erro empresa')
+            if (tam_nomeEmpresa <= 1) {
+                divErroNomeEmpresa.innerHTML = `<span class="spnErro">Insira um nome válido</span>`
 
-            } else if(tam_nomeFantasia <= 1){
-                alert('Erro fantasia')
+            }
+            if (tam_nomeFantasia <= 1) {
+                divErroNomeFant.innerHTML = `<span class="spnErro">Insira um nome válido</span>`
 
             }
         }
@@ -111,7 +133,7 @@
 
         // Validação do email
         if (email.indexOf('@') == -1) {
-            alert('Erro email')
+            divErroEmail.innerHTML = `<span class="spnErro">Deve haver ao menos um @</span>`
 
         }
 
@@ -123,19 +145,19 @@
         var tam_cnpj = cnpj.length;
 
         if (tam_cnpj < 14) {
-            alert('Erro cnpj')
-        } 
+            divErroCnpj.innerHTML = `<span class="spnErro">CNPJ inválido</span>`
+        }
 
 
         // Validação das senhas
         var tam_senha = senha.length;
 
         if (tam_senha <= 6) {
-            alert('Erro senha')
+            divErroSenha.innerHTML = `<span class="spnErro">Insira uma senha de, no mínimo, 8 caracteres</span>`
         }
 
         if (senha != senhaConf) {
-            alert('Erro conf')
+            divErroSenhaConf.innerHTML = `<span class="spnErro">Senhas não estão combinando</span>`
         }
     }
 </script>

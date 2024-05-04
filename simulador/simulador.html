@@ -10,11 +10,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="fundo">
+<body>
 
     <div class="tela"> 
         
         <div class="box" id="divMsg" style="display:none"></div>
+        <div class="forMsg" style="display:none;" id="divFor"></div>
         <div class="container" id="divForms">
             <div class="xizin">
                 <a href="../institucional/index.html">
@@ -23,7 +24,20 @@
             </div>
 
             <div class="titulo"><h1>Faça uma simulação dos seus <span>ganhos!</span></h1></div>
-            <p> Quanto você produz de café (em sacas): </p> <input class="input" type="text" id="inpProduzir" placeholder="R$"> <br>
+            <p> Quanto você produz de café (em sacas): </p> <input class="input" type="text" id="inpProduzir" placeholder="Sacas Produzidas"> <br>
+            <div class="checks">
+                <input type="radio" name="CheckProd" id="inpprod5"><p>100</p> 
+                <input type="radio" name="CheckProd" id="inpprod10"><p>250</p> 
+                <input type="radio" name="CheckProd" id="inpprod15"><p>500</p> 
+                <input type="radio" name="CheckProd" id="inpprod20"><p>1000</p>
+                </div> <br>
+            <p> Por quanto você vende a saca do café?: </p> <input type="number" id="inpPreco" placeholder="Valor em R$"> <br>
+            <div class="checks2">
+                <input type="radio" name="checkPreco" id="inpPreco1"><p>R$1000</p> 
+                <input type="radio" name="checkPreco" id="inpPreco2"><p>R$1100</p> 
+                <input type="radio" name="checkPreco" id="inpPreco3"><p>R$1200</p> 
+                <input type="radio" name="checkPreco" id="inpPreco4"><p>R$1300</p>
+                </div> <br>
             <p> Qual café você produz? </p><select id="selTipoCafe">
                 <option value="0" selected>Tipo de café</option>
                 <option value="1">Conilon</option>
@@ -34,6 +48,8 @@
        
     </div>
 
+    
+</span>
   
 
 </body>
@@ -41,16 +57,70 @@
 
 <script>
 
-    function calculo() {
-        var precoConilon = Number(1029.00)
-        var precoArabica = Number(1126.70)
         
+
+    function calculo() {
+        var preco = inpPreco.value     
         var producao = inpProduzir.value
         var tipoCafe = selTipoCafe.value
 
+        var inpprod5 = document.getElementById("inpprod5");
+        var checar1 = inpprod5.checked;
+
+        var inpprod10 = document.getElementById("inpprod10");
+        var checar2 = inpprod10.checked;
+
+        var inpprod15 = document.getElementById("inpprod15");
+        var checar3 = inpprod15.checked;
+
+        var inpprod20 = document.getElementById("inpprod20");
+        var checar4 = inpprod20.checked;
+
+        if (producao == '') {
+        if (checar1 == true) {
+            producao = 100
+        } else if (checar2 == true) {
+            producao = 250   
+        } else if (checar3 == true) {
+            producao = 500
+        } else if (checar4 == true) {
+            producao = 1000
+        } 
+    } else {
+        producao = inpProduzir.value
+    }
+
+        var preco1 = document.getElementById("inpPreco1")
+        var check1 = preco1.checked
+
+        var preco2 = document.getElementById("inpPreco2")
+        var check2 = preco2.checked
+
+        var preco3 = document.getElementById("inpPreco3")
+        var check3 = preco3.checked
+
+        var preco4 = document.getElementById("inpPreco4")
+        var check4 = preco4.checked
+
+        if (preco == '') {
+        if (check1 == true) {
+            preco = 1000
+        } else if (check2 == true) {
+            preco = 1100
+        } else if (check3 == true) {
+            preco = 1200
+        } else if (check4 == true) {
+            preco = 1300
+        } 
+    } else {
+        preco = inpPreco.value
+    }
+
+
+
         var kgProd = producao * 60
-        var ganhoPosPKGsem = kgProd * 0.75
-        var ganhoPosPKGcom = kgProd * 0.9
+        var ganhoPosPKGsem = kgProd * 0.85
+        var ganhoPosPKGcom = kgProd * 0.95
         var ganhoPosPSsem = 0
         var ganhoPosPScom = 0
         var lucro = 0
@@ -59,46 +129,64 @@
         var lucro10sem = 0
         var diferença = 0
 
-
         divMsg.innerHTML = ``
+        divFor.innerHTML = ''
 
         if (tipoCafe == 0) {
             alert('Selecione um tipo de café valido')
-        } else if (tipoCafe == 1) {
+        } else if (preco == ''){ 
+            alert('Insira o valor do preço')    
+        } else if(producao == '') {
+            alert('Insira o valor produzido')
+        }
+        else if (tipoCafe == 1) {
             ganhoPosPSsem = ganhoPosPKGsem / 60
-            lucroSem = ganhoPosPSsem * precoConilon
+            lucroSem = ganhoPosPSsem * preco
             lucro10sem = lucroSem * 10
             ganhoPosPScom = ganhoPosPKGcom / 60
-            lucro = ganhoPosPScom * precoConilon
+            lucro = ganhoPosPScom * preco
             lucro10 = lucro * 10
             diferença = lucro10 - lucro10sem
+
+            divMsg.style.display = "flex"
+        divForms.style.display = "none"
+         divFor.style.display = "flex"
         } else if (tipoCafe == 2) {
             ganhoPosPSsem = ganhoPosPKGsem / 60
-            lucroSem = (ganhoPosPSsem * precoArabica) * 2
+            lucroSem = (ganhoPosPSsem * preco) * 2
             lucro10sem = lucroSem * 10
             ganhoPosPScom = ganhoPosPKGcom / 60
-            lucro = (ganhoPosPScom * precoArabica) * 2
+            lucro = (ganhoPosPScom * preco) * 2
             lucro10 = lucro * 10 
             diferença = lucro10 - lucro10sem
+
+            divMsg.style.display = "flex"
+        divForms.style.display = "none"
+        divFor.style.display = "flex"
         }
 
-        if (tipoCafe != 0) {
-        divMsg.style.display = "flex"
-        divForms.style.display = "none"
+        divFor.innerHTML += `<h3>O quanto ganharia com a Ecoffe durante 10 anos</h3> <br>`
 
+        for (var cont = 1; cont <= 10; cont ++) {
+            divFor.innerHTML += `<p> ${cont}° ano: R$${(lucro * cont).toFixed(2).replace(".", ",")} </p><br>`
+        }
+            divFor.innerHTML += `<br> <p style="color: #00e908;">lucro de ${(diferença / 10).toFixed(2).replace(".", ",")} por ano</span></p>`
+
+        if (tipoCafe == 1 || tipoCafe == 2) {
         
-        divMsg.innerHTML = `<p> Produzindo ${producao} sacas sem o nosso serviço você ganha: <b>R$${lucroSem.toFixed(2).replace(".", ",")}</b> e em um total de 10 anos resultaria em: <b>R$${lucro10sem.toFixed(2).replace(".", ",")}</b>
-            <br> Ja com o nosso produto você ganha: <b>R$${lucro.toFixed(2).replace(".", ",")}</b> e em um total de 10 anos resultaria em: <b>R$${lucro10.toFixed(2).replace(".", ",")}</b> <br>
-            gerando um lucro de <b><span>R$${diferença.toFixed(2).replace(".", ",")}</span></b> ao total de 10 anos </p> <br> <br>
-            <p> Fizemos esse calculo tendo em base a pesquisa do globo rural em que o produtor perde cerca de 25% do que produz devido
-            a má temperatura e umidade, mas nos conseguimos reduzir essa perda para cerca de 10%. <br>
-            Com isso pegando o quanto você produz e tirando sua perda e fazendo vezes o valor medio do cafe chegamos no seu lucro </p>
+        divMsg.innerHTML = `<p> Produzindo ${producao} sacas e considerando a pesquisa feita pelo globo rural em que o produtor perde 25% da produção, sendo o equivalente a <span style="color: red;">uma perda de ${kgProd * 0.25} Kilos</span> devido a isso sem o nosso serviço você ganha em um ano: <span style="color: red;">R$${lucroSem.toFixed(2).replace(".", ",")}</span> vendendo cada saca por R$${preco} 
+            <br> Ja com o nosso serviço você ganharia por ano: <b>R$${lucro.toFixed(2).replace(".", ",")}</b> gerando um <b>lucro anual adicional de ${(diferença / 10).toFixed(2).replace(".", ",")} </b>isso pois agora a sua perda é reduzida a apenas ${kgProd * 0.10} Kilos<br>
+            <br>
+            <p> Com isso nos mostramos o quanto o nosso serviço pode oferecer para cada produtor reduzindo a perda da produção de 25% para 10%<br>
+            Para essa conta calculamos o quanto você produz e tirando sua perda e fazendo vezes o valor do cafe chegamos no seu lucro </p>
             <button onclick="voltar()">voltar</button>        `}
-    }  
+
+        }  
 
     function voltar() {
         divForms.style.display = "flex"
         divMsg.style.display = "none"
+        divFor.style.display = "none"
     }
 
 </script>

@@ -39,6 +39,7 @@ p{
 .spnErro{
     color: red;
     font-size: 12px;
+    margin-left: 5px;
 }
 
 .container {
@@ -93,6 +94,7 @@ p{
     display: flex;
     flex-direction: column;
     margin: 5px;
+    margin-left: -2px;
 }
 
 .container .box .infoLogin .formsLogin .cpf .inputEmail {
@@ -111,6 +113,7 @@ p{
 
 .container .box .infoLogin .formsLogin .senha {
     margin: 5px;
+    margin-left: -2px;
 }
 
 .container .box .infoLogin .formsLogin .senha input {
