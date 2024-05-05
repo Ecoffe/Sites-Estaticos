@@ -7,6 +7,7 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
+    overflow: hidden; /*verificar se vai tirar ou deixar*/
 }
 h1{
     font-size: 24px;
@@ -60,7 +61,39 @@ a{
     margin-top: 5px;
 }
 
-.leftInfo .container2 .leftBtns .btns1 {
+.leftInfo .container2 .leftBtns .btnshome {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #f7b787;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/iconDash.svg);
+    background-repeat: no-repeat;
+    background-position: 15px 19px;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.leftInfo .container2 .leftBtns .btnsdashboards {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/chart.svg);
+    background-repeat: no-repeat;
+    background-position: 15px 18px;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.leftInfo .container2 .leftBtns .btnsmensal {
     height: 62px;
     width: 275px;
     font-weight: bold;
@@ -76,7 +109,7 @@ a{
     cursor: pointer;
 }
 
-.leftInfo .container2 .leftBtns .btns2 {
+.leftInfo .container2 .leftBtns .btnsnotify {
     height: 62px;
     width: 275px;
     font-weight: bold;
@@ -92,7 +125,7 @@ a{
     cursor: pointer;
 }
 
-.leftInfo .container2 .leftBtns .btns3 {
+.leftInfo .container2 .leftBtns .btnscadastrar {
     height: 62px;
     width: 275px;
     font-weight: bold;
@@ -108,7 +141,7 @@ a{
     background-position: 15px 18px;
 }
 
-.leftInfo .container2 .leftBtns .btns4 {
+.leftInfo .container2 .leftBtns .btnsconfig {
     height: 62px;
     width: 275px;
     font-weight: bold;
@@ -118,22 +151,6 @@ a{
     border-radius: 15px;
     border: none;
     background-image: url(./assets/imgs/iconConfig.svg);
-    background-repeat: no-repeat;
-    background-position: 15px 19px;
-    padding-left: 50px;
-    cursor: pointer;
-}
-
-.leftInfo .container2 .leftBtns .btnselecionado {
-    height: 62px;
-    width: 275px;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: start;
-    background-color: #f7b787;
-    border-radius: 15px;
-    border: none;
-    background-image: url(./assets/imgs/iconDash.svg);
     background-repeat: no-repeat;
     background-position: 15px 19px;
     padding-left: 50px;

@@ -129,6 +129,7 @@ button {
     background-color: #527853;
     color: white;
     border: none;
+    cursor: pointer;
 }
 
 .butao {
