@@ -161,6 +161,25 @@
             }
         });
     });
+    $(document).ready(function(){
+        // Adiciona a função de rolagem suave para os links da barra de navegação
+        $(".footer a").on('click', function(event) {
+            if (this.hash !== "") {
+                event.preventDefault();
+    
+                // Armazena o hash
+                var hash = this.hash;
+    
+                // Usa a função animate() do jQuery para adicionar a animação de rolagem suave
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 800, function(){
+                    // Adiciona o hash (#) à URL quando terminar de rolar
+                    window.location.hash = hash;
+                });
+            }
+        });
+    });
     </script>
     
 </html>

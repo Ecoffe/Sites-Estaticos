@@ -200,18 +200,18 @@ a{
 .dashboard .container3 .box .indicadores .boxKpi .kpi {
     width: 200px;
     height: 115px;
-    background-color: #F9E8D9;
+    background-color: green;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 6px solid #010101;
+    border: 6px solid green;
     border-radius: 15px;
 }
 
 .dashboard .container3 .box .indicadores .boxKpi .kpi2 {
     width: 200px;
     height: 115px;
-    background-color: #F9E8D9;
+    background-color: rgb(255, 136, 0);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -219,6 +219,7 @@ a{
     border-radius: 15px;
     flex-direction: column;
 }
+
 
 .dashboard .container3 .box .indicadores .boxKpi .kpi p{
     font-size: 35px;
@@ -241,30 +242,23 @@ align-items: flex-start;
 .dashboard .container3 .box .indicadores .legendaKPI .legenda p{
     margin: 8px
 }
-
 .dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor1{
     height: 20px;
     width: 40px;
     border-radius: 15px;
     border: 4px solid red;
-    background-color: #F9E8D9;
+    background-color: red;
 }
 .dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor2{
     height: 20px;
     width: 40px;
     border-radius: 15px;
     border: 4px solid rgb(255, 136, 0);
-    background-color: #F9E8D9;
-}.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor3{
-    height: 20px;
-    width: 40px;
-    border-radius: 15px;
-    border: 4px solid rgb(255, 208, 0);
-    background-color: #F9E8D9;
+    background-color: rgb(255, 136, 0);
 }.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor4{
     height: 20px;
     width: 40px;
     border-radius: 15px;
-    border: 4px solid #010101;
-    background-color: #F9E8D9;
+    border: 4px solid green;
+    background-color: green;
 }
