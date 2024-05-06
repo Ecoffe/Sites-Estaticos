@@ -8,10 +8,12 @@ body {
     margin: 0;
     padding: 0;
 }
-h1{
+
+h1 {
     font-size: 24px;
 }
-a{
+
+a {
     text-decoration: none;
 }
 
@@ -114,7 +116,7 @@ a{
     font-weight: bold;
     font-size: 20px;
     text-align: start;
-    background-color: #f7b787;
+    background-color: #FFFFF4;
     border-radius: 15px;
     border: none;
     background-image: url(./assets/imgs/iconNot.svg);
@@ -146,7 +148,7 @@ a{
     font-weight: bold;
     font-size: 20px;
     text-align: start;
-    background-color: #FFFFF4;
+    background-color: #f7b787;
     border-radius: 15px;
     border: none;
     background-image: url(./assets/imgs/iconConfig.svg);
@@ -178,4 +180,72 @@ a{
     padding: 20px;
     padding-top: 5px;
     margin-top: 50px;
+}
+
+.dashboard .container3 .box .config {
+    display: flex;
+    height: 80%;
+    width: 100%;
+}
+
+.dashboard .container3 .box .config .menu {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard .container3 .box .config .menu .buttonConfig {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.dashboard .container3 .box .config .conteudo {
+    width: 80%;
+    height: 100%;
+
+}
+
+.dashboard .container3 .box .config .conteudo .infor input{
+    font-family: 'Poppins', sans-serif;
+    width: 250px;
+    height: 25px;
+    margin-top: 9px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    border: 2px solid black;
+    padding-left: 5px;
+}
+
+
+
+.dashboard .container3 .box .config .acessibilidade {
+    width: 80%;
+    height: 100%;
+
+}
+
+.dashboard .container3 .box .btnSair {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.dashboard .container3 .box .btnSair .btn {
+    height: 55px;
+    width: 170px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #f7b787;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

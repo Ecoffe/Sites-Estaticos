@@ -46,14 +46,51 @@
             <div class="box">
                 <h1>Configurações</h1>
                 <div class="config">
-                    
+                    <div class="menu">
+                        <div onclick="info()" class="buttonConfig">
+                            <p>Informações</p>
+                        </div>
+                        <div onclick="acessibilidade()" class="buttonConfig">
+                            <p>Acessibilidade</p>
+                        </div>
+                    </div>
+                    <div class="conteudo">
+                        <div class="infor" id="infor">
+                            <h2>informações adicionais</h2>
+                            Endereço:
+                            <div class="formsEnd">
+                                <input type="text" class="cep">
+                                <input type="text" class="numero">
+                                <input type="text" class="complemento">
+                            </div>
+                        </div>
+                        <div class="acessi" id="acessi" style="display: none;">
+                            <h2>acessibilidade</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="btnSair">
+                    <button class="btn">Sair da conta</button>
                 </div>
             </div>
         </div>
+
+    </div>
+    </div>
     </div>
 </body>
 <script>
+    function info() {
+        acessi.style.display = 'none';
+        infor.style.display = 'block';
+    }
 
+    function acessibilidade() {
+        infor.style.display = 'none';
+        acessi.style.display = 'block';
+    }
 </script>
+
+</body>
 
 </html>
