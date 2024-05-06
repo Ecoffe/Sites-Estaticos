@@ -27,10 +27,10 @@
             <div class="titulo"><h1>Faça uma simulação dos seus <span>ganhos!</span></h1></div>
             <p> Quanto você produz de café (em sacas): </p> <input class="input" type="text" id="inpProduzir" placeholder="Sacas Produzidas"> <br>
             <div class="checks">
-                <input type="radio" name="CheckProd" id="inpprod5"><p>100</p> 
-                <input type="radio" name="CheckProd" id="inpprod10"><p>250</p> 
-                <input type="radio" name="CheckProd" id="inpprod15"><p>500</p> 
-                <input type="radio" name="CheckProd" id="inpprod20"><p>1000</p>
+                <input type="radio" name="CheckProd" id="inpprod5"><p>20</p> 
+                <input type="radio" name="CheckProd" id="inpprod10"><p>30</p> 
+                <input type="radio" name="CheckProd" id="inpprod15"><p>40</p> 
+                <input type="radio" name="CheckProd" id="inpprod20"><p>50</p>
                 </div> <br>
             <p> Por quanto você vende a saca do café?: </p> <input type="number" id="inpPreco" placeholder="Valor em R$"> <br>
             <div class="checks2">
@@ -79,13 +79,13 @@
 
         if (producao == '') {
         if (checar1 == true) {
-            producao = 100
+            producao = 20
         } else if (checar2 == true) {
-            producao = 250   
+            producao = 30   
         } else if (checar3 == true) {
-            producao = 500
+            producao = 40
         } else if (checar4 == true) {
-            producao = 1000
+            producao = 50
         } 
     } else {
         producao = inpProduzir.value
