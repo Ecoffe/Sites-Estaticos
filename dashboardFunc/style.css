@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    background-color: #F9E8D9;
+    background-image: url(./assets/imgs/fundo.svg);
+    background-repeat: no-repeat;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /*verificar se vai tirar ou deixar*/
+}
+h1{
+    font-size: 24px;
+}
+a{
+    text-decoration: none;
+}
+
+.header {
+    width: 100%;
+    border-bottom: 1px black solid;
+}
+
+.container {
+    background-color: #f7b787;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    justify-content: space-around;
+}
+
+.titulo {
+    color: black;
+    width: fit-content;
+    font-weight: bold;
+    font-size: 24px;
+    align-items: start;
+    flex-direction: row;
+    width: 800px;
+
+}
+
+.leftInfo {
+    width: 277px;
+    margin-left: 10px;
+    margin-top: 60px;
+    position: absolute;
+}
+
+.leftInfo .container2 {
+    display: flex;
+    flex-direction: column;
+    height: 535px;
+
+}
+
+.leftInfo .container2 .leftBtns {
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.leftInfo .container2 .leftBtns .btnshome {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #f7b787;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/iconDash.svg);
+    background-repeat: no-repeat;
+    background-position: 15px 19px;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.leftInfo .container2 .leftBtns .btnsdashboards {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/chart.svg);
+    background-repeat: no-repeat;
+    background-position: 15px 18px;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.leftInfo .container2 .leftBtns .btnsmensal {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/calendario.svg);
+    background-repeat: no-repeat;
+    background-position: 15px 18px;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.leftInfo .container2 .leftBtns .btnsnotify {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/iconNot.svg);
+    background-repeat: no-repeat;
+    background-position: 15px 18px;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.leftInfo .container2 .leftBtns .btnscadastrar {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/iconFunc.svg);
+    background-repeat: no-repeat;
+    padding-left: 50px;
+    cursor: pointer;
+    background-position: 15px 18px;
+}
+
+.leftInfo .container2 .leftBtns .btnsconfig {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/iconConfig.svg);
+    background-repeat: no-repeat;
+    background-position: 15px 19px;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.dashboard .container3 {
+    width: 1200px;
+    height: 595px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.dashboard .container3 .box {
+    width: 1160px;
+    height: 590px;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    padding: 20px;
+    padding-top: 5px;
+    margin-top: 50px;
+}
+
+.dashboard .container3 .box .conteudo {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.dashboard .container3 .box .conteudo .indicadores{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.dashboard .container3 .box .conteudo .indicadores .indi1{
+    width: 95px;
+    height: 50px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.dashboard .container3 .box .conteudo .indicadores .indi2{
+    width: 95px;
+    height: 50px;
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.dashboard .container3 .box .conteudo .indicadores .indi3{
+    width: 95px;
+    height: 50px;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.dashboard .container3 .box .conteudo .estufas {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+}
+
+.dashboard .container3 .box .conteudo .estufas .conjunto1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.dashboard .container3 .box .conteudo .estufas .conjunto1 .estufa1{
+    width: 245px;
+    height: 155px;
+    border-radius: 10px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
+}
+.dashboard .container3 .box .conteudo .estufas .conjunto1 .estufa2{
+    width: 245px;
+    height: 155px;
+    border-radius: 10px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
+}
+.dashboard .container3 .box .conteudo .estufas .conjunto1 .estufa3{
+    width: 245px;
+    height: 155px;
+    border-radius: 10px;
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.dashboard .container3 .box .conteudo .estufas .conjunto2 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.dashboard .container3 .box .conteudo .estufas .conjunto2 .estufa1{
+    width: 245px;
+    height: 155px;
+    border-radius: 10px;
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+    font-size: 28px;
+}
+.dashboard .container3 .box .conteudo .estufas .conjunto2 .estufa2{
+    width: 245px;
+    height: 155px;
+    border-radius: 10px;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
+}
+.dashboard .container3 .box .conteudo .estufas .conjunto2 .estufa3{
+    width: 245px;
+    height: 155px;
+    border-radius: 10px;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 28px;
+}

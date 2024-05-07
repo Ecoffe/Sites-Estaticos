@@ -22,7 +22,7 @@
             </div>
             <div class="infoLogin">
                 <div class="tituloLogin">
-                    <p>Entrar na ecoffe funcionario</p>
+                    <p>Entrar na ecoffe funcionário</p>
                 </div>
                 <div class="formsLogin">
                     <div class="cpf">
@@ -81,13 +81,13 @@
 
 
     function login() {
-        var cpf = inputCpfEmp.value;
+        var cpf = inputCpf.value;
         var senha = inputSenha.value;
-        var cpfValido = "";
-        var senhaValido = "amocafe";
+        var cpfValido = "123.123.123-12";
+        var senhaValido = "amocafe123";
         var botao = document.getElementById("btnLogin")
 
-        botao.href = "../institucional/index.html"
+        botao.href = "../dashboardFunc/home.html"
         if (cpf == cpfValido && senha == senhaValido) {
             window.location.href = botao.href;
         } else {

@@ -14,10 +14,7 @@
     <!-- HEADER -->
     <div class="header">
         <div class="container">
-            <img src="./assets/img/icon - grão.png" alt="Logo" width="40px" height="40px" style="margin-left: 25px;">
-
-            <a class="titulo" href="#inicio">ecoffe</a>
-
+            <a class="titulo" href="#inicio">ecoffe</a> 
             <ul class="navbar">
                 <div class="sobre">
                     <a href="#sobreNos"> Sobre nós </a> <br>
@@ -39,8 +36,8 @@
     <div class="container2">
         <p>"O cuidado com o grão reflete em cada sabor da sua xícara"</p>
         <div class="butao">
-            <a href="#sobreNos">
-                <button href="#sobreNos">Conheça</button>
+            <a href="#projeto">
+                <button href="#projeto">Conheça</button>
             </a>
         </div>
     </div>
@@ -79,7 +76,7 @@
                         <p> - Projeto</p>
                     </div>
                     <div class="texto">
-                        Através da implementação de uma solução baseada na <b>Internet das Coisas (IoT)</b>, oferecemos aos <b>produtores de café</b> um sistema inovador de <b>monitoramento de temperatura</b> para suas <b>estufas</b>. Essa tecnologia avançada permite um <b>controle preciso</b> do ambiente de cultivo, maximizando a <b>qualidade</b> e o <b>rendimento</b> da safra. Além de aumentar a eficiência e <b>reduzir perdas</b> que atualmente atinge um marco de <b>15%</b> do plantio, nossa abordagem sustentável promove o uso inteligente de recursos, enquanto uma <b>interface intuitiva</b> capacita os produtores a gerenciar suas estufas com facilidade, garantindo sucesso e rentabilidade.
+                        Através da implementação de uma solução baseada na <b>Internet das Coisas (IoT)</b>, oferecemos aos <b>produtores de café</b> um sistema inovador de <b>monitoramento de temperatura</b> para suas <b>estufas</b>. Essa tecnologia avançada permite um <b>controle preciso</b> do ambiente de cultivo, maximizando a <b>qualidade</b> e o <b>rendimento</b> da safra. Além de aumentar a eficiência e <b>reduzir perdas</b> que atualmente atinge um marco de <b>15%</b> do plantio, nossa abordagem sustentável promove o uso inteligente de recursos, enquanto uma <b>interface intuitiva</b> capacita os produtores a gerenciar suas estufas com facilidade, garantindo sucesso, rentabilidade e reduzindo o marco de perdas para <b>5%</b>.
                     </div>
                 </div>
             </div>
@@ -96,7 +93,7 @@
                     <p>- Nossa Equipe</p>
                 </div>
                 <div class="texto">
-                    <p>A <b>ecoffe</b> nasceu através de um projeto de Pesquisa e Inovação dentro da faculdade de tecnologia SPTech School.</p>
+                    <p>A <b>ecoffe</b> nasceu através de um projeto de <b>Pesquisa e Inovação</b> dentro da faculdade de tecnologia <b>SPTech School</b>.</p>
                     <p>A equipe é constituída por excelentes profissionais, sendo eles:</p>
                     <ul>
                         <li>Antonio Souza</li>
@@ -164,6 +161,25 @@
     $(document).ready(function(){
         // Adiciona a função de rolagem suave para os links da barra de navegação
         $(".footer a").on('click', function(event) {
+            if (this.hash !== "") {
+                event.preventDefault();
+    
+                // Armazena o hash
+                var hash = this.hash;
+    
+                // Usa a função animate() do jQuery para adicionar a animação de rolagem suave
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 800, function(){
+                    // Adiciona o hash (#) à URL quando terminar de rolar
+                    window.location.hash = hash;
+                });
+            }
+        });
+    });
+    $(document).ready(function(){
+        // Adiciona a função de rolagem suave para os links da barra de navegação
+        $(".butao a").on('click', function(event) {
             if (this.hash !== "") {
                 event.preventDefault();
     

@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    background-color: #F9E8D9;
+    background-image: url(./assets/imgs/fundo.svg);
+    background-repeat: no-repeat;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+h1{
+    font-size: 24px;
+}
+a{
+    text-decoration: none;
+}
+
+.header {
+    width: 100%;
+    border-bottom: 1px black solid;
+}
+
+.container {
+    background-color: #f7b787;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    justify-content: space-around;
+}
+
+.titulo {
+    color: black;
+    width: fit-content;
+    font-weight: bold;
+    font-size: 24px;
+    align-items: start;
+    flex-direction: row;
+    width: 800px;
+
+}
+
+.leftInfo {
+    width: 277px;
+    margin-left: 10px;
+    margin-top: 60px;
+    position: absolute;
+}
+
+.leftInfo .container2 {
+    display: flex;
+    flex-direction: column;
+    height: 535px;
+
+}
+
+.leftInfo .container2 .leftBtns {
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.leftInfo .container2 .leftBtns .btnshome {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/iconDash.svg);
+    background-repeat: no-repeat;
+    background-position: 15px 19px;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.leftInfo .container2 .leftBtns .btnsdashboards {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #f7b787;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/chart.svg);
+    background-repeat: no-repeat;
+    background-position: 15px 18px;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.leftInfo .container2 .leftBtns .btnsmensal {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/calendario.svg);
+    background-repeat: no-repeat;
+    background-position: 15px 18px;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.leftInfo .container2 .leftBtns .btnsnotify {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/iconNot.svg);
+    background-repeat: no-repeat;
+    background-position: 15px 18px;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.leftInfo .container2 .leftBtns .btnscadastrar {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/iconFunc.svg);
+    background-repeat: no-repeat;
+    padding-left: 50px;
+    cursor: pointer;
+    background-position: 15px 18px;
+}
+
+.leftInfo .container2 .leftBtns .btnsconfig {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/iconConfig.svg);
+    background-repeat: no-repeat;
+    background-position: 15px 19px;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.dashboard .container3 {
+    width: 1200px;
+    height: 595px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.dashboard .container3 .box {
+    width: 1160px;
+    height: 590px;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    padding: 20px;
+    padding-top: 5px;
+    margin-top: 50px;
+}
+
+.dashboard .container3 .box select{
+    background-color: #FFFFF4;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.dashboard .container3 .box .indicadores{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+.dashboard .container3 .box .indicadores .boxKpi p{
+    margin: 0;
+    font-weight: bold;
+}
+
+.dashboard .container3 .box .indicadores .boxKpi .kpi {
+    width: 200px;
+    height: 115px;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 6px solid green;
+    border-radius: 15px;
+}
+
+.dashboard .container3 .box .indicadores .boxKpi .kpi2 {
+    width: 200px;
+    height: 115px;
+    background-color: rgb(255, 136, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 6px solid rgb(255, 136, 0);
+    border-radius: 15px;
+}
+
+.dashboard .container3 .box .indicadores .boxKpi .kpi p{
+    font-size: 45px;
+}
+.dashboard .container3 .box .indicadores .boxKpi .kpi2 p{
+    font-size: 45px;
+}
+.dashboard .container3 .box .indicadores .legendaKPI{
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+}
+
+.dashboard .container3 .box .indicadores .legendaKPI .legenda{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.dashboard .container3 .box .indicadores .legendaKPI .legenda p{
+    margin: 8px
+}
+
+.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor1{
+    height: 20px;
+    width: 40px;
+    border-radius: 15px;
+    border: 4px solid red;
+    background-color: red;
+}
+.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor2{
+    height: 20px;
+    width: 40px;
+    border-radius: 15px;
+    border: 4px solid rgb(255, 136, 0);
+    background-color: rgb(255, 136, 0);
+}.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor4{
+    height: 20px;
+    width: 40px;
+    border-radius: 15px;
+    border: 4px solid green;
+    background-color: green;
+}
+
