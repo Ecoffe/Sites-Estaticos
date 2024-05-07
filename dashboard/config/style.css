@@ -207,19 +207,89 @@ a {
 .dashboard .container3 .box .config .conteudo {
     width: 80%;
     height: 100%;
-
+    display: flex;
 }
 
-.dashboard .container3 .box .config .conteudo .infor input{
+.dashboard .container3 .box .config .conteudo .infor .conteudo .endereco input {
     font-family: 'Poppins', sans-serif;
-    width: 250px;
-    height: 25px;
+    width: 380px;
+    height: 35px;
     margin-top: 9px;
     border-radius: 10px;
     font-weight: 700;
     font-size: 14px;
     border: 2px solid black;
     padding-left: 5px;
+}
+
+.dashboard .container3 .box .config .conteudo .infor .conteudo .fone input {
+    font-family: 'Poppins', sans-serif;
+    width: 315px;
+    height: 35px;
+    margin-top: 9px;
+    border-radius: 25px 00px 00px 25px;
+    font-weight: 700;
+    font-size: 14px;
+    border: 2px solid black;
+    padding-left: 5px;
+    border-right-width: 0px;
+}
+
+.dashboard .container3 .box .config .conteudo .infor .conteudo .fone .formsFone .fones {
+    display: flex;
+}
+
+.dashboard .container3 .box .config .conteudo .infor .conteudo .fone .formsFone .fones button {
+    height: 39px;
+    background-color: #2C3333;
+    font-family: 'Poppins';
+    font-weight: 700;
+    transition: 800ms;
+    border: 2px solid black;
+    border-radius: 0px 25px 25px 0px;
+    margin-top: 9.2px;
+    font-weight: 700;
+    color: white;
+    border-left-width: 0px;
+    cursor: pointer;
+}
+
+.dashboard .container3 .box .config .conteudo .infor .conteudo .fone .formsFone .fones button:hover {
+    transition: 800ms;
+    background-color: #FFF;
+    color: #2C3333;
+    font-family: 'Poppins';
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.dashboard .container3 .box .config .conteudo .infor .formsEnd {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    align-items: center;
+}
+
+.dashboard .container3 .box .config .conteudo .infor .formsEnd .btnInscricao {
+    background-color: #2C3333;
+    margin-top: 9px;
+    color: #FFF;
+    width: 327px;
+    height: 45px;
+    font-family: 'Poppins';
+    border-radius: 25px;
+    border: 2px solid black;
+    font-weight: 700;
+    transition: 800ms;
+}
+
+.dashboard .container3 .box .config .conteudo .infor .formsEnd .btnInscricao:hover {
+    transition: 800ms;
+    background-color: #FFF;
+    color: #2C3333;
+    font-family: 'Poppins';
+    font-weight: 700;
+    cursor: pointer;
 }
 
 
