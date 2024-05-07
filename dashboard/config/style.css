@@ -54,12 +54,29 @@ a {
     display: flex;
     flex-direction: column;
     height: 535px;
-
+    justify-content: space-between;
 }
 
 .leftInfo .container2 .leftBtns {
     font-weight: 700;
     margin-top: 5px;
+}
+
+.leftInfo .container2 .btnSair button {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/sair.png);
+    background-repeat: no-repeat;
+    background-position: 15px 18px;
+    padding-left: 50px;
+    background-size: 25px;
+    cursor: pointer;
 }
 
 .leftInfo .container2 .leftBtns .btnshome {
