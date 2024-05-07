@@ -73,7 +73,9 @@ body {
     align-items: center;
 }
 
-
+#divFor h3{
+    font-family: "Poppins";
+}
 
 .forMsg p{
     font-family: "Poppins";
