@@ -98,6 +98,29 @@
     });
 </script> -->
 
+<script>
+    // Função para formatar o CNPJ
+    function formatarCNPJ(cnpj) {
+        // Remove qualquer caractere que não seja número
+        cnpj = cnpj.replace(/\D/g, '');
+        
+        // Adiciona a formatação
+        cnpj = cnpj.replace(/^(\d{2})(\d)/, '$1.$2');
+        cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+        cnpj = cnpj.replace(/\.(\d{3})(\d)/, '.$1/$2');
+        cnpj = cnpj.replace(/(\d{4})(\d)/, '$1-$2');
+        
+        return cnpj;
+    }
+
+    // Adiciona o evento de input ao campo de CNPJ
+    document.getElementById('inputCnpjtEmp').addEventListener('input', function(event) {
+        var input = event.target;
+        var cnpj = input.value;
+        input.value = formatarCNPJ(cnpj);
+    });
+</script>
+
 </html>
 
 <script>
