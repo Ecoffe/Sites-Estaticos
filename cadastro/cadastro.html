@@ -70,34 +70,6 @@
         </div>
     </div>
 </body>
-<!-- <script>
-    // Adiciona um event listener ao elemento HTML com o id "inputCpf"
-    inputCpf.addEventListener('input', function (event) {
-        // Obtém o valor atual do campo de entrada quando o evento "input" é acionado
-        var cpf = event.target.value;
-
-        // Remove todos os caracteres não numéricos da string cpf usando uma expressão regular
-        cpf = cpf.replace(/\D/g, '');
-
-        // Adiciona a máscara de CPF à string cpf em posições específicas
-        // Por exemplo, se o comprimento da string cpf for maior que 3, significa que já temos pelo menos 3 dígitos, então adicionamos um ponto depois do terceiro dígito.
-        if (cpf.length > 3) {
-            cpf = cpf.substring(0, 3) + '.' + cpf.substring(3);
-        }
-        // O mesmo raciocínio é aplicado para adicionar o segundo conjunto de números, após o sexto dígito.
-        if (cpf.length > 7) {
-            cpf = cpf.substring(0, 7) + '.' + cpf.substring(7);
-        }
-        // E o terceiro conjunto de números, após o décimo primeiro dígito, é adicionado juntamente com o hífen.
-        if (cpf.length > 11) {
-            cpf = cpf.substring(0, 11) + '-' + cpf.substring(11);
-        }
-
-        // Atualiza o valor do campo de entrada com a string cpf já formatada com a máscara de CPF
-        event.target.value = cpf;
-    });
-</script> -->
-
 
 </html>
 
