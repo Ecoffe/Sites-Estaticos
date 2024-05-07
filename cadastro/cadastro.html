@@ -145,7 +145,7 @@
 
         var tam_cnpj = cnpj.length;
 
-        if (tam_cnpj < 14) {
+        if (tam_cnpj < 14 || tam_cnpj > 14) {
             divErroCnpj.innerHTML = `<span class="spnErro">CNPJ inválido</span>`
         }
 
