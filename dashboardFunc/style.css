@@ -7,12 +7,15 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    overflow: hidden; /*verificar se vai tirar ou deixar*/
+    overflow: hidden;
+    /*verificar se vai tirar ou deixar*/
 }
-h1{
+
+h1 {
     font-size: 24px;
 }
-a{
+
+a {
     text-decoration: none;
 }
 
@@ -31,7 +34,7 @@ a{
     justify-content: space-around;
 }
 
-.titulo {
+.titulodash {
     color: black;
     width: fit-content;
     font-weight: bold;
@@ -39,7 +42,6 @@ a{
     align-items: start;
     flex-direction: row;
     width: 800px;
-
 }
 
 .leftInfo {
@@ -53,12 +55,29 @@ a{
     display: flex;
     flex-direction: column;
     height: 535px;
-
+    justify-content: space-between;
 }
 
 .leftInfo .container2 .leftBtns {
     font-weight: 700;
     margin-top: 5px;
+}
+
+.leftInfo .container2 .btnSair button {
+    height: 62px;
+    width: 275px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: start;
+    background-color: #FFFFF4;
+    border-radius: 15px;
+    border: none;
+    background-image: url(./assets/imgs/sair.png);
+    background-repeat: no-repeat;
+    background-position: 15px 18px;
+    padding-left: 50px;
+    background-size: 25px;
+    cursor: pointer;
 }
 
 .leftInfo .container2 .leftBtns .btnshome {
@@ -157,23 +176,6 @@ a{
     cursor: pointer;
 }
 
-.leftInfo .container2 .btnSair button {
-    height: 62px;
-    width: 275px;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: start;
-    background-color: #FFFFF4;
-    border-radius: 15px;
-    border: none;
-    background-image: url(./assets/imgs/sair.png);
-    background-repeat: no-repeat;
-    background-position: 15px 18px;
-    padding-left: 50px;
-    background-size: 25px;
-    cursor: pointer;
-}
-
 .dashboard {
     display: flex;
     flex-direction: row-reverse;
@@ -198,20 +200,26 @@ a{
     margin-top: 50px;
 }
 
+.dashboard .container3 .box h1{
+    display: flex;
+    justify-content: center;
+}
+
 .dashboard .container3 .box .conteudo {
     display: flex;
     flex-direction: row;
     height: 100%;
 }
 
-.dashboard .container3 .box .conteudo .indicadores{
+.dashboard .container3 .box .conteudo .indicadores {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    height: 80%;
 }
 
-.dashboard .container3 .box .conteudo .indicadores .indi1{
+.dashboard .container3 .box .conteudo .indicadores .indi1 {
     width: 95px;
     height: 50px;
     background-color: red;
@@ -223,7 +231,7 @@ a{
     border-radius: 10px;
 }
 
-.dashboard .container3 .box .conteudo .indicadores .indi2{
+.dashboard .container3 .box .conteudo .indicadores .indi2 {
     width: 95px;
     height: 50px;
     background-color: yellow;
@@ -234,7 +242,7 @@ a{
     border-radius: 10px;
 }
 
-.dashboard .container3 .box .conteudo .indicadores .indi3{
+.dashboard .container3 .box .conteudo .indicadores .indi3 {
     width: 95px;
     height: 50px;
     background-color: green;
@@ -251,7 +259,7 @@ a{
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
-    height: 100%;
+    height: 80%;
     width: 100%;
 }
 
@@ -262,7 +270,7 @@ a{
     width: 100%;
 }
 
-.dashboard .container3 .box .conteudo .estufas .conjunto1 .estufa1{
+.dashboard .container3 .box .conteudo .estufas .conjunto1 .estufa1 {
     width: 245px;
     height: 155px;
     border-radius: 10px;
@@ -273,8 +281,10 @@ a{
     color: white;
     font-weight: bold;
     font-size: 28px;
+    border: solid 2px black;
 }
-.dashboard .container3 .box .conteudo .estufas .conjunto1 .estufa2{
+
+.dashboard .container3 .box .conteudo .estufas .conjunto1 .estufa2 {
     width: 245px;
     height: 155px;
     border-radius: 10px;
@@ -285,8 +295,10 @@ a{
     color: white;
     font-weight: bold;
     font-size: 28px;
+    border: solid 2px black;
 }
-.dashboard .container3 .box .conteudo .estufas .conjunto1 .estufa3{
+
+.dashboard .container3 .box .conteudo .estufas .conjunto1 .estufa3 {
     width: 245px;
     height: 155px;
     border-radius: 10px;
@@ -294,9 +306,9 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-weight: bold;
     font-size: 28px;
+    border: solid 2px black;
 }
 
 .dashboard .container3 .box .conteudo .estufas .conjunto2 {
@@ -306,7 +318,7 @@ a{
     width: 100%;
 }
 
-.dashboard .container3 .box .conteudo .estufas .conjunto2 .estufa1{
+.dashboard .container3 .box .conteudo .estufas .conjunto2 .estufa1 {
     width: 245px;
     height: 155px;
     border-radius: 10px;
@@ -314,11 +326,12 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: bold;
+    font-size: 28px;
+    border: solid 2px black;
+}
 
-    font-weight: bold;
-    font-size: 28px;
-}
-.dashboard .container3 .box .conteudo .estufas .conjunto2 .estufa2{
+.dashboard .container3 .box .conteudo .estufas .conjunto2 .estufa2 {
     width: 245px;
     height: 155px;
     border-radius: 10px;
@@ -329,8 +342,10 @@ a{
     color: white;
     font-weight: bold;
     font-size: 28px;
+    border: solid 2px black;
 }
-.dashboard .container3 .box .conteudo .estufas .conjunto2 .estufa3{
+
+.dashboard .container3 .box .conteudo .estufas .conjunto2 .estufa3 {
     width: 245px;
     height: 155px;
     border-radius: 10px;
@@ -342,4 +357,20 @@ a{
     font-weight: bold;
     border-radius: 10px;
     font-size: 28px;
+    border: solid 2px black;
+}
+
+.dashboard .container3 .box .conteudo .estufas .conjunto2 .estufaadd {
+    width: 245px;
+    height: 155px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    /* font-weight: bold; */
+    border-radius: 10px;
+    font-size: 70px;
+    border: solid 2px black;
 }

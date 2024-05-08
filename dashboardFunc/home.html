@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard | Funcionário</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
@@ -13,27 +13,33 @@
 <body>
     <div class="header">
         <div class="container">
-            <a class="titulo" href="../institucional/index.html">ecoffe</a>
+            <a class="titulodash" href="../institucional/index.html">ecoffe</a>
             <p>Nome Funcionário</p>
         </div>
     </div>
 
     <div class="leftInfo">
         <div class="container2">
-            <div class="leftBtns">
-                <a href="#"><button class="btnshome">Estufas</button></a>
+            <div class="btnsDash">
+                <div class="leftBtns">
+                    <a href="#"><button class="btnshome">Estufas</button></a>
+                </div>
+                <div class="leftBtns">
+                    <a href="./dashboard/dashboard.html"><button class="btnsdashboards">Dashboards</button></a>
+                </div>
+                <div class="leftBtns">
+                    <a href="./dasboardmensal/dashboardmensal.html"><button class="btnsmensal">Dados
+                            mensais</button></a>
+                </div>
+                <div class="leftBtns">
+                    <a href="./notificacoes/notify.html"><button class="btnsnotify">Notificações</button></a>
+                </div>
+                <div class="leftBtns">
+                    <a href="./config/config.html"><button class="btnsconfig">Configurações</button></a>
+                </div>
             </div>
-            <div class="leftBtns">
-                <a href="./dashboard/dashboard.html"><button class="btnsdashboards">Dashboards</button></a>
-            </div>
-            <div class="leftBtns">
-                <a href="./dasboardmensal/dashboardmensal.html"><button class="btnsmensal">Dados mensais</button></a>
-            </div>
-            <div class="leftBtns">
-                <a href="./notificacoes/notify.html"><button class="btnsnotify">Notificações</button></a>
-            </div>
-            <div class="leftBtns">
-                <a href="./config/config.html"><button class="btnsconfig" href="#">Configurações</button></a>
+            <div class="btnSair">
+                <a href="../login/login.html"><button class="btn">Sair da conta</button></a>
             </div>
         </div>
     </div>
@@ -41,42 +47,42 @@
     <div class="dashboard">
         <div class="container3">
             <div class="box">
-                <h1>Visão geral de suas Estufas</h1>
+                <h1>Visão geral de suas estufas</h1>
                 <div class="conteudo">
                     <div class="indicadores">
                         <div class="indi1">
-                            Critico
+                            <p>Crítico</p>
                         </div>
                         <div class="indi2">
-                            Perigoso
+                            <p>Perigoso</p>
                         </div>
                         <div class="indi3">
-                            Normal
+                            <p>Normal</p>
                         </div>
                     </div>
                     <div class="estufas">
                         <div class="conjunto1">
                             <a href="./dashboard/dashboard.html">
                                 <div class="estufa1">
-                                    Estufa 5
+                                    <p>Estufa 5</p>
                                 </div>
                             </a>
                             <div class="estufa2">
-                                Estufa 2
+                                <p>Estufa 2</p>
                             </div>
                             <div class="estufa3">
-                                Estufa 3
+                                <p>Estufa 3</p>
                             </div>
                         </div>
                         <div class="conjunto2">
                             <div class="estufa1">
-                                Estufa 4
+                                <p>Estufa 4</p>
                             </div>
                             <div class="estufa2">
-                                Estufa 1
+                                <p>Estufa 1</p>
                             </div>
-                            <div class="estufa3">
-                                Estufa 6
+                            <div class="estufaadd">
+                                <p>+</p>
                             </div>
                         </div>
                     </div>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard | Funcionário</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
@@ -20,39 +20,47 @@
 
     <div class="leftInfo">
         <div class="container2">
-            <div class="leftBtns">
-                <a href="../home.html"><button class="btnshome">Estufas</button></a>
+            <div class="btnsDash">
+                <div class="leftBtns">
+                    <a href="../home.html"><button class="btnshome">Estufas</button></a>
+                </div>
+                <div class="leftBtns">
+                    <a href="../dashboard/dashboard.html"><button class="btnsdashboards">Dashboards</button></a>
+                </div>
+                <div class="leftBtns">
+                    <a href="../dasboardmensal/dashboardmensal.html"><button class="btnsmensal">Dados
+                            mensais</button></a>
+                </div>
+                <div class="leftBtns">
+                    <a href="../notificacoes/notify.html"><button class="btnsnotify">Notificações</button></a>
+                </div>
+                <div class="leftBtns">
+                    <a href="../config/config.html"><button class="btnsconfig" href="#">Configurações</button></a>
+
+                </div>
             </div>
-            <div class="leftBtns">
-                <a href="../dashboard/dashboard.html"><button class="btnsdashboards">Dashboards</button></a>
+            <div class="btnSair">
+                <a href="../../login/login.html"><button class="btn">Sair da conta</button></a>
             </div>
-            <div class="leftBtns">
-                <a href="#"><button class="btnsmensal">Dados mensais</button></a>
-            </div>
-            <div class="leftBtns">
-                <a href="../notificacoes/notify.html"><button class="btnsnotify">Notificações</button></a>
-            </div>
-            <div class="leftBtns">
-                <a href="./config/config.html"><button class="btnsconfig" href="#">Configurações</button></a>
-            </div>
-        </div>
-        <div class="btnSair">
-            <a href="../login/login.html"><button class="btn">Sair da conta</button></a>
         </div>
     </div>
 
     <div class="dashboard">
         <div class="container3">
             <div class="box">
-                <h1>Gráfico de umidade e temperatura da
-                    Estufa: <select name="" id="">
-                        <option value="#">Selecione uma estufa</option>
-                        <option value="1">Estufa S1</option>
-                    </select>
-                    Sensor: <select name="" id="">
-                        <option value="#">Selecione um sensor</option>
-                        <option value="1">Sensor D1</option>
-                    </select></h1>
+                <div class="tituloestufas">
+                    <div>
+                        <h1>Estufa 05</h1>
+                    </div>
+                    <div>
+                        <h1>
+                            Sensor: <select name="" id="">
+                                <option value="#">Selecione um sensor</option>
+                                <option value="1">Sensor 01</option>
+                            </select>
+                        </h1>
+                    </div>
+                </div>
                 <div class="tabela">
                     <div>
                         <canvas id="myChart1" style="position: relative; height:30vh; width:50vw"></canvas>
@@ -110,8 +118,8 @@
                 label: 'Umidade(%)',
                 data: [73, 60, 40, 65, 60, 45], // Novos dados adicionados aqui
                 // borderWidth: 4,
-                borderColor: '#527853',
-                backgroundColor: '#527853'
+                borderColor: '#0B7F99',
+                backgroundColor: '#0B7F99'
             }]
 
         },
