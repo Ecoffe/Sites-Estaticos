@@ -211,6 +211,18 @@ a {
     height: 100%;
 }
 
+.metrica p{
+    margin: 0;
+}
+
+.metrica {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .dashboard .container3 .box .conteudo .indicadores {
     display: flex;
     flex-direction: column;
@@ -373,4 +385,14 @@ a {
     border-radius: 10px;
     font-size: 70px;
     border: solid 2px black;
+}
+
+.teste{
+    background-color: #83ff00;
+    width: 85px;
+    border-radius: 0 0px 16px 16px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
 }
