@@ -74,8 +74,12 @@
 </html>
 
 <script>
+    // Adiciona um ouvinte de eventos ao elemento HTML com o ID 'inputCnpjEmp'
     document.getElementById('inputCnpjEmp').addEventListener('input', function (event) {
+        // Obtém o valor atual do campo de entrada e remove todos os caracteres que não são dígitos
         let cnpj = event.target.value.replace(/\D/g, '');
+
+        // Formata o CNPJ filtrado para o formato padrão XX.XXX.XXX/YYYY-ZZ
         event.target.value = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
     });
 
