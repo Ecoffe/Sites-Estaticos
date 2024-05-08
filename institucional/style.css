@@ -37,6 +37,7 @@ body {
     align-items: start;
     flex-direction: row;
     width: 800px;
+    margin-left: 50px;
 }
 
 .header .container {

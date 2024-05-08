@@ -244,7 +244,7 @@ a {
     width: 315px;
     height: 35px;
     margin-top: 9px;
-    border-radius: 25px 00px 00px 25px;
+    border-radius: 10px 00px 00px 10px;
     font-weight: 700;
     font-size: 14px;
     border: 2px solid black;
@@ -257,14 +257,14 @@ a {
 }
 
 .dashboard .container3 .box .config .conteudo .infor .conteudo .fone .formsFone .fones button {
-    height: 39px;
+    /* height: 39px; */
     background-color: #2C3333;
     font-family: 'Poppins';
     font-weight: 700;
     transition: 800ms;
     border: 2px solid black;
-    border-radius: 0px 25px 25px 0px;
-    margin-top: 9.2px;
+    border-radius: 0px 10px 10px 0px;
+    margin-top: 9px;
     font-weight: 700;
     color: white;
     border-left-width: 0px;

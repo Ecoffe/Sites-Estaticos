@@ -8,10 +8,12 @@ body {
     margin: 0;
     padding: 0;
 }
-h1{
+
+h1 {
     font-size: 24px;
 }
-a{
+
+a {
     text-decoration: none;
 }
 
@@ -52,13 +54,14 @@ a{
     display: flex;
     flex-direction: column;
     height: 535px;
-
+    justify-content: space-between;
 }
 
 .leftInfo .container2 .leftBtns {
     font-weight: 700;
     margin-top: 5px;
 }
+
 
 .leftInfo .container2 .leftBtns .btnshome {
     height: 62px;
@@ -98,7 +101,7 @@ a{
     font-weight: bold;
     font-size: 20px;
     text-align: start;
-    background-color: #f7b787;
+    background-color: #FFFFF4;
     border-radius: 15px;
     border: none;
     background-image: url(./assets/imgs/calendario.svg);
@@ -197,85 +200,140 @@ a{
     margin-top: 50px;
 }
 
-.dashboard .container3 .box select{
-    background-color: #FFFFF4;
-    height: 30px;
-    border-radius: 10px;
-}
-
-.dashboard .container3 .box .indicadores{
+.dashboard .container3 .box .config {
     display: flex;
-    justify-content: space-evenly;
-    margin-top: 10px;
+    height: 80%;
+    width: 100%;
 }
 
-.dashboard .container3 .box .indicadores .boxKpi p{
-    margin: 0;
-    font-weight: bold;
-}
-
-.dashboard .container3 .box .indicadores .boxKpi .kpi {
-    width: 200px;
-    height: 115px;
-    background-color: green;
+.dashboard .container3 .box .config .menu {
+    width: 20%;
+    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 6px solid green;
-    border-radius: 15px;
-}
-
-.dashboard .container3 .box .indicadores .boxKpi .kpi2 {
-    width: 200px;
-    height: 115px;
-    background-color: rgb(255, 136, 0);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 6px solid rgb(255, 136, 0);
-    border-radius: 15px;
     flex-direction: column;
-}
-
-
-.dashboard .container3 .box .indicadores .boxKpi .kpi p{
-    font-size: 35px;
-}
-.dashboard .container3 .box .indicadores .boxKpi .kpi2 p{
-    font-size: 17px;
-}
-.dashboard .container3 .box .indicadores .legendaKPI{
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-}
-
-.dashboard .container3 .box .indicadores .legendaKPI .legenda{
-    display: flex;
     align-items: center;
-    justify-content: space-evenly;
 }
 
-.dashboard .container3 .box .indicadores .legendaKPI .legenda p{
-    margin: 8px
+.dashboard .container3 .box .config .menu .buttonConfig {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
-.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor1{
-    height: 20px;
-    width: 40px;
-    border-radius: 15px;
-    border: 4px solid red;
-    background-color: red;
+
+.dashboard .container3 .box .config .conteudo {
+    width: 80%;
+    height: 100%;
+    display: flex;
 }
-.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor2{
-    height: 20px;
-    width: 40px;
+
+.dashboard .container3 .box .config .conteudo .infor .conteudo .endereco input {
+    font-family: 'Poppins', sans-serif;
+    width: 380px;
+    height: 35px;
+    margin-top: 9px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    border: 2px solid black;
+    padding-left: 5px;
+}
+
+.dashboard .container3 .box .config .conteudo .infor .conteudo .fone input {
+    font-family: 'Poppins', sans-serif;
+    width: 315px;
+    height: 35px;
+    margin-top: 9px;
+    border-radius: 25px 00px 00px 25px;
+    font-weight: 700;
+    font-size: 14px;
+    border: 2px solid black;
+    padding-left: 5px;
+    border-right-width: 0px;
+}
+
+.dashboard .container3 .box .config .conteudo .infor .conteudo .fone .formsFone .fones {
+    display: flex;
+}
+
+.dashboard .container3 .box .config .conteudo .infor .conteudo .fone .formsFone .fones button {
+    height: 39px;
+    background-color: #2C3333;
+    font-family: 'Poppins';
+    font-weight: 700;
+    transition: 800ms;
+    border: 2px solid black;
+    border-radius: 0px 25px 25px 0px;
+    margin-top: 9.2px;
+    font-weight: 700;
+    color: white;
+    border-left-width: 0px;
+    cursor: pointer;
+}
+
+.dashboard .container3 .box .config .conteudo .infor .conteudo .fone .formsFone .fones button:hover {
+    transition: 800ms;
+    background-color: #FFF;
+    color: #2C3333;
+    font-family: 'Poppins';
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.dashboard .container3 .box .config .conteudo .infor .formsEnd {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    align-items: center;
+}
+
+.dashboard .container3 .box .config .conteudo .infor .formsEnd .btnInscricao {
+    background-color: #2C3333;
+    margin-top: 9px;
+    color: #FFF;
+    width: 327px;
+    height: 45px;
+    font-family: 'Poppins';
+    border-radius: 25px;
+    border: 2px solid black;
+    font-weight: 700;
+    transition: 800ms;
+}
+
+.dashboard .container3 .box .config .conteudo .infor .formsEnd .btnInscricao:hover {
+    transition: 800ms;
+    background-color: #FFF;
+    color: #2C3333;
+    font-family: 'Poppins';
+    font-weight: 700;
+    cursor: pointer;
+}
+
+
+
+.dashboard .container3 .box .config .acessibilidade {
+    width: 80%;
+    height: 100%;
+
+}
+
+.dashboard .container3 .box .btnSair {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.dashboard .container3 .box .btnSair .btn {
+    height: 55px;
+    width: 170px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #f7b787;
     border-radius: 15px;
-    border: 4px solid rgb(255, 136, 0);
-    background-color: rgb(255, 136, 0);
-}.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor4{
-    height: 20px;
-    width: 40px;
-    border-radius: 15px;
-    border: 4px solid green;
-    background-color: green;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
