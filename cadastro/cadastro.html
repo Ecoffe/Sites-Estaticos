@@ -80,6 +80,11 @@
     });
 
     function criar() {
+        divErroEmail.innerHTML = ''
+        divErroCnpj.innerHTML = ''
+        divErroSenha.innerHTML = ''
+        divErroSenhaConf.innerHTML = ''
+
         var nomeEmpresa = inputNomeEmp.value
         var nomeFantasia = inputNomeFant.value
         var email = inputEmailEmp.value
@@ -118,12 +123,9 @@
 
 
         // Validação do CNPJ
-        cnpj.replaceAll('.', '')
-        cnpj.replaceAll('/', '')
-
         var tam_cnpj = cnpj.length;
 
-        if (tam_cnpj < 14 || tam_cnpj > 14) {
+        if (tam_cnpj < 14) {
             divErroCnpj.innerHTML = `<span class="spnErro">CNPJ inválido</span>`
         }
 
