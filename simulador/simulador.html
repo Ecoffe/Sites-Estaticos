@@ -32,7 +32,7 @@
                 <input type="radio" name="CheckProd" id="inpprod15"><p>40</p> 
                 <input type="radio" name="CheckProd" id="inpprod20"><p>50</p>
                 </div> <br>
-            <p> Por quanto você vende a saca do café?: </p> <input type="number" id="inpPreco" placeholder="Valor em R$"> <br>
+            <p> Por quanto você vende a saca do café? </p> <input type="number" id="inpPreco" placeholder="Valor em R$"> <br>
             <div class="checks2">
                 <input type="radio" name="checkPreco" id="inpPreco1"><p>R$1000</p> 
                 <input type="radio" name="checkPreco" id="inpPreco2"><p>R$1100</p> 
@@ -175,11 +175,11 @@
 
         if (tipoCafe == 1 || tipoCafe == 2) {
         
-        divMsg.innerHTML = `<p> Produzindo ${producao} sacas e considerando a pesquisa feita pela EMBRAPA, o produtor perde 15% da produção, sendo o equivalente a <span style="color: red;">uma perda de ${kgProd * 0.15} Kilos</span>, sem o nosso serviço você ganha em um ano: <span style="color: red;">R$${lucroSem.toFixed(2).replace(".", ",")}</span> vendendo cada saca por R$${preco} 
-            <br> Porém, com nosso serviço você ganharia por ano: <b>R$${lucro.toFixed(2).replace(".", ",")}</b> gerando um <b>lucro anual adicional de ${(diferença / 10).toFixed(2).replace(".", ",")} </b> isso pois sua perda será reduzida para apenas ${kgProd * 0.05} Kilos<br>
+        divMsg.innerHTML = `<p> Produzindo ${producao} sacas e considerando a pesquisa feita pela EMBRAPA, o produtor perde 15% da produção, sendo o equivalente a <span style="color: red;">uma perda de ${kgProd * 0.15} Kilos</span>, sem o nosso serviço você ganha em um ano: <span style="color: red;">R$${lucroSem.toFixed(2).replace(".", ",")}</span> vendendo cada saca por R$${preco}. 
+            <br> Porém, com nosso serviço você ganharia por ano: <b>R$${lucro.toFixed(2).replace(".", ",")}</b> gerando um <b>lucro anual adicional de ${(diferença / 10).toFixed(2).replace(".", ",")} </b> isso pois sua perda será reduzida para apenas ${kgProd * 0.05} Kilos.
             <br>
-            <p>Dessa forma, mostramos o quanto o nosso serviço pode oferecer para cada produtor reduzindo a perda da produção de 15% para 5%<br>
-            Para essa simulação, calculamos o quanto você produz, tiramos sua perda e multiplicamos o valor do cafe, chegando assim no seu lucro </p>
+            <p>Dessa forma, mostramos o quanto o nosso serviço pode lhe oferecer, reduzindo a perda da produção de 15% para 5%.<br>
+            Para essa simulação, calculamos o quanto você produz, tiramos sua perda e multiplicamos o valor do café, chegando assim no seu lucro.</p>
             <button onclick="voltar()">voltar</button>        `}
 
         }  

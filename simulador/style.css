@@ -23,6 +23,7 @@ body {
     background-size: 110%;
     overflow-x: hidden;
     overflow-y: hidden;
+    text-align: justify; /* add  */
 }
 
 .tela {
@@ -183,4 +184,9 @@ button:hover {
 .checks2 input{
     margin-top: 13px;
     margin-left: 16px;
+}
+
+#divMsg.box{
+    display: flex;
+    justify-content: center;
 }

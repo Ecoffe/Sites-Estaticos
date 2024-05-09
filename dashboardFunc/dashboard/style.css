@@ -8,10 +8,12 @@ body {
     margin: 0;
     padding: 0;
 }
-h1{
+
+h1 {
     font-size: 24px;
 }
-a{
+
+a {
     text-decoration: none;
 }
 
@@ -197,19 +199,25 @@ a{
     margin-top: 50px;
 }
 
-.dashboard .container3 .box select{
+.tabela {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard .container3 .box select {
     background-color: #FFFFF4;
     height: 30px;
     border-radius: 10px;
+
 }
 
-.dashboard .container3 .box .indicadores{
+.dashboard .container3 .box .indicadores {
     display: flex;
     justify-content: space-evenly;
     margin-top: 10px;
 }
 
-.dashboard .container3 .box .indicadores .boxKpi p{
+.dashboard .container3 .box .indicadores .boxKpi p {
     margin: 0;
     font-weight: bold;
 }
@@ -218,6 +226,17 @@ a{
     width: 200px;
     height: 115px;
     background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 15px;
+}
+
+.dashboard .container3 .box .indicadores .boxKpi .kpi12 {
+    width: 200px;
+    height: 115px;
+    background-color: green;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -236,53 +255,127 @@ a{
     border-radius: 15px;
 }
 
-.dashboard .container3 .box .indicadores .boxKpi .kpi p{
-    font-size: 45px;
-}
-.dashboard .container3 .box .indicadores .boxKpi .kpi2 p{
-    font-size: 45px;
-}
-.dashboard .container3 .box .indicadores .legendaKPI{
-display: flex;
-flex-direction: column;
-align-items: flex-start;
+.dashboard .container3 .box .indicadores .boxKpi .kpi22 {
+    width: 200px;
+    height: 115px;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 15px;
 }
 
-.dashboard .container3 .box .indicadores .legendaKPI .legenda{
+.dashboard .container3 .box .indicadores .boxKpi .kpi p {
+    font-size: 45px;
+}
+
+.dashboard .container3 .box .indicadores .boxKpi .kpi2 p {
+    font-size: 45px;
+}
+
+.dashboard .container3 .box .indicadores .boxKpi .kpi12 p {
+    font-size: 45px;
+}
+
+.dashboard .container3 .box .indicadores .boxKpi .kpi22 p {
+    font-size: 45px;
+}
+
+.dashboard .container3 .box .indicadores .legendaKPI {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 12px;
+}
+
+.dashboard .container3 .box .indicadores .legendaKPI .legenda {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
 
-.dashboard .container3 .box .indicadores .legendaKPI .legenda p{
+.dashboard .container3 .box .indicadores .legendaKPI .legenda p {
     margin: 8px
 }
 
-.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor1{
+.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor1 {
     height: 20px;
     width: 40px;
     border-radius: 15px;
     border: 4px solid red;
     background-color: red;
+    position: relative;
 }
-.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor2{
+
+.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor1:hover::after {
+    content: ">30°C ou <18°C <40% ou >80%";
+    display: block;
+    position: absolute;
+    top: -100%;
+    right: 150%;
+    margin-left: 0px;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    width: 120px;
+    text-align: center;
+}
+
+.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor2 {
     height: 20px;
     width: 40px;
     border-radius: 15px;
     border: 4px solid yellow;
     background-color: yellow;
-}.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor4{
+    position: relative;
+}
+
+.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor2:hover::after {
+    content: "24°C a 30°C 40% a 60%";
+    display: block;
+    position: absolute;
+    top: -100%;
+    right: 150%;
+    margin-left: 0px;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    width: 120px;
+    text-align: center;
+}
+
+.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor4 {
     height: 20px;
     width: 40px;
     border-radius: 15px;
     border: 4px solid green;
     background-color: green;
+    position: relative;
 }
 
-.tituloestufas{
+.dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor4:hover::after {
+    content: "18°C a 23°C 61% a 80%";
+    display: block;
+    position: absolute;
+    top: -100%;
+    right: 150%;
+    margin-left: 0px;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    width: 120px;
+    text-align: center;
+}
+
+.tituloestufas {
     display: flex;
     flex-direction: row;
     align-content: center;
     justify-content: space-between;
     align-items: center;
 }
+

@@ -211,6 +211,18 @@ a {
     height: 100%;
 }
 
+.metrica p{
+    margin: 0;
+}
+
+.metrica {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .dashboard .container3 .box .conteudo .indicadores {
     display: flex;
     flex-direction: column;
@@ -220,7 +232,7 @@ a {
 }
 
 .dashboard .container3 .box .conteudo .indicadores .indi1 {
-    width: 95px;
+    width: 115px;
     height: 50px;
     background-color: red;
     display: flex;
@@ -232,7 +244,7 @@ a {
 }
 
 .dashboard .container3 .box .conteudo .indicadores .indi2 {
-    width: 95px;
+    width: 115px;
     height: 50px;
     background-color: yellow;
     display: flex;
@@ -243,7 +255,7 @@ a {
 }
 
 .dashboard .container3 .box .conteudo .indicadores .indi3 {
-    width: 95px;
+    width: 115px;
     height: 50px;
     background-color: green;
     display: flex;
@@ -296,6 +308,7 @@ a {
     font-weight: bold;
     font-size: 28px;
     border: solid 2px black;
+    cursor: pointer;
 }
 
 .dashboard .container3 .box .conteudo .estufas .conjunto1 .estufa3 {
@@ -309,6 +322,7 @@ a {
     font-weight: bold;
     font-size: 28px;
     border: solid 2px black;
+    cursor: pointer;
 }
 
 .dashboard .container3 .box .conteudo .estufas .conjunto2 {
@@ -329,6 +343,7 @@ a {
     font-weight: bold;
     font-size: 28px;
     border: solid 2px black;
+    cursor: pointer;
 }
 
 .dashboard .container3 .box .conteudo .estufas .conjunto2 .estufa2 {
@@ -343,6 +358,7 @@ a {
     font-weight: bold;
     font-size: 28px;
     border: solid 2px black;
+    cursor: pointer;
 }
 
 .dashboard .container3 .box .conteudo .estufas .conjunto2 .estufa3 {
@@ -358,6 +374,7 @@ a {
     border-radius: 10px;
     font-size: 28px;
     border: solid 2px black;
+    cursor: pointer;
 }
 
 .dashboard .container3 .box .conteudo .estufas .conjunto2 .estufaadd {
@@ -373,4 +390,38 @@ a {
     border-radius: 10px;
     font-size: 70px;
     border: solid 2px black;
+    cursor: pointer;
+}
+
+.normal{
+    background-color: rgba(0, 128, 0, 0.315);
+    width: 100px;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 13px;
+}
+
+.perigoso{
+    background-color: rgba(255, 255, 0, 0.315);
+    width: 100px;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 13px;
+}
+
+.critico{
+    background-color: rgba(255, 0, 0, 0.315);
+    width: 100px;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 13px;
 }

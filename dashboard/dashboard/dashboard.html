@@ -25,7 +25,7 @@
                     <a href="../home.html"><button class="btnshome">Estufas</button></a>
                 </div>
                 <div class="leftBtns">
-                    <a href="../dashboard/dashboard.html"><button class="btnsdashboards">Dashboards</button></a>
+                    <a href="#"><button class="btnsdashboards">Dashboards</button></a>
                 </div>
                 <div class="leftBtns">
                     <a href="../dasboardmensal/dashboardmensal.html"><button class="btnsmensal">Dados
@@ -67,26 +67,23 @@
                 </div>
                 <div class="tabela">
                     <div>
-                        <canvas id="myChart1" style="position: relative; height:52vh; width:35vw"></canvas>
+                        <canvas id="myChart1" style="position: relative; height:50vh; width:35vw"></canvas>
                     </div>
                     <div>
-                        <canvas id="myChart2" style="position: relative; height:52vh; width:35vw"></canvas>
+                        <canvas id="myChart2" style="position: relative; height:50vh; width:35vw"></canvas>
                     </div>
                 </div>
                 <div class="indicadores">
                     <div class="legendaKPI">
                         <div class="legenda">
-                            <p>Critico</p>
                             <div class="legColor1"></div>
                             <p>Critico</p>
                         </div>
                         <div class="legenda">
-                            <p>Critico</p>
                             <div class="legColor2"></div>
                             <p>Perigoso</p>
                         </div>
                         <div class="legenda">
-                            <p>Critico</p>
                             <div class="legColor4"></div>
                             <p>Normal</p>
                         </div>
@@ -117,7 +114,7 @@
     new Chart(ctx1, {
         type: 'line',
         data: {
-            labels: ['12:0', '12:30', '13:00', '13:30', '14:00', '14:30'],
+            labels: ['12:00', '12:30', '13:00', '13:30', '14:00', '14:30'],
             datasets: [{
                 label: 'Temperatura(ºC)',
                 data: [17, 19, 22, 18, 23, 40],
@@ -141,7 +138,7 @@
     new Chart(ctx2, {
         type: 'line',
         data: {
-            labels: ['12:0', '12:30', '13:00', '13:30', '14:00', '14:30'],
+            labels: ['12:00', '12:30', '13:00', '13:30', '14:00', '14:30'],
             datasets: [{
                 label: 'Umidade(%)',
                 data: [75, 80, 78, 85, 80, 55], // Novos dados adicionados aqui
