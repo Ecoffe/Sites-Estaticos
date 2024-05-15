@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <script src="../js/sessao.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,8 +35,8 @@
                     </div>
                 </div>
                 <div class="btnEntrar">
-                    <button class="btnLogin" id="btnLogin" onclick="login()">Entrar</button>
-                    <button class="btnEsqSenha">Esqueceu a senha?</button>
+                    <button class="btnLogin" id="btnLogin" onclick="entrar()">Entrar</button>
+                    <button class="btnEsqSenha" onclick="teste()">Esqueceu a senha?</button>
                 </div>
                 <div class="temConta">
                     <span>Crie uma conta na <a href="../cadastro/cadastro.html">ecoffe?</a></span>
@@ -63,7 +64,7 @@
         event.target.value = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
     });
 
-    function login() {
+    function loginV() {
         var cnpj = inputCnpjEmp.value;
         var senha = inputSenha.value;
 
@@ -81,6 +82,78 @@
         }
 
     }
+
+    function teste() {
+        window.location = "../dashboard/home.html";
+    }
+
+    function entrar() {
+
+        var cnpjVar = inputCnpjEmp.value;
+        var senhaVar = inputSenha.value;
+
+        // if (cnpjVar == "" || senhaVar == "") {
+        //     cardErro.style.display = "block"
+        //     mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+        //     finalizarAguardar();
+        //     return false;
+        // }
+        // else {
+        //     setInterval(sumirMensagem, 5000)
+        // }
+
+        console.log("FORM LOGIN: ", cnpjVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                cnpjServer: cnpjVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id
+
+                    // setTimeout(function () {
+                    //     window.location = "../dashboard/home.html";
+                    // }, 1000); // apenas para exibir o loading
+                    window.location = "../dashboard/home.html";
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
 </script>
 
 

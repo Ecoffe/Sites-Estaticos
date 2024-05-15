@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-
+    <script src="../js/sessao.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +28,7 @@
                 <div class="formsLogin">
                     <div class="nomesEmpresa">
                         <div class="erro">
-                            <input type="text" placeholder="Razão social" id="inputNomeEmp">
+                            <input type="text" placeholder="Razão social" id="inputRazaoSocial">
                             <div id="divErroNomeEmpresa"></div>
                         </div>
 
@@ -64,7 +64,7 @@
                     <span>Já possui conta na <a href="../login/login.html">ecoffe?</a></span>
                 </div>
                 <div class="btnCriar">
-                    <button class="btnCadastro" onclick="criar()">Criar conta</button>
+                    <button class="btnCadastro" onclick="cadastrar()">Criar conta</button>
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
         divErroSenha.innerHTML = ''
         divErroSenhaConf.innerHTML = ''
 
-        var nomeEmpresa = inputNomeEmp.value
+        var nomeEmpresa = inputRazaoSocial.value
         var nomeFantasia = inputNomeFant.value
         var email = inputEmailEmp.value
         var cnpj = inputCnpjEmp.value
@@ -145,4 +145,82 @@
             divErroSenhaConf.innerHTML = `<span class="spnErro">Senhas não estão combinando</span>`
         }
     }
+
+
+    function cadastrar() {
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var razaoSocialVar = inputRazaoSocial.value;
+        var nomeEmpVar = inputNomeFant.value;
+        var emailVar = inputEmailEmp.value;
+        var cnpjVar = inputCnpjEmp.value
+        var senhaVar = inputSenha.value;
+        var confirmacaoSenhaVar = inputConfSenha.value;
+
+        // if (
+        //     razaoSocialVar == "" ||
+        //     nomeEmpVar == "" ||
+        //     emailVar == "" ||
+        //     cnpjVar == "" ||
+        //     senhaVar == "" ||
+        //     confirmacaoSenhaVar == ""
+        // ) {
+        //     cardErro.style.display = "block";
+        //     mensagem_erro.innerHTML =
+        //         "(Mensagem de erro para todos os campos em branco)";
+
+        //     finalizarAguardar();
+        //     return false;
+        // } else {
+        //     setInterval(sumirMensagem, 5000);
+        // }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                razaoSocialServer: razaoSocialVar,
+                nomeEmpServer: nomeEmpVar,
+                emailServer: emailVar,
+                cnpjServer: cnpjVar,
+                senhaServer: senhaVar,
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    cardErro.style.display = "block";
+
+                    mensagem_erro.innerHTML =
+                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, "2000");
+
+                    limparFormulario();
+                    
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                
+            });
+
+        return false;
+    }
+
+
+    // function sumirMensagem() {
+    //     cardErro.style.display = "none";
+    // }
 </script>
