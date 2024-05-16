@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Empresa</title>
+    <script src="../../js/sessao.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
@@ -53,26 +54,23 @@
                 <div class="cadastro">
                     <h1>Cadastre seus funcionários</h1>
                     <div class="forms">
-                        <input type="text" class="nomeFunc" placeholder="Nome">
-                        <input type="text" class="email" placeholder="Email">
-                        <input type="text" class="confEmail" placeholder="Confirmar Email">
+                        <input type="text" class="nomeFunc" placeholder="Nome" id="nomeFunc">
+                        <input type="text" class="email" placeholder="Email" id="emailFunc">
+                        <input type="text" class="cpf" placeholder="CPF" id="cpfFunc">
                         <div class="forms2">
-                            <input type="number" name="" class="cep" placeholder="CEP">
-                            <input type="text" class="complemento" placeholder="Complemento">
+                            <input type="password" name="" class="senha" placeholder="Senha" id="senhaFunc">
+                            <input type="password" class="confSenha" placeholder="Confirmar Senha" id="confSenhaFunc">
                         </div>
-                        <input type="text" class="cpf" placeholder="CPF">
-                        <div class="forms2">
-                            <input type="password" name="" class="senha" placeholder="Senha">
-                            <input type="password" class="confSenha" placeholder="Confirmar Senha"> 
-                        </div>
-                        <button class="btnCadastrar">Cadastrar</button>
+                        <button class="btnCadastrar" onclick="cadastrar">Cadastrar</button>
                     </div>
                 </div>
                 <div class="cadastrados">
                     <h1>Funcionários</h1>
                     <div class="boxCad">
                         <div class="cad">
-                            <div class="card"><p>Enzo Silva - CPF:xxx.xxx.xxx-xx</p></div>
+                            <div class="card">
+                                <p>Enzo Silva - CPF:xxx.xxx.xxx-xx</p>
+                            </div>
                             <div class="btnCard"><button>+</button></div>
                         </div>
                     </div>
@@ -82,7 +80,75 @@
     </div>
 </body>
 <script>
+    function cadastrar() {
 
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeFuncVar = nomeFunc.value;
+        var emailFuncVar = emailFunc.value;
+        var cpfVar = cpfFunc.value
+        var senhaFuncVar = senhaFunc.value;
+        var confirmacaoSenhaVar = confSenhaFunc.value;
+
+        // if (
+        //     razaoSocialVar == "" ||
+        //     nomeEmpVar == "" ||
+        //     emailVar == "" ||
+        //     cnpjVar == "" ||
+        //     senhaVar == "" ||
+        //     confirmacaoSenhaVar == ""
+        // ) {
+        //     cardErro.style.display = "block";
+        //     mensagem_erro.innerHTML =
+        //         "(Mensagem de erro para todos os campos em branco)";
+
+        //     finalizarAguardar();
+        //     return false;
+        // } else {
+        //     setInterval(sumirMensagem, 5000);
+        // }
+
+        // Enviando o valor da nova input
+        fetch("/funcionarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeFuncServer: nomeFuncVar,
+                emailServer: emailFuncVar,
+                cpfServer: cpfVar,
+                senhaServer: senhaFuncVar,
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    cardErro.style.display = "block";
+
+                    mensagem_erro.innerHTML =
+                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, "2000");
+
+                    limparFormulario();
+
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+
+            });
+
+        return false;
+    }
 </script>
 
 </html>
