@@ -19,10 +19,6 @@ function autenticar(req, res) {
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
-
-                        // estufaModel.buscarestufasPorEmpresa(resultadoAutenticar[0].empresaId)
-                        //     .then((resultadoestufas) => {
-                        //         if (resultadoestufas.length > 0) {
                         res.json({
                             id: resultadoAutenticar[0].id,
                             razao: resultadoAutenticar[0].razao,
@@ -31,10 +27,7 @@ function autenticar(req, res) {
                             cnpj: resultadoAutenticar[0].cnpj,
                             senha: resultadoAutenticar[0].senha
                         });
-                        //         } else {
-                        //             res.status(204).json({ estufas: [] });
-                        //         }
-                        //     })
+
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
