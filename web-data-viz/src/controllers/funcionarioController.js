@@ -1,7 +1,17 @@
-var usuarioModel = require("../models/usuarioModel");
+var funcionarioModel = require("../models/funcionarioModel");
 var estufaModel = require("../models/estufaModel");
 
+function listar(req, res) {
+    funcionarioModel.listar().then(function(resultado){
+        // precisamos informar que o resultado voltará para o front-end como uma resposta em json
+        res.status(200).json(resultado);
+    }).catch(function(erro){
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
 function autenticar(req, res) {
+    var nome = req.body.nomeServer
     var cpf = req.body.cpfServer;
     var senha = req.body.senhaServer;
 
@@ -11,7 +21,7 @@ function autenticar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        usuarioModel.autenticar(cnpj, senha)
+        funcionarioModel.autenticar(cnpj, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
@@ -44,26 +54,26 @@ function autenticar(req, res) {
 
 }
 
-function cadastrar(req, res) {
+function cadastrarFunc(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var nome = req.body.nomeFuncServer;
-    var email = req.body.emailServer;
-    var cpf = req.body.cpfServer;
-    var senha = req.body.senhaServer;
+    var nomeFunc = req.body.nomeFuncServer;
+    var emailFunc = req.body.emailServer;
+    var cpfFunc = req.body.cpfServer;
+    var senhaFunc = req.body.senhaServer;
 
     // Faça as validações dos valores
-    if (nome == undefined) {
+    if (nomeFunc == undefined) {
         res.status(400).send("Seu nome Fantasia está undefined!");
-    } else if (email == undefined) {
+    } else if (emailFunc == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (cpf == undefined) {
-        res.status(400).send("Seu CNPJ está undefined!");
-    } else if (senha == undefined) {
+    } else if (cpfFunc == undefined) {
+        res.status(400).send("Seu CPF está undefined!");
+    } else if (senhaFunc == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, cpf, senha)
+        funcionarioModel.cadastrarFunc(nomeFunc, emailFunc, cpfFunc, senhaFunc)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -83,5 +93,6 @@ function cadastrar(req, res) {
 
 module.exports = {
     autenticar,
-    cadastrar
+    listar,
+    cadastrarFunc
 }

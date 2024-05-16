@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
 </head>
 
-<body>
+<body onload="listar()">
     <div class="header">
         <div class="container">
             <a class="titulo" href="../../institucional/index.html">ecoffe</a>
@@ -61,17 +61,13 @@
                             <input type="password" name="" class="senha" placeholder="Senha" id="senhaFunc">
                             <input type="password" class="confSenha" placeholder="Confirmar Senha" id="confSenhaFunc">
                         </div>
-                        <button class="btnCadastrar" onclick="cadastrar">Cadastrar</button>
+                        <button class="btnCadastrar" onclick="cadastrar()">Cadastrar</button>
                     </div>
                 </div>
                 <div class="cadastrados">
                     <h1>Funcionários</h1>
-                    <div class="boxCad">
-                        <div class="cad">
-                            <div class="card">
-                                <p>Enzo Silva - CPF:xxx.xxx.xxx-xx</p>
-                            </div>
-                            <div class="btnCard"><button>+</button></div>
+                    <div class="boxCad" id="boxCad">
+                        <!-- <div class="cad"><div class="card"><p>Enzo Silva - CPF:xxx.xxx.xxx-xx</p></div><div class="btnCard"><button>+</button></div> -->
                         </div>
                     </div>
                 </div>
@@ -149,6 +145,27 @@
 
         return false;
     }
+
+    function listar() {
+    fetch("/funcionarios/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((funcionarios) => {
+          funcionarios.forEach((funcionario) => {
+            boxCad.innerHTML += `<div class="cad"><div class="card"><p>${funcionario.nomeFuncionario} - ${funcionario.cpf}</p></div><div class="btnCard"><button>+</button></div>
+`;
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
 </script>
 
 </html>

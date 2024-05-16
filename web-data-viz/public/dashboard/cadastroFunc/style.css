@@ -263,7 +263,7 @@ a{
     margin: 0
 }
 
-.dashboard .container3 .box .cadastrados .boxCad .cad .card{
+.dashboard .container3 .box .cadastrados .boxCad .cad .card {
     width: 450px;
     height: 70px;
     border-radius: 25px 0px 0px 25px;
@@ -273,6 +273,7 @@ a{
     align-items: center;
     font-size: 20px;
     font-weight: 700;
+    margin-bottom: 15px;
     background-image: url(./assets/imgs/User.svg);
     background-repeat: no-repeat;
     background-position: 13px 10px;

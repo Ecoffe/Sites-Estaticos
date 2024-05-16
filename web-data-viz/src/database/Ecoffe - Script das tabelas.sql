@@ -1,13 +1,12 @@
 create database ecoffe;
 use ecoffe;
-
 -- CADASTRO DE EMPRESA
 create table empresa(
 	idEmpresa int primary key auto_increment,
     razaoSocial varchar(45),
 	nomeFantasia varchar(45),
     emailContato varchar(45),
-	cnpj char(14),
+	cnpj char(18),
 	senhaEmpresa varchar(45),
 	diaInscricao datetime default current_timestamp);
 
@@ -18,7 +17,8 @@ select * from empresa;
 create table funcionario(
 	idFuncionario int primary key auto_increment,
 	nomeFuncionario varchar(100),
-	cpf char(11),
+	cpf char(14),
+    emailFuncionario varchar(90),
 	senhaFuncionario varchar(45),
 	diaInscricao datetime default current_timestamp,
 	fkEmpresa int,
