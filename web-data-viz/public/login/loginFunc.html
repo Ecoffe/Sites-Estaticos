@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <script src="../js/sessao.js"></script>
     <link rel="stylesheet" href="styleFunc.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +35,7 @@
                     </div>
                 </div>
                 <div class="btnEntrar">
-                    <button class="btnLogin" id="btnLogin" onclick="login()">Entrar</button>
+                    <button class="btnLogin" id="btnLogin" onclick="entrar()">Entrar</button>
                     <button class="btnEsqSenha">Esqueceu a senha?</button>
                 </div>
                 <div class="temConta">
@@ -80,20 +81,88 @@
 
 
 
-    function login() {
-        var cpf = inputCpf.value;
-        var senha = inputSenha.value;
-        var cpfValido = "123.123.123-12";
-        var senhaValido = "amocafe123";
-        var botao = document.getElementById("btnLogin")
+    // function login() {
+    //     var cpf = inputCpf.value;
+    //     var senha = inputSenha.value;
+    //     var cpfValido = "123.123.123-12";
+    //     var senhaValido = "amocafe123";
+    //     var botao = document.getElementById("btnLogin")
 
-        botao.href = "../dashboardFunc/home.html"
-        if (cpf == cpfValido && senha == senhaValido) {
-            window.location.href = botao.href;
-        } else {
-            divErro.innerHTML = `<span class="spnErro">CPF ou senha invalido</span>`
-        }
+    //     botao.href = "../dashboardFunc/home.html"
+    //     if (cpf == cpfValido && senha == senhaValido) {
+    //         window.location.href = botao.href;
+    //     } else {
+    //         divErro.innerHTML = `<span class="spnErro">CPF ou senha invalido</span>`
+    //     }
+    // }
+
+    function entrar() {
+
+        var cpfVar = inputCpf.value;
+        var senhaVar = inputSenha.value;
+
+        // if (cpfVar == "" || senhaVar == "") {
+        //     cardErro.style.display = "block"
+        //     mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+        //     finalizarAguardar();
+        //     return false;
+        // }
+        // else {
+        //     setInterval(sumirMensagem, 5000)
+        // }
+
+        console.log("FORM LOGIN: ", cpfVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/funcionarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                cpfServer: cpfVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_FUNCIONARIO = json.email;
+                    sessionStorage.NOME_FUNCIONARIO = json.nome;
+                    sessionStorage.ID_FUNCIONARIO = json.id
+
+                    // setTimeout(function () {
+                    //     window.location = "../dashboard/home.html";
+                    // }, 1000); // apenas para exibir o loading
+                    window.location = "../dashboardFunc/home.html";
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
 </script>
 
 

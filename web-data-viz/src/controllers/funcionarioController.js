@@ -21,7 +21,7 @@ function autenticar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        funcionarioModel.autenticar(cnpj, senha)
+        funcionarioModel.autenticar(cpf, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
@@ -33,7 +33,7 @@ function autenticar(req, res) {
                             id: resultadoAutenticar[0].id,
                             nome: resultadoAutenticar[0].nome,
                             email: resultadoAutenticar[0].email,
-                            cpf: resultadoAutenticar[0].cnpj,
+                            cpf: resultadoAutenticar[0].cpf,
                             senha: resultadoAutenticar[0].senha
                         });
 
