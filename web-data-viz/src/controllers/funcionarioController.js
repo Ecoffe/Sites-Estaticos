@@ -11,7 +11,6 @@ function listar(req, res) {
 }
 
 function autenticar(req, res) {
-    var nome = req.body.nomeServer
     var cpf = req.body.cpfServer;
     var senha = req.body.senhaServer;
 
