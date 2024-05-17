@@ -20,12 +20,12 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
                         res.json({
-                            id: resultadoAutenticar[0].id,
-                            razao: resultadoAutenticar[0].razao,
-                            nome: resultadoAutenticar[0].nome,
-                            email: resultadoAutenticar[0].email,
+                            id: resultadoAutenticar[0].idEmpresa,
+                            razao: resultadoAutenticar[0].razaoSocial,
+                            nome: resultadoAutenticar[0].nomeFantasia,
+                            email: resultadoAutenticar[0].emailContato,
                             cnpj: resultadoAutenticar[0].cnpj,
-                            senha: resultadoAutenticar[0].senha
+                            senha: resultadoAutenticar[0].senhaEmpresa
                         });
 
                     } else if (resultadoAutenticar.length == 0) {

@@ -86,23 +86,6 @@
         var senhaFuncVar = senhaFunc.value;
         var confirmacaoSenhaVar = confSenhaFunc.value;
 
-        // if (
-        //     razaoSocialVar == "" ||
-        //     nomeEmpVar == "" ||
-        //     emailVar == "" ||
-        //     cnpjVar == "" ||
-        //     senhaVar == "" ||
-        //     confirmacaoSenhaVar == ""
-        // ) {
-        //     cardErro.style.display = "block";
-        //     mensagem_erro.innerHTML =
-        //         "(Mensagem de erro para todos os campos em branco)";
-
-        //     finalizarAguardar();
-        //     return false;
-        // } else {
-        //     setInterval(sumirMensagem, 5000);
-        // }
 
         // Enviando o valor da nova input
         fetch("/funcionarios/cadastrar", {
@@ -117,6 +100,7 @@
                 emailServer: emailFuncVar,
                 cpfServer: cpfVar,
                 senhaServer: senhaFuncVar,
+                fkEmpresaServer: sessionStorage.ID_USUARIO,
             }),
         })
             .then(function (resposta) {
@@ -147,21 +131,22 @@
     }
 
     function listar() {
-    fetch("/funcionarios/listar", {
-      method: "GET",
+    var fkEmpresaServer = sessionStorage.ID_USUARIO;
+    fetch(`/funcionarios/listar?fkEmpresaServer=${fkEmpresaServer}`, {
+        method: "GET",
     })
-      .then(function (resposta) {
-        resposta.json().then((funcionarios) => {
-          funcionarios.forEach((funcionario) => {
-            boxCad.innerHTML += `<div class="cad"><div class="card"><p>${funcionario.nomeFuncionario} - ${funcionario.cpf}</p></div><div class="btnCard"><button>+</button></div>
-`;
-          });
+    .then(function (resposta) {
+        resposta.json().then((resposta) => {
+            resposta.forEach((funcionario) => {
+                boxCad.innerHTML += `<div class="cad"><div class="card"><p>${funcionario.nomeFuncionario} - ${funcionario.cpf}</p></div><div class="btnCard"><button>+</button></div>`;
+            });
         });
-      })
-      .catch(function (resposta) {
+    })
+    .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-      });
-  }
+    });
+}
+
 
   function sumirMensagem() {
     cardErro.style.display = "none";

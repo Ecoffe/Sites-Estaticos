@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="btnSair">
-                <a href="../login/login.html"><button class="btn">Sair da conta</button></a>
+                <a href="../login/login.html"><button class="btn" onclick="apagarSession()">Sair da conta</button></a>
             </div>
         </div>
     </div>
@@ -114,3 +114,10 @@
         </div>
     </div>
 </body>
+
+</html>
+<script>
+    function apagarSession(){
+        sessionStorage.clear();
+    }
+</script>
