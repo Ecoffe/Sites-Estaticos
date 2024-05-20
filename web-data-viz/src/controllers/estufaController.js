@@ -1,34 +1,35 @@
 var estufaModel = require("../models/estufaModel");
 
-function buscarestufasPorEmpresa(req, res) {
-  var idEmpresa = req.params.idEmpresa;
 
-  estufaModel.buscarestufasPorEmpresa(idEmpresa).then((resultado) => {
-    if (resultado.length > 0) {
-      res.status(200).json(resultado);
-    } else {
-      res.status(204).json([]);
-    }
+function listar(req, res) {
+  var fkEmpresa = req.query.fkEmpresaServer; // Corrigido para req.query
+  if (!fkEmpresa) {
+    return res.status(400).json({ error: "fkEmpresaServer não fornecido" });
+  }
+  estufaModel.listar(fkEmpresa).then(function (resultado) {
+    res.status(200).json(resultado);
   }).catch(function (erro) {
-    console.log(erro);
-    console.log("Houve um erro ao buscar os estufas: ", erro.sqlMessage);
     res.status(500).json(erro.sqlMessage);
   });
 }
 
 
-function cadastrar(req, res) {
-  var descricao = req.body.descricao;
-  var idEmpresa = req.body.idEmpresa;
 
-  if (descricao == undefined) {
+function cadastrar(req, res) {
+
+  var nomeEstufa = req.body.nomeEstufalServer;
+  var tamEstufa = req.body.tamEstufaServer;
+  var descEstufa = req.body.descServer;
+  var idEmpresa = req.body.idEmpresaServer;
+
+  if (descEstufa == undefined) {
     res.status(400).send("descricao está undefined!");
   } else if (idEmpresa == undefined) {
     res.status(400).send("idEmpresa está undefined!");
   } else {
 
 
-    estufaModel.cadastrar(descricao, idEmpresa)
+    estufaModel.cadastrar(nomeEstufa, tamEstufa, descEstufa, idEmpresa)
       .then((resultado) => {
         res.status(201).json(resultado);
       }
@@ -44,6 +45,6 @@ function cadastrar(req, res) {
 }
 
 module.exports = {
-  buscarestufasPorEmpresa,
+  listar,
   cadastrar
 }

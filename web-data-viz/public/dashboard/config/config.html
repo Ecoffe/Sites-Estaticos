@@ -14,7 +14,9 @@
     <div class="header">
         <div class="container">
             <a class="titulo" href="../../institucional/index.html">ecoffe</a>
-            <p>Nome Empresa</p>
+            <div class="nomeEmpresa" id="nomeEmpresa">
+                <p>Nome Empresa</p>
+            </div>
         </div>
     </div>
 
@@ -28,7 +30,8 @@
                     <a href="../dashboard/dashboard.html"><button class="btnsdashboards">Dashboards</button></a>
                 </div>
                 <div class="leftBtns">
-                    <a href="../dasboardmensal/dashboardmensal.html"><button class="btnsmensal">Dados mensais</button></a>
+                    <a href="../dasboardmensal/dashboardmensal.html"><button class="btnsmensal">Dados
+                            mensais</button></a>
                 </div>
                 <div class="leftBtns">
                     <a href="../notificacoes/notify.html"><button class="btnsnotify">Notificações</button></a>
@@ -41,7 +44,8 @@
                 </div>
             </div>
             <div class="btnSair">
-                <a href="../../login/login.html"><button class="btn">Sair da conta</button></a>
+                <a href="../../login/login.html" onclick="apagarSession()"><button class="btn">Sair da
+                        conta</button></a>
             </div>
         </div>
     </div>
@@ -100,6 +104,20 @@
     </div>
 </body>
 <script>
+    function verificar() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var nomeUsuario = sessionStorage.NOME_USUARIO;
+
+        if (idUsuario >= 0) {
+            nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`
+        }
+    }
+    verificar()
+
+    function apagarSession() {
+        sessionStorage.clear();
+    }
+
     function info() {
         acessi.style.display = 'none';
         infor.style.display = 'block';

@@ -10,11 +10,13 @@
     <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
 </head>
 
-<body>
+<body onload="listar()">
     <div class="header">
         <div class="container">
             <a class="titulodash" href="../institucional/index.html">ecoffe</a>
-            <p>Nome Empresa</p>
+            <div class="nomEmpresa" id="nomeEmpresa">
+                <p>Nome Empresa</p>
+            </div>
         </div>
     </div>
 
@@ -52,14 +54,14 @@
             <div class="box">
                 <h1>Visão geral de suas estufas</h1>
                 <div class="conteudo">
-                    <div class="indicadores">
+                    <!-- <div class="indicadores">
                         <div class="metrica">
                             <div class="indi1">
                                 <p>Crítico</p>
                             </div>
                             <div class="critico">
-                                <p> >30°C ou &lt;18°C </p> <!--expressão para conseguir fazer o sinal de menor que 18-->
-                            <p>&lt;40% ou >80%</p>
+                                <p> >30°C ou &lt;18°C </p>
+                                <p>&lt;40% ou >80%</p>
                             </div>
                         </div>
                         <div class="metrica">
@@ -67,9 +69,9 @@
                                 <p>Perigoso</p>
                             </div>
                             <div class="perigoso">
-                            <p>24°C a 30°C</p>
-                            <p>40% a 60%</p>
-                        </div>
+                                <p>24°C a 30°C</p>
+                                <p>40% a 60%</p>
+                            </div>
                         </div>
                         <div class="metrica">
                             <div class="indi3">
@@ -80,35 +82,38 @@
                                 <p>61% a 80%</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="estufas">
-                        <div class="conjunto1">
-                            <a href="./dashboard/dashboard.html">
-                                <div class="estufa1">
-                                    <p>Estufa 5</p>
-                                </div>
-                            </a>
-                            <div class="estufa2">
-                                <p>Estufa 2</p>
-                            </div>
-                            <div class="estufa3">
-                                <p>Estufa 3</p>
-                            </div>
+                        <div class="conjunto1" id="estufasA">
+                        
                         </div>
                         <div class="conjunto2">
-                            <div class="estufa1">
-                                <p>Estufa 4</p>
-                            </div>
-                            <a href="./dashboard/dashboard2.html">
-                                <div class="estufa2">
-                                    <p>Estufa 1</p>
-                                </div>
-                            </a>
                             <div class="estufaadd">
-                                <p>+</p>
+                                <button id="openModalBtn">Adicionar estufa</button>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="titulo">
+                <h1>Adicione Estufa</h1>
+            </div>
+            <div class="formsEstufas">
+                <p>Nome da Estufa</p>
+                <input type="text" id="nomeEstufa">
+                <p>Tamanho Estufa em M²</p>
+                <input type="number" id="tamEstufa">
+                <p>Descrição da Estufa</p>
+                <textarea name="" maxlength="300" id="descEstufa"></textarea>
+                <div class="btnAdicione">
+                    <button onclick="cadastrar()">Adicionar Estufa</button>
                 </div>
             </div>
         </div>
@@ -117,7 +122,90 @@
 
 </html>
 <script>
-    function apagarSession(){
+    function verificar() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var nomeUsuario = sessionStorage.NOME_USUARIO;
+
+        if (idUsuario >= 0) {
+            nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`
+        }
+    }
+    verificar()
+    function apagarSession() {
         sessionStorage.clear();
     }
+
+    var modal = document.getElementById("myModal");
+
+    // Pegue o botão que abre o modal
+    var btn = document.getElementById("openModalBtn");
+
+    // Pegue o elemento <span> que fecha o modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // Quando o usuário clicar no botão, abra o modal 
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // Quando o usuário clicar no <span> (x), feche o modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // Quando o usuário clicar em qualquer lugar fora do modal, feche-o
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+
+    function cadastrar() {
+
+        var nomeEstufaVar = nomeEstufa.value;
+        var tamEstufaVar = tamEstufa.value;
+        var descVar = descEstufa.value;
+        var idEmpresaVar = sessionStorage.ID_USUARIO;
+
+        fetch("/estufas/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeEstufalServer: nomeEstufaVar,
+                tamEstufaServer: tamEstufaVar,
+                descServer: descVar,
+                idEmpresaServer: idEmpresaVar,
+            }),
+        })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+
+            });
+
+        return false;
+    }
+
+
+    function listar() {
+        var fkEmpresaServer = sessionStorage.ID_USUARIO;
+        fetch(`/estufas/listar?fkEmpresaServer=${fkEmpresaServer}`, {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                resposta.json().then((resposta) => {
+                    resposta.forEach((estufa) => {
+                        estufasA.innerHTML += `<a href="./dashboard/dashboard.html"><div class="estufa1"><p>${estufa.nomeEstufa}</p></div></a>`;
+                    });
+                });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+
 </script>
