@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
 </head>
 
-<body>
+<body onload="listar()">
     <div class="header">
         <div class="container">
             <a class="titulo" href="../../institucional/index.html">ecoffe</a>
@@ -56,12 +56,12 @@
                 <h1>Configurações</h1>
                 <div class="config">
                     <div class="menu">
-                        <!-- <div onclick="info()" class="buttonConfig">
+                        <div onclick="info()" class="buttonConfig">
                             <p>Informações</p>
                         </div>
                         <div onclick="acessibilidade()" class="buttonConfig">
-                            <p>Acessibilidade</p>
-                        </div> -->
+                            <p>Sensores</p>
+                        </div>
                     </div>
                     <div class="conteudo">
                         <div class="infor" id="infor">
@@ -92,7 +92,20 @@
                             </div>
                         </div>
                         <div class="acessi" id="acessi" style="display: none;">
-                            <h2>acessibilidade</h2>
+                            <h2>Sensores</h2>
+                            <div class="conteudo">
+                                <div class="sensor">
+                                    Adicione o sensor:
+                                    <div class="formsFone">
+                                        <input type="text" class="NomeSensor" placeholder="Nome do Sensor" id="inputNomeSensor">
+                                        <select name="estufas" id="listaEstufas">
+                                            <option selected>Selecione uma empresa</option>
+                                        </select>
+                                        </select>
+                                        <button class="btnInscricao" onclick="cadastrar()">Adicione o Sensor</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -117,16 +130,59 @@
     function apagarSession() {
         sessionStorage.clear();
     }
-
     function info() {
         acessi.style.display = 'none';
         infor.style.display = 'block';
     }
-
     function acessibilidade() {
         infor.style.display = 'none';
         acessi.style.display = 'block';
     }
+
+
+    function cadastrar() {
+
+        var nomeSensorVar = inputNomeSensor.value;
+        var estufaVar = listaEstufas.value;
+        // var idEmpresaVar = sessionStorage.ID_USUARIO;
+
+        fetch("/sensores/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeSensorServer: nomeSensorVar,
+                estufaServer: estufaVar,
+            }),
+        })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+
+            });
+
+        return false;
+    }
+
+    function listar() {
+        var fkEmpresaServer = sessionStorage.ID_USUARIO;
+        fetch(`/estufas/listar?fkEmpresaServer=${fkEmpresaServer}`, {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                resposta.json().then((resposta) => {
+                    resposta.forEach((estufa) => {
+                        listaEstufas.innerHTML += `<option value='${estufa.idEstufa}'>${estufa.nomeEstufa}</option>`;
+                    });
+                });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+
 </script>
 
 </body>
