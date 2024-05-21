@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./assets/img/ico.ico" type="image/x-icon">
+    <link rel="stylesheet" href="js/sessao.js">
 </head>
 
 <body>
@@ -20,12 +21,12 @@
                     <a href="#sobreNos"> Sobre nós </a> <br>
                     <a href="#projeto"> Projeto </a> <br>
                     <a href="#equipe"> Equipe </a> <br>
-                    <a href="../simulador/simulador.html"> Simulador </a>
+                    <a href="./simulador/simulador.html"> Simulador </a>
                 </div>
 
                 <div class="cadastroLogin" id="cadastroLogin">
-                    <a href="../cadastro/cadastro.html"> Criar conta </a>
-                    <a href="../login/login.html"> Login </a>
+                    <a href="cadastro/cadastro.html"> Criar conta </a>
+                    <a href="./login/login.html"> Login </a>
                 </div>
         </div>
     </div>
@@ -129,8 +130,8 @@
                 <a href="#sobreNos">Sobre nós</a>
                 <a href="#projeto">Projeto</a>
                 <a href="#equipe">Equipe</a>
-                <a href="../simulador/simulador.html">Simulador</a>
-                <a href="../cadastro/cadastro.html">Criar conta</a>
+                <a href="./simulador/simulador.html">Simulador</a>
+                <a href="./cadastro/cadastro.html">Criar conta</a>
                 <a href="#inicio">ecoffe ©</a>
             </div>
             <div class="map">
@@ -162,7 +163,7 @@
         if (idUsuario >= 0) {
             cadastroLogin.innerHTML = `<a href="./dashboard/home.html"> Dashboard </a>`
         }else{
-            cadastroLogin.innerHTML = `<a href="../cadastro/cadastro.html"> Criar conta </a><a href="../login/login.html"> Login </a>`
+            cadastroLogin.innerHTML = `<a href="./cadastro/cadastro.html"> Criar conta </a><a href="./login/login.html"> Login </a>`
         }
     }
     verificar()
