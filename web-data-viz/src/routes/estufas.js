@@ -13,4 +13,8 @@ router.get("/listar", function (req, res) {
   estufaController.listar(req, res);
 });
 
+router.post("/consultar", function (req, res) {
+  estufaController.consultar(req, res);
+});
+
 module.exports = router;

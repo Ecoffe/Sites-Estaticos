@@ -13,8 +13,6 @@ function listar(req, res) {
   });
 }
 
-
-
 function cadastrar(req, res) {
 
   var nomeEstufa = req.body.nomeEstufalServer;
@@ -44,7 +42,43 @@ function cadastrar(req, res) {
   }
 }
 
+function consultar(req, res) {
+  var fkEmpresa = req.query.fkEmpresaServer;
+  var idEstufa = req.query.idEstufaServer;
+
+      estufaModel.consultar(idEstufa, fkEmpresa)
+          .then(
+              function (resultadoconsultar) {
+                  console.log(`\nResultados encontrados: ${resultadoconsultar.length}`);
+                  console.log(`Resultados: ${JSON.stringify(resultadoconsultar)}`); // transforma JSON em String
+
+                  if (resultadoconsultar.length == 1) {
+                      console.log(resultadoconsultar);
+                      res.json({
+                          idEstufa: resultadoconsultar[0].idEstufa,
+                          nomeEstufa: resultadoconsultar[0].nomeEstufa,
+                          tamEstufa: resultadoconsultar[0].tamanhoM2,
+                          descEstufa: resultadoconsultar[0].descricao
+                      });
+
+                  } else if (resultadoconsultar.length == 0) {
+                      res.status(403).send("Email e/ou senha inválido(s)");
+                  } else {
+                      res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                  }
+              }
+          ).catch(
+              function (erro) {
+                  console.log(erro);
+                  console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                  res.status(500).json(erro.sqlMessage);
+              }
+          );
+  }
+
+
 module.exports = {
+  consultar,
   listar,
   cadastrar
 }

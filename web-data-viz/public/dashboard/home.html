@@ -1,60 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard | Empresa</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
-</head>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="shortcut icon"
+      href="./assets/imgs/ico.ico"
+      type="image/x-icon"
+    />
+  </head>
 
-<body onload="listar()">
+  <body onload="listar()">
     <div class="header">
-        <div class="container">
-            <a class="titulodash" href="../index.html">ecoffe</a>
-            <div class="nomEmpresa" id="nomeEmpresa">
-                <p>Nome Empresa</p>
-            </div>
+      <div class="container">
+        <a class="titulodash" href="../index.html">ecoffe</a>
+        <div class="nomEmpresa" id="nomeEmpresa">
+          <p>Nome Empresa</p>
         </div>
+      </div>
     </div>
 
     <div class="leftInfo">
-        <div class="container2">
-            <div class="btnsDash">
-                <div class="leftBtns">
-                    <a href="#"><button class="btnshome">Estufas</button></a>
-                </div>
-                <div class="leftBtns">
-                    <a href="./dashboard/dashboard.html"><button class="btnsdashboards">Dashboards</button></a>
-                </div>
-                <div class="leftBtns">
-                    <a href="./dasboardmensal/dashboardmensal.html"><button class="btnsmensal">Dados
-                            mensais</button></a>
-                </div>
-                <div class="leftBtns">
-                    <a href="./notificacoes/notify.html"><button class="btnsnotify">Notificações</button></a>
-                </div>
-                <div class="leftBtns">
-                    <a href="./cadastroFunc/cadastroFunc.html"><button class="btnscadastrar">Cadastrar</button></a>
-                </div>
-                <div class="leftBtns">
-                    <a href="./config/config.html"><button class="btnsconfig">Configurações</button></a>
-                </div>
-            </div>
-            <div class="btnSair">
-                <a href="../login/login.html"><button class="btn" onclick="apagarSession()">Sair da conta</button></a>
-            </div>
+      <div class="container2">
+        <div class="btnsDash">
+          <div class="leftBtns">
+            <a href="#"><button class="btnshome">Estufas</button></a>
+          </div>
+          <div class="leftBtns">
+            <a href="./dashboard/dashboard.html"
+              ><button class="btnsdashboards">Dashboards</button></a
+            >
+          </div>
+          <div class="leftBtns">
+            <a href="./dasboardmensal/dashboardmensal.html"
+              ><button class="btnsmensal">Dados mensais</button></a
+            >
+          </div>
+          <div class="leftBtns">
+            <a href="./notificacoes/notify.html"
+              ><button class="btnsnotify">Notificações</button></a
+            >
+          </div>
+          <div class="leftBtns">
+            <a href="./cadastroFunc/cadastroFunc.html"
+              ><button class="btnscadastrar">Cadastrar</button></a
+            >
+          </div>
+          <div class="leftBtns">
+            <a href="./config/config.html"
+              ><button class="btnsconfig">Configurações</button></a
+            >
+          </div>
         </div>
+        <div class="btnSair">
+          <a href="../login/login.html"
+            ><button class="btn" onclick="apagarSession()">
+              Sair da conta
+            </button></a
+          >
+        </div>
+      </div>
     </div>
 
     <div class="dashboard">
-        <div class="container3">
-            <div class="box">
-                <h1>Visão geral de suas estufas</h1>
-                <div class="conteudo">
-                    <!-- <div class="indicadores">
+      <div class="container3">
+        <div class="box">
+          <h1>Visão geral de suas estufas</h1>
+          <div class="conteudo">
+            <!-- <div class="indicadores">
                         <div class="metrica">
                             <div class="indi1">
                                 <p>Crítico</p>
@@ -83,129 +99,141 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="estufas">
-                        <div class="conjunto1" id="estufasA">
-                        
-                        </div>
-                        <div class="conjunto2">
-                            <div class="estufaadd">
-                                <button id="openModalBtn">Adicionar estufa</button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="estufas">
+              <div class="conjunto1" id="estufasA"></div>
+              <div class="conjunto2">
+                <div class="estufaadd">
+                  <button id="openModalBtn">Adicionar estufa</button>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-
 
     <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="titulo">
-                <h1>Adicione Estufa</h1>
-            </div>
-            <div class="formsEstufas">
-                <p>Nome da Estufa</p>
-                <input type="text" id="nomeEstufa">
-                <p>Tamanho Estufa em M²</p>
-                <input type="number" id="tamEstufa">
-                <p>Descrição da Estufa</p>
-                <textarea name="" maxlength="300" id="descEstufa"></textarea>
-                <div class="btnAdicione">
-                    <button onclick="cadastrar()">Adicionar Estufa</button>
-                </div>
-            </div>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="titulo">
+          <h1>Adicione Estufa</h1>
         </div>
+        <div class="formsEstufas">
+          <p>Nome da Estufa</p>
+          <input type="text" id="nomeEstufa" />
+          <p>Tamanho Estufa em M²</p>
+          <input type="number" id="tamEstufa" />
+          <p>Descrição da Estufa</p>
+          <textarea name="" maxlength="300" id="descEstufa"></textarea>
+          <div class="btnAdicione">
+            <button onclick="cadastrar()">Adicionar Estufa</button>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
 <script>
-    function verificar() {
-        var idUsuario = sessionStorage.ID_USUARIO;
-        var nomeUsuario = sessionStorage.NOME_USUARIO;
+  function verificar() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
 
-        if (idUsuario >= 0) {
-            nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`
-        }
+    if (idUsuario >= 0) {
+      nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`;
+    } else {
+      window.location = "../index.html";
     }
-    verificar()
-    function apagarSession() {
-        sessionStorage.clear();
+  }
+  verificar();
+  function apagarSession() {
+    sessionStorage.clear();
+  }
+
+  var modal = document.getElementById("myModal");
+
+  // Pegue o botão que abre o modal
+  var btn = document.getElementById("openModalBtn");
+
+  // Pegue o elemento <span> que fecha o modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // Quando o usuário clicar no botão, abra o modal
+  btn.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  // Quando o usuário clicar no <span> (x), feche o modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  // Quando o usuário clicar em qualquer lugar fora do modal, feche-o
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
     }
+  };
 
-    var modal = document.getElementById("myModal");
+  function cadastrar() {
+    var nomeEstufaVar = nomeEstufa.value;
+    var tamEstufaVar = tamEstufa.value;
+    var descVar = descEstufa.value;
+    var idEmpresaVar = sessionStorage.ID_USUARIO;
 
-    // Pegue o botão que abre o modal
-    var btn = document.getElementById("openModalBtn");
+    fetch("/estufas/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeEstufalServer: nomeEstufaVar,
+        tamEstufaServer: tamEstufaVar,
+        descServer: descVar,
+        idEmpresaServer: idEmpresaVar,
+      }),
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
 
-    // Pegue o elemento <span> que fecha o modal
-    var span = document.getElementsByClassName("close")[0];
+    return false;
+  }
 
-    // Quando o usuário clicar no botão, abra o modal 
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
+  var listaEstufas = [];
 
-    // Quando o usuário clicar no <span> (x), feche o modal
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
+  function listar() {
+    var fkEmpresaServer = sessionStorage.ID_USUARIO;
+    fetch(`/estufas/listar?fkEmpresaServer=${fkEmpresaServer}`, {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((resposta) => {
+          resposta.forEach((estufa) => {
+            estufasA.innerHTML += `<a onclick="consultar(${estufa.idEstufa})"><div data-id="${estufa.idEstufa}" class="estufa1"><p>${estufa.nomeEstufa}</p></div></a>`;
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
 
-    // Quando o usuário clicar em qualquer lugar fora do modal, feche-o
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-
-    function cadastrar() {
-
-        var nomeEstufaVar = nomeEstufa.value;
-        var tamEstufaVar = tamEstufa.value;
-        var descVar = descEstufa.value;
-        var idEmpresaVar = sessionStorage.ID_USUARIO;
-
-        fetch("/estufas/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeEstufalServer: nomeEstufaVar,
-                tamEstufaServer: tamEstufaVar,
-                descServer: descVar,
-                idEmpresaServer: idEmpresaVar,
-            }),
-        })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-
-            });
-
-        return false;
-    }
-
-
-    function listar() {
-        var fkEmpresaServer = sessionStorage.ID_USUARIO;
-        fetch(`/estufas/listar?fkEmpresaServer=${fkEmpresaServer}`, {
-            method: "GET",
-        })
-            .then(function (resposta) {
-                resposta.json().then((resposta) => {
-                    resposta.forEach((estufa) => {
-                        estufasA.innerHTML += `<a href="./dashboard/dashboard.html"><div class="estufa1"><p>${estufa.nomeEstufa}</p></div></a>`;
-                    });
-                });
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
-    }
-
+  function consultar(idEstufa) {
+    var fkEmpresaServer = sessionStorage.ID_USUARIO;
+    fetch(
+      `/estufas/consultar?idEstufaServer=${idEstufa}&fkEmpresaServer=${fkEmpresaServer}`,
+      {
+        method: "POST",
+      }
+    ).then(function (resposta) {
+      resposta.json().then((json) => {
+        console.log(json);
+        console.log(JSON.stringify(json));
+        sessionStorage.ID_ESTUFA = json.idEstufa;
+        sessionStorage.NOME_ESTUFA = json.nomeEstufa;
+        window.location = "./dashboard/dashboard.html";
+      });
+    });
+  }
 </script>
