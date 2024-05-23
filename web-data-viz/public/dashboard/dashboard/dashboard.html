@@ -55,6 +55,37 @@
     <div class="dashboard">
         <div class="container3">
             <div class="box">
+                <!-- regua indicadora acima do gráfico -->
+                <div class="reguaIndicadores">
+                    <p class="titulo-legenda">
+                        Parâmetros para Alertas
+                    </p>
+                    <div class="parametros-alerta">
+                        <div class="item-regua perigo-frio">
+                            <p>Crítico</p>
+                            <p> &lt;11°C <br> >80% </p>
+                        </div>
+                        <div class="item-regua alerta-frio">
+                            <p>Perigoso</p>
+                            <p>11°C a 17°C <br> 80% a 90%</p>
+                        </div>
+                        <div class="item-regua ideal">
+                            <p>Ideal</p>
+                            <p>18°C a 23°C <br> 61% a 80%</p>
+                        </div>
+                        <div class="item-regua alerta-quente">
+                            <p>Perigoso</p>
+                            <p>24°C a 30°C <br> 40% a 60%</p>
+                        </div>
+                        <div class="item-regua perigo-quente">
+                            <p>Crítico</p>
+                            <p> >30°C <br> &lt;40%</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- fim da regua indicadora -->
+
+
                 <div class="tituloestufas">
                     <div>
                         <h1>Estufa 05</h1>
@@ -70,14 +101,14 @@
                 </div>
                 <div class="tabela">
                     <div>
-                        <canvas id="myChart1" style="position: relative; height:50vh; width:35vw"></canvas>
+                        <canvas id="myChart1" style="position: relative; height:45vh; width:35vw"></canvas>
                     </div>
                     <div>
-                        <canvas id="myChart2" style="position: relative; height:50vh; width:35vw"></canvas>
+                        <canvas id="myChart2" style="position: relative; height:45vh; width:35vw"></canvas>
                     </div>
                 </div>
                 <div class="indicadores">
-                    <div class="legendaKPI">
+                    <!-- <div class="legendaKPI">
                         <div class="legenda">
                             <div class="legColor1"></div>
                             <p>Critico</p>
@@ -90,18 +121,18 @@
                             <div class="legColor4"></div>
                             <p>Normal</p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="boxKpi">
                         <p>Temperatura atual</p>
                         <div class="kpi">
-                            <img src="./assets/imgs/iconTemp.svg" alt="" style="height: 80px; width: 80px;">
+                            <img src="./assets/imgs/iconTemp.svg" alt="" style="height: 70px; width: 70px;">
                             <p>40º</p>
                         </div>
                     </div>
                     <div class="boxKpi">
                         <p>Umidade atual</p>
                         <div class="kpi2">
-                            <img src="./assets/imgs/iconUmi.svg" alt="" style="height: 80px; width: 80px;">
+                            <img src="./assets/imgs/iconUmi.svg" alt="" style="height: 70px; width: 70px;">
                             <p>55%</p>
                         </div>
                     </div>

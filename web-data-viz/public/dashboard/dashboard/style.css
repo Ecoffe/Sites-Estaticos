@@ -200,6 +200,7 @@ a {
 }
 
 .tabela {
+    margin-top: 40px;
     display: flex;
     justify-content: space-between;
 }
@@ -214,7 +215,7 @@ a {
 .dashboard .container3 .box .indicadores {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .dashboard .container3 .box .indicadores .boxKpi p {
@@ -223,8 +224,8 @@ a {
 }
 
 .dashboard .container3 .box .indicadores .boxKpi .kpi {
-    width: 200px;
-    height: 115px;
+    width: 185px;
+    height: 100px;
     background-color: red;
     display: flex;
     align-items: center;
@@ -245,8 +246,8 @@ a {
 }
 
 .dashboard .container3 .box .indicadores .boxKpi .kpi2 {
-    width: 200px;
-    height: 115px;
+    width: 185px;
+    height: 100px;
     background-color: red;
     display: flex;
     align-items: center;
@@ -284,7 +285,7 @@ a {
 
 .dashboard .container3 .box .indicadores .legendaKPI {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     margin-top: 12px;
 }
@@ -379,3 +380,68 @@ a {
     align-items: center;
 }
 
+.reguaIndicadores {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    margin-top: 5px;
+    background-color: #f7b787;
+    scale: .6;
+    position: absolute;
+    margin-left: 170px;
+    top: 50px;
+  }
+  
+  .reguaIndicadores .titulo-legenda {
+    width: 100%;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    width: fit-content;
+    margin: 10px 20px;
+    align-self: center;
+  }
+  
+  .parametros-alerta {
+    display: flex;
+    width: 100%;
+  }
+  
+  .item-regua {
+    width: 20%;
+    text-align: center;
+    height: 80px; /*aqui a altura dos coloridos*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+  }
+  
+  .item-regua p {
+    margin: 0;
+    font-weight: 500;
+  }
+  
+  .item-regua p:nth-child(2) {
+    font-weight: 800;
+  }
+  
+  .perigo-frio {
+    background-color: #5c6bc0;
+  }
+  
+  .perigo-quente {
+    background-color: #ff3c00;
+  }
+  
+  .alerta-frio {
+    background-color: #42a5f5;
+  }
+  
+  .alerta-quente {
+    background-color: #ffee58;
+  }
+  
+  .ideal {
+    background-color: #9ccc65;
+  }
