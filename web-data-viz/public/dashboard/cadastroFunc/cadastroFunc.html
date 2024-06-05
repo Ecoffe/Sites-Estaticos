@@ -168,6 +168,31 @@
     function sumirMensagem() {
         cardErro.style.display = "none";
     }
+
+    cpfFunc.addEventListener('input', function (event) {
+        var cpf = event.target.value;
+
+        cpf = cpf.replace(/\D/g, '');
+
+        if (cpf.length > 3) {
+            cpf = cpf.substring(0, 3) + '.' + cpf.substring(3);
+        }
+
+        if (cpf.length > 7) {
+            cpf = cpf.substring(0, 7) + '.' + cpf.substring(7);
+        }
+
+        if (cpf.length > 11) {
+            cpf = cpf.substring(0, 11) + '-' + cpf.substring(11);
+        }
+
+        if (cpf.length > 14) {
+            cpf = cpf.substring(0, 14)
+        }
+
+        event.target.value = cpf;
+    });
+
 </script>
 
 </html>
