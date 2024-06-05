@@ -20,4 +20,8 @@ router.get("/listar", function (req, res) {
   empresaController.listar(req, res);
 });
 
+router.post("/inserirAdicional", function (req, res) {
+  empresaController.inserirAdicional(req, res);
+});
+
 module.exports = router;

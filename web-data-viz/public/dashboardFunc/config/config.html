@@ -66,9 +66,9 @@
                                     Endereço:
                                     <div class="formsEnd">
                                         <input type="text" class="cep" placeholder="CEP" id="inpCEP">
-                                        <input type="text" class="numero" placeholder="Número" id="inpNumero">
+                                        <input type="number" class="numero" placeholder="Número" id="inpNumero">
                                         <input type="text" class="complemento" placeholder="Complemento" id="inpComplemento">
-                                        <button class="btnInscricao" onclick="inserirAdicional()">Completar Inscrição</button>
+                                      <button class="btnInscricao" onclick="inserirAdicional(), reload()">Completar Inscrição</button>
                                     </div>
                                 </div>
                                 <div class="fone">
@@ -113,8 +113,6 @@
         var cep = inpCEP.value
         var numero = inpNumero.value
         var complemento = inpComplemento.value
-        
-        console.log(cep)
 
         fetch("/funcionarios/inserirAdicional", {
             method: "POST",
@@ -130,32 +128,62 @@
                 FkFuncionarioServer: sessionStorage.ID_FUNCIONARIO,
             }),
         })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-                console.log("passou aqui")
-
-                if (resposta.ok) {
-                    cardErro.style.display = "block";
-
-                    mensagem_erro.innerHTML =
-                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-                    setTimeout(() => {
-                        window.location = "login.html";
-                    }, "2000");
-
-                    limparFormulario();
-
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
-                }
-            })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
 
             });
 
+            
+
     }
+
+    inpTelFixo.addEventListener('input', function (event) {
+        var cell = event.target.value;
+
+        cell = cell.replace(/\D/g, '');
+
+        if (cell.length > 0) {
+            cell = '(' + cell.substring(0);
+        }
+
+        if (cell.length > 3) {
+            cell = cell.substring(0, 3) + ')' + cell.substring(3);
+        }
+
+        if (cell.length > 8) {
+            cell = cell.substring(0, 8) + '-' + cell.substring(8);
+        }
+
+        if (cell.length > 13) {
+            cell = cell.substring(0, 13)
+        }
+
+        event.target.value = cell;
+    });
+
+    inpTelCell.addEventListener('input', function (event) {
+        var cell = event.target.value;
+
+        cell = cell.replace(/\D/g, '');
+
+        if (cell.length > 0) {
+            cell = '(' + cell.substring(0);
+        }
+
+        if (cell.length > 3) {
+            cell = cell.substring(0, 3) + ')' + cell.substring(3);
+        }
+
+        if (cell.length > 9) {
+            cell = cell.substring(0, 9) + '-' + cell.substring(9);
+        }
+
+        if (cell.length > 14) {
+            cell = cell.substring(0, 14)
+        }
+
+        event.target.value = cell;
+    });
 
     inpCEP.addEventListener('input', function (event) {
         var cep = event.target.value;
@@ -167,9 +195,9 @@
         }
 
         if (cep.length > 9) {
-            cep = cep.substring(0, 9) 
+            cep = cep.substring(0, 9)
         }
-
+        
         event.target.value = cep;
     });
 

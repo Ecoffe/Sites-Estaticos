@@ -258,6 +258,7 @@ a{
 
 .dashboard .container3 .box .cadastrados .boxCad .cad{
     display: flex;
+    margin-right: 14px;
 }
 .dashboard .container3 .box .cadastrados .boxCad .cad p{
     margin: 0
@@ -277,6 +278,7 @@ a{
     background-image: url(./assets/imgs/User.svg);
     background-repeat: no-repeat;
     background-position: 13px 10px;
+    padding-right: 50px;
 }
 
 .dashboard .container3 .box .cadastrados .boxCad .cad .btnCard button{
@@ -289,4 +291,12 @@ a{
     font-size: 30px;
     font-weight: 700;
     color: #FFFFF4;
+}
+
+.dashboard .container3 .box .cadastrados .boxCad {
+    overflow-y: scroll;
+    height: 65vh;
+    scrollbar-color: #eeeeee #EE7214;
+    scroll-margin-left: 10px;
+    
 }
