@@ -30,8 +30,17 @@ function cadastrarFunc(nome, email, cpf, senha, fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function inserirAdicional(cep, numero, complemento, fkFunc) {
+    var instrucaoSql = `
+    insert into endereco (cep, numero, complemento, fkFuncionario) values ('${cep}', '${numero}', '${complemento}', '${fkFunc}');
+    `
+
+    return database.executar(instrucaoSql)
+}
+
 module.exports = {
     autenticar,
     listar,
-    cadastrarFunc
+    cadastrarFunc,
+    inserirAdicional
 };

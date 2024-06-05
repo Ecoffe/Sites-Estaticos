@@ -30,12 +30,14 @@ select * from funcionario;
 
 -- TABELAS P/ ENDEREÇOS
 create table endereco(
-idEndereco int primary key auto_increment,
-cep char(8),
+idEndereco int auto_increment,
+cep char(9),
 numero int,
 complemento varchar(45),
 fkEmpresa int, foreign key (fkEmpresa) references empresa(idEmpresa),
-fkFuncionario int, foreign key (fkFuncionario) references funcionario(idFuncionario));
+fkFuncionario int, foreign key (fkFuncionario) references funcionario(idFuncionario),
+primary key(idEndereco, fkFuncionario)
+);
 
 select * from endereco;
 

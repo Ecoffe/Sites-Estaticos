@@ -16,4 +16,8 @@ router.get("/listar", function (req, res) {
     funcionarioController.listar(req, res);
 });
 
+router.post("/inserirAdicional", function (req, res) {
+    funcionarioController.inserirAdicional(req, res);
+});
+
 module.exports = router;
