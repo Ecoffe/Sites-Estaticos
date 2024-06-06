@@ -87,11 +87,15 @@
                                         <div class="fones">
                                             <input type="text" class="celular" placeholder="Telefone celular"
                                                 id="inpTelCell">
-                                            
+
                                         </div>
                                         <button class="adicionar" onclick="inserirTelefone()">Adicionar</button>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div id="alerta">
+                                <p id="mensagemAlerta"></p>
                             </div>
                         </div>
                         <div class="acessi" id="acessi" style="display: none;">
@@ -122,18 +126,18 @@
 </body>
 <script>
     function verificar() {
-    var idUsuario = sessionStorage.ID_USUARIO;
-    var nomeUsuario = sessionStorage.NOME_USUARIO;
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var nomeUsuario = sessionStorage.NOME_USUARIO;
 
-    if (idUsuario >= 0) {
-      nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`;
-    } else {
-      window.location = "../index.html";
+        if (idUsuario >= 0) {
+            nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`;
+        } else {
+            window.location = "../index.html";
+        }
     }
-  }
-  verificar();
-    
-  function apagarSession() {
+    verificar();
+
+    function apagarSession() {
         sessionStorage.clear();
     }
     function info() {
@@ -150,6 +154,12 @@
         var cep = inpCEP.value
         var numero = inpNumero.value
         var complemento = inpComplemento.value
+
+        if (cep == '' || numero == ''){
+            mensagemAlerta.innerHTML = `Preencha todos os campos para prosseguir!`
+            alerta.style.display = 'block'
+            sumirAlerta()
+        } else {
 
         fetch("/empresas/inserirAdicional", {
             method: "POST",
@@ -171,9 +181,11 @@
             });
 
         limparEndereco()
-        alert("Endereço atualizado")
-        // tirar aviso e deixar mensagem
-
+        mensagemAlerta.innerHTML = `Endereço cadastrado com sucesso!`;
+        alerta.style.display = 'block';
+        sumirAlerta()
+        //ARRUMAR PRECISA DAS VALIDAÇÕES
+    }
     }
 
     function inserirTelefone() {
@@ -189,8 +201,9 @@
         }
 
         if (telC == 'Não tem' && telF == 'Não tem') {
-            alert("Preencha os dois")
-            // tirar aviso e deixar mensagem
+            mensagemAlerta.innerHTML = `Preencha algum campo para prosseguir!`
+            alerta.style.display = 'block'
+            sumirAlerta()
         } else {
 
             fetch("/empresas/inserirTelefone", {
@@ -210,8 +223,9 @@
                     console.log(`#ERRO: ${resposta}`);
 
                 });
-            alert("telefone enviado com sucesso")
-            // tirar aviso e deixar mensagem
+            mensagemAlerta.innerHTML = `Telefone(s) registrado(s) com sucesso!`
+            alerta.style.display = 'block'
+            sumirAlerta()
             limparTel()
         }
     }
@@ -226,6 +240,12 @@
         document.getElementById('inpNumero').value = ''
         document.getElementById('inpComplemento').value = ''
 
+    }
+
+    function sumirAlerta() {
+        setTimeout(() => {
+            alerta.style.display = 'none'
+        }, 2000);
     }
 
     function listar() {
@@ -334,6 +354,7 @@
 
         return false;
     }
+
 
 </script>
 
