@@ -1,3 +1,4 @@
+const { inserirTelCell, inserirTelFixo } = require("../controllers/empresaController");
 var database = require("../database/config");
 
 function buscarPorId(id) {
@@ -32,4 +33,12 @@ function inserirAdicional(cep, numero, complemento, fkEmpresa) {
   return database.executar(instrucaoSql)
 }
 
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, inserirAdicional };
+function inserirTelefone(telC, telF, fkEmpresa) {
+  var instrucaoSql = `
+  insert into telefone (telCelular, telFixo, fkEmpresa) values ('${telC}', '${telF}', '${fkEmpresa}');
+  `
+
+  return database.executar(instrucaoSql)
+}
+
+module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, inserirAdicional, inserirTelefone };

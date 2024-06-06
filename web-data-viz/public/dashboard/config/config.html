@@ -72,8 +72,10 @@
                                     <div class="formsEnd">
                                         <input type="text" class="cep" placeholder="CEP" id="inpCEP">
                                         <input type="text" class="numero" placeholder="Número" id="inpNumero">
-                                        <input type="text" class="complemento" placeholder="Complemento" id="inpComplemento">
-                                        <button class="btnInscricao" onclick="inserirAdicional()">Completar Inscrição</button>
+                                        <input type="text" class="complemento" placeholder="Complemento"
+                                            id="inpComplemento">
+                                        <button class="btnInscricao" onclick="inserirAdicional()">Completar
+                                            Inscrição</button>
                                     </div>
                                 </div>
                                 <div class="fone">
@@ -81,11 +83,12 @@
                                     <div class="formsFone">
                                         <div class="fones">
                                             <input type="text" class="fixo" placeholder="Telefone Fixo" id="inpTelFixo">
-                                            <button class="adicionar">Adicionar</button>
+                                            <button class="adicionar" onclick="inserirTelefone()">Adicionar</button>
                                         </div>
                                         <div class="fones">
-                                            <input type="text" class="celular" placeholder="Telefone celular" id="inpTelCell">
-                                            <button class="adicionar">Adicionar</button>
+                                            <input type="text" class="celular" placeholder="Telefone celular"
+                                                id="inpTelCell">
+                                            <button class="adicionar" onclick="inserirTelefone()">Adicionar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +100,8 @@
                                 <div class="sensor">
                                     Adicione o sensor:
                                     <div class="formsFone">
-                                        <input type="text" class="NomeSensor" placeholder="Nome do Sensor" id="inputNomeSensor">
+                                        <input type="text" class="NomeSensor" placeholder="Nome do Sensor"
+                                            id="inputNomeSensor">
                                         <select name="estufas" id="listaEstufas">
                                             <option selected>Selecione uma empresa</option>
                                         </select>
@@ -164,7 +168,61 @@
 
             });
 
-            
+        limparEndereco()
+        alert("Endereço atualizado")
+        // tirar aviso e deixar mensagem
+
+    }
+
+    function inserirTelefone() {
+        var telF = inpTelFixo.value
+        var telC = inpTelCell.value
+
+        if (telF == '') {
+            telF = 'Não tem'
+        }
+
+        if (telC == '') {
+            telC = 'Não tem'
+        }
+
+        if (telC == 'Não tem' && telF == 'Não tem') {
+            alert("Preencha os dois")
+            // tirar aviso e deixar mensagem
+        } else {
+
+            fetch("/empresas/inserirTelefone", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    telFServer: telF,
+                    telCServer: telC,
+                    FkEmpresaServer: sessionStorage.ID_USUARIO,
+                }),
+            })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+
+                });
+            alert("telefone enviado com sucesso")
+            // tirar aviso e deixar mensagem
+            limparTel()
+        }
+    }
+
+    function limparTel() {
+        document.getElementById('inpTelFixo').value = ''
+        document.getElementById('inpTelCell').value = ''
+    }
+
+    function limparEndereco() {
+        document.getElementById('inpCEP').value = ''
+        document.getElementById('inpNumero').value = ''
+        document.getElementById('inpComplemento').value = ''
 
     }
 
@@ -245,9 +303,35 @@
         if (cep.length > 9) {
             cep = cep.substring(0, 9)
         }
-        
+
         event.target.value = cep;
     });
+
+    function cadastrar() {
+
+        var nomeSensorVar = inputNomeSensor.value;
+        var estufaVar = listaEstufas.value;
+        // var idEmpresaVar = sessionStorage.ID_USUARIO;
+
+        fetch("/sensores/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeSensorServer: nomeSensorVar,
+                estufaServer: estufaVar,
+            }),
+        })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+
+            });
+
+        return false;
+    }
 
 </script>
 

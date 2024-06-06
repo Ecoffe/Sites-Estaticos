@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
 </head>
 
-<body>
+<body onload="listar()">
     <div class="header">
         <div class="container">
             <a class="titulodash" href="../index.html">ecoffe</a>
@@ -22,96 +22,86 @@
 
     <div class="leftInfo">
         <div class="container2">
-            <div class="btnsDash">
-                <div class="leftBtns">
-                    <a href="#"><button class="btnshome">Estufas</button></a>
-                </div>
-                <div class="leftBtns">
-                    <a href="./dashboard/dashboard.html"><button class="btnsdashboards">Dashboards</button></a>
-                </div>
-                <div class="leftBtns">
-                    <a href="./dasboardmensal/dashboardmensal.html"><button class="btnsmensal">Dados
-                            mensais</button></a>
-                </div>
-                <div class="leftBtns">
-                    <a href="./notificacoes/notify.html"><button class="btnsnotify">Notificações</button></a>
-                </div>
-                <div class="leftBtns">
-                    <a href="./config/config.html"><button class="btnsconfig">Configurações</button></a>
-                </div>
+          <div class="btnsDash">
+            <div class="leftBtns">
+              <a href="#"><button class="btnshome">Estufas</button></a>
             </div>
-            <div class="btnSair">
-                <a href="../login/login.html"><button class="btn">Sair da conta</button></a>
+            <div class="leftBtns">
+              <a href="./dashboard/dashboard.html"
+                ><button class="btnsdashboards">Dashboards</button></a
+              >
             </div>
+            <div class="leftBtns">
+              <a href="./dasboardmensal/dashboardmensal.html"
+                ><button class="btnsmensal">Dados mensais</button></a
+              >
+            </div>
+            <div class="leftBtns">
+              <a href="./notificacoes/notify.html"
+                ><button class="btnsnotify">Notificações</button></a
+              >
+            </div>
+            <div class="leftBtns">
+              <a href="./config/config.html"
+                ><button class="btnsconfig">Configurações</button></a
+              >
+            </div>
+          </div>
+          <div class="btnSair">
+            <a href="../login/login.html"
+              ><button class="btn" onclick="apagarSession()">
+                Sair da conta
+              </button></a
+            >
+          </div>
         </div>
-    </div>
-
-    <div class="dashboard">
+      </div>
+  
+      <div class="dashboard">
         <div class="container3">
-            <div class="box">
-                <h1>Visão geral de suas estufas</h1>
-                <div class="conteudo">
-                    <div class="indicadores">
-                        <div class="metrica">
-                            <div class="indi1">
-                                <p>Crítico</p>
-                            </div>
-                            <div class="critico">
-                                <p> >30°C ou &lt;18°C </p> <!--expressão para conseguir fazer o sinal de menor que 18-->
-                            <p>&lt;40% ou >80%</p>
-                            </div>
-                        </div>
-                        <div class="metrica">
-                            <div class="indi2">
-                                <p>Perigoso</p>
-                            </div>
-                            <div class="perigoso">
-                            <p>24°C a 30°C</p>
-                            <p>40% a 60%</p>
-                        </div>
-                        </div>
-                        <div class="metrica">
-                            <div class="indi3">
-                                <p>Normal</p>
-                            </div>
-                            <div class="normal">
-                                <p>18°C a 23°C</p>
-                                <p>61% a 80%</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="estufas">
-                        <div class="conjunto1">
-                            <a href="./dashboard/dashboard.html">
-                                <div class="estufa1">
-                                    <p>Estufa 5</p>
-                                </div>
-                            </a>
-                            <div class="estufa2">
-                                <p>Estufa 2</p>
-                            </div>
-                            <div class="estufa3">
-                                <p>Estufa 3</p>
-                            </div>
-                        </div>
-                        <div class="conjunto2">
-                            <div class="estufa1">
-                                <p>Estufa 4</p>
-                            </div>
-                            <a href="./dashboard/dashboard2.html">
-                                <div class="estufa2">
-                                    <p>Estufa 1</p>
-                                </div>
-                            </a>
-                            <div class="estufaadd">
-                                <p>+</p>
-                            </div>
-                        </div>
-                    </div>
+          <div class="box">
+            <h1>Visão geral de suas estufas</h1>
+            <div class="conteudo">
+              <!-- <div class="indicadores">
+                          <div class="metrica">
+                              <div class="indi1">
+                                  <p>Crítico</p>
+                              </div>
+                              <div class="critico">
+                                  <p> >30°C ou &lt;18°C </p>
+                                  <p>&lt;40% ou >80%</p>
+                              </div>
+                          </div>
+                          <div class="metrica">
+                              <div class="indi2">
+                                  <p>Perigoso</p>
+                              </div>
+                              <div class="perigoso">
+                                  <p>24°C a 30°C</p>
+                                  <p>40% a 60%</p>
+                              </div>
+                          </div>
+                          <div class="metrica">
+                              <div class="indi3">
+                                  <p>Normal</p>
+                              </div>
+                              <div class="normal">
+                                  <p>18°C a 23°C</p>
+                                  <p>61% a 80%</p>
+                              </div>
+                          </div>
+                      </div> -->
+              <div class="estufas">
+                <div class="conjunto1" id="estufasA"></div>
+                <div class="conjunto2">
+                  
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
+
 </body>
 
 <script>
@@ -125,6 +115,47 @@
         }
     }
     verificar()
+    function apagarSession() {
+    sessionStorage.clear();
+  }
+
+  var listaEstufas = [];
+
+  function listar() {
+    var fkEmpresaServer = sessionStorage.FKEMPRESA;
+    fetch(`/estufas/listar?fkEmpresaServer=${fkEmpresaServer}`, {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((resposta) => {
+          resposta.forEach((estufa) => {
+            estufasA.innerHTML += `<a onclick="consultar(${estufa.idEstufa})"><div data-id="${estufa.idEstufa}" class="estufa1"><p>${estufa.nomeEstufa}</p></div></a>`;
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function consultar(idEstufa) {
+    var fkEmpresaServer = sessionStorage.FKEMPRESA;
+    fetch(
+      `/estufas/consultar?idEstufaServer=${idEstufa}&fkEmpresaServer=${fkEmpresaServer}`,
+      {
+        method: "POST",
+      }
+    ).then(function (resposta) {
+      resposta.json().then((json) => {
+        console.log(json);
+        console.log(JSON.stringify(json));
+        sessionStorage.ID_ESTUFA = json.idEstufa;
+        sessionStorage.NOME_ESTUFA = json.nomeEstufa;
+        window.location = "./dashboard/dashboard.html";
+      });
+    });
+  }
+
 
 
 </script>

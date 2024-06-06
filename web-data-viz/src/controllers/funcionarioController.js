@@ -38,7 +38,8 @@ function autenticar(req, res) {
                             nome: resultadoAutenticar[0].nomeFuncionario,
                             email: resultadoAutenticar[0].emailFuncionario,
                             cpf: resultadoAutenticar[0].cpf,
-                            senha: resultadoAutenticar[0].senha
+                            senha: resultadoAutenticar[0].senha,
+                            fkEmpresa: resultadoAutenticar[0].fkEmpresa
                         });
 
                     } else if (resultadoAutenticar.length == 0) {
@@ -102,6 +103,7 @@ function inserirAdicional(req, res) {
     var numero = req.body.numeroServer
     var complemento = req.body.complementoServer
     var fkFunc = req.body.FkFuncionarioServer 
+    var fkEmpresa = req.body.FkEmpresaServer
 
     if (cep == undefined) {
         res.status(400).send("Seu cep está undefined!");
@@ -111,10 +113,12 @@ function inserirAdicional(req, res) {
         res.status(400).send("Seu complemento está undefined!");
     } else if (fkFunc == undefined) {
         res.status(400).send("Seu fkFunc está undefined!");
+    } else if (fkEmpresa == undefined){
+        res.status(400).send("Seu fkEmpresa está undefined");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        funcionarioModel.inserirAdicional(cep, numero, complemento, fkFunc)
+        funcionarioModel.inserirAdicional(cep, numero, complemento, fkFunc, fkEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);

@@ -11,7 +11,7 @@ function listar(fkEmpresa) {
 function autenticar(cpf, senha) {
     console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", cpf, senha)
     var instrucaoSql = `
-        SELECT idFuncionario, nomeFuncionario, emailFuncionario, cpf FROM funcionario WHERE cpf = '${cpf}' AND senhaFuncionario = '${senha}';
+        SELECT idFuncionario, nomeFuncionario, emailFuncionario, cpf, fkEmpresa FROM funcionario WHERE cpf = '${cpf}' AND senhaFuncionario = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -30,9 +30,9 @@ function cadastrarFunc(nome, email, cpf, senha, fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
-function inserirAdicional(cep, numero, complemento, fkFunc) {
+function inserirAdicional(cep, numero, complemento, fkFunc, fkEmpresa) {
     var instrucaoSql = `
-    insert into endereco (cep, numero, complemento, fkFuncionario) values ('${cep}', '${numero}', '${complemento}', '${fkFunc}');
+    insert into endereco (cep, numero, complemento, fkFuncionario, fkEmpresa) values ('${cep}', '${numero}', '${complemento}', '${fkFunc}', '${fkEmpresa}');
     `
 
     return database.executar(instrucaoSql)

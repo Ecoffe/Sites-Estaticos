@@ -24,4 +24,8 @@ router.post("/inserirAdicional", function (req, res) {
   empresaController.inserirAdicional(req, res);
 });
 
+router.post("/inserirTelefone", function (req, res) {
+  empresaController.inserirTelefone(req, res);
+});
+
 module.exports = router;

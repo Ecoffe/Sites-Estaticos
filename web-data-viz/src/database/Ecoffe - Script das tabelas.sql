@@ -45,8 +45,8 @@ select * from endereco;
 -- TABLES P/ TELEFONES
 create table telefone(
 	idTelefone int primary key auto_increment,
-    telCelular varchar(11),
-    telFixo varchar(10),
+    telCelular varchar(14),
+    telFixo varchar(13),
     fkEmpresa int,
     fkFuncionario int,
 		constraint fkTelefoneFuncionario foreign key (fkFuncionario)
