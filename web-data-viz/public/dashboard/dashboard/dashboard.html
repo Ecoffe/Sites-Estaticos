@@ -104,24 +104,29 @@
                         <canvas id="myChartUmidade" style="position: relative; height:45vh; width:35vw"></canvas>
                     </div>
                 </div>
-                <div class="indicadores" id="indicadores">
-                    <div class="boxKpi">
-                        <p>Temperatura atual</p>
-                        <div class="kpi">
-                            <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
-                            <p>5</p>
+                <div class="indicadores">
+                    <div class="indicador" id="indicadorTemp">
+                        <div class="boxKpi">
+                            <p>Temperatura atual</p>
+                            <div class="kpi" style="background-color: transparent;">
+                                <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                                <p></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="boxKpi">
-                        <p>Umidade atual</p>
-                        <div class="kpi2">
-                            <img src="./assets/imgs/iconUmi.svg" style="height: 70px; width: 70px;">
-                            <p>55%</p>
+                    <div class="indicador" id="indicadorUmi">
+                        <div class="boxKpi">
+                            <p>Umidade atual</p>
+                            <div class="kpi" style="background-color: transparent;">
+                                <img src="./assets/imgs/iconUmi.svg" style="height: 70px; width: 70px;">
+                                <p></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 <script>
@@ -129,16 +134,16 @@
     estufaAtual.innerHTML = `<h1>${nomeEstufa}</h1>`
 
     function verificar() {
-    var idUsuario = sessionStorage.ID_USUARIO;
-    var nomeUsuario = sessionStorage.NOME_USUARIO;
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var nomeUsuario = sessionStorage.NOME_USUARIO;
 
-    if (idUsuario >= 0) {
-      nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`;
-    } else {
-      window.location = "../index.html";
+        if (idUsuario >= 0) {
+            nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`;
+        } else {
+            window.location = "../index.html";
+        }
     }
-  }
-  verificar();
+    verificar();
 
     function apagarSession() {
         sessionStorage.clear();
@@ -271,160 +276,65 @@
 
     }
 
-</script>
-<script>
-
-    
-obterDadosKpi()
-
-
-function obterDadosKpi() {
-    const idEstufa = sessionStorage.ID_ESTUFA;
-    console.log("ID Estufa no sessionStorage:", idEstufa);
-    if (!idEstufa) {
-        console.error("ID da estufa não encontrado na sessionStorage");
-        return;
-    }
-
-    fetch(`/medidas/ultimasTemperatura?idEstufaServer=${idEstufa}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                resposta.reverse();
-                plotarKpiTemperatura(resposta);
-            });
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
-        }
-    }).catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
-
-    fetch(`/medidas/ultimasUmidade?idEstufaServer=${idEstufa}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                resposta.reverse();
-                plotarKpiUmidade(resposta);
-            });
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
-        }
-    }).catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
-}
-
-
-function plotarKpiTemperatura(resposta) {
-        console.log('iniciando plotagem do gráfico...');
-
-        let labels = [];
-
-        let dados = {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Temperatura',
-                    data: [],
-                    fill: false,
-                    borderWidth: 4,
-                    borderColor: '#EE7214',
-                    backgroundColor: '#EE7214',
-                    tension: 0.1
-                }]
-        };
-
-        console.log('Dados recebidos para plotar no gráfico Temperatura:', resposta);
-
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.diaHora);
-            dados.datasets[0].data.push(registro.temperatura);
-        }
-
-        console.log('Labels:', labels);
-        console.log('Dados do Dataset:', dados.datasets);
-
-        const config = {
-            type: 'line',
-            data: dados,
-        };
-
-        let myChartTemp = new Chart(
-            document.getElementById(`myChartTemperatura`),
-            config
-        );
-
-    }
-
-    // Umidade
-    function plotarGraficoUmidade(resposta) {
-        console.log('iniciando plotagem do gráfico...');
-
-        let labels = [];
-
-        let dados = {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Umidade',
-                    data: [],
-                    fill: false,
-                    borderWidth: 4,
-                    borderColor: '#EE7214',
-                    backgroundColor: '#EE7214',
-                    tension: 0.1
-                }]
-        };
-
-        console.log('Dados recebidos para plotar no gráfico Temperatura:', resposta);
-
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.diaHora);
-            dados.datasets[0].data.push(registro.umidade);
-        }
-
-        console.log('Labels:', labels);
-        console.log('Dados do Dataset:', dados.datasets);
-
-        const config = {
-            type: 'line',
-            data: dados,
-        };
-
-        let myChartUmi = new Chart(
-            document.getElementById(``),
-            config
-        );
-
-    }
-
-
-
     function listarKpi() {
-    const idEstufa = sessionStorage.ID_ESTUFA;
-        fetch(`/medidas/listar?idEstufaServer=${idEstufa}`, {
+        const idEstufa = sessionStorage.ID_ESTUFA;
+        fetch(`/medidas/listarKpi?idEstufaServer=${idEstufa}`, {
             method: "GET",
         })
             .then(function (resposta) {
                 resposta.json().then((resposta) => {
                     resposta.forEach((medida) => {
-                        boxCad.innerHTML += `<div class="boxKpi">
-                        <p>Temperatura atual</p>
-                        <div class="kpi">
-                            <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
-                            <p>${medida.temperatura}</p>
-                        </div>
-                    </div>
-                    <div class="boxKpi">
-                        <p>Umidade atual</p>
-                        <div class="kpi2">
-                            <img src="./assets/imgs/iconUmi.svg" style="height: 70px; width: 70px;">
-                            <p>${medida.umidade}</p>
-                        </div>
-                    </div>`;
+                        if (medida.temperatura < 11 || medida.temperatura > 30) {
+                            indicadorTemp.innerHTML = `<div class="boxKpi">
+                            <p>Temperatura atual</p>
+                            <div class="kpi" style="background-color: red;">
+                                <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                                <p>${medida.temperatura}°</p>
+                            </div>
+                        </div>`;
+                        }else if(medida.temperatura < 17 || medida.temperatura > 24){
+                            indicadorTemp.innerHTML = `<div class="boxKpi">
+                            <p>Temperatura atual</p>
+                            <div class="kpi" style="background-color: yellow;">
+                                <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                                <p>${medida.temperatura}°</p>
+                            </div>
+                        </div>`;
+                        }else if(medida.temperatura < 23 || medida.temperatura > 18){
+                            indicadorTemp.innerHTML = `<div class="boxKpi">
+                            <p>Temperatura atual</p>
+                            <div class="kpi" style="background-color: green;">
+                                <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                                <p>${medida.temperatura}°</p>
+                            </div>
+                        </div>`;
+                        }
+
+                        if(medida.umidade < 40 || medida.umidade > 90){
+                            indicadorUmi.innerHTML = `<div class="boxKpi">
+                            <p>Temperatura atual</p>
+                            <div class="kpi" style="background-color: red;">
+                                <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                                <p>${medida.umidade}%</p>
+                            </div>
+                        </div>`;
+                        }else if(medida.umidade < 60 || medida.umidade > 80){
+                            indicadorUmi.innerHTML = `<div class="boxKpi">
+                            <p>Temperatura atual</p>
+                            <div class="kpi" style="background-color: yellow;">
+                                <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                                <p>${medida.umidade}%</p>
+                            </div>
+                        </div>`;
+                        }else if(medida.umidade < 80 || medida.umidade > 60){
+                            indicadorUmi.innerHTML = `<div class="boxKpi">
+                            <p>Temperatura atual</p>
+                            <div class="kpi" style="background-color: green;">
+                                <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                                <p>${medida.umidade}%</p>
+                            </div>
+                        </div>`;
+                        }
                     });
                 });
             })

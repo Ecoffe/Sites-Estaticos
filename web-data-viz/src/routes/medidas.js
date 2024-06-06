@@ -11,7 +11,7 @@ router.get("/ultimasUmidade", function (req, res) {
 });
 
 router.get("/listarKpi", function (req, res) {
-    funcionarioController.listarKpi(req, res);
+    medidaController.listarKpi(req, res);
 });
 
 module.exports = router;
