@@ -126,7 +126,7 @@
           <p>Descrição da Estufa</p>
           <textarea name="" maxlength="300" id="descEstufa"></textarea>
           <div class="btnAdicione">
-            <button onclick="cadastrar()">Adicionar Estufa</button>
+            <button onclick="cadastrar(), recarregarPag()">Adicionar Estufa</button>
           </div>
         </div>
       </div>
@@ -145,6 +145,7 @@
     }
   }
   verificar();
+  
   function apagarSession() {
     sessionStorage.clear();
   }
@@ -235,5 +236,9 @@
         window.location = "./dashboard/dashboard.html";
       });
     });
+  }
+
+  function recarregarPag(){
+    location.reload();
   }
 </script>

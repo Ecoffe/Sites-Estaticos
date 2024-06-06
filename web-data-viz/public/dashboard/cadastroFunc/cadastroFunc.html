@@ -64,7 +64,7 @@
                             <input type="password" name="" class="senha" placeholder="Senha" id="senhaFunc">
                             <input type="password" class="confSenha" placeholder="Confirmar Senha" id="confSenhaFunc">
                         </div>
-                        <button class="btnCadastrar" onclick="cadastrar()">Cadastrar</button>
+                        <button class="btnCadastrar" onclick="cadastrar(), recarregarPag()">Cadastrar</button>
                     </div>
                 </div>
                 <div class="cadastrados">
@@ -80,15 +80,16 @@
 </body>
 <script>
     function verificar() {
-        var idUsuario = sessionStorage.ID_USUARIO;
-        var nomeUsuario = sessionStorage.NOME_USUARIO;
+    var idUsuario = sessionStorage.ID_USUARIO;
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
 
-        if (idUsuario >= 0) {
-            nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`
-        }
+    if (idUsuario >= 0) {
+      nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`;
+    } else {
+      window.location = "../index.html";
     }
-    verificar()
-
+  }
+  verificar();
     function apagarSession() {
         sessionStorage.clear();
     }
@@ -192,6 +193,10 @@
 
         event.target.value = cpf;
     });
+
+    function recarregarPag(){
+        location.reload();
+    }
 
 </script>
 

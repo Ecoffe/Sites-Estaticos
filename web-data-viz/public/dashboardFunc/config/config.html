@@ -76,12 +76,13 @@
                                     <div class="formsFone">
                                         <div class="fones">
                                             <input type="text" class="fixo" placeholder="Telefone Fixo" id="inpTelFixo">
-                                            <button class="adicionar">Adicionar</button>
                                         </div>
                                         <div class="fones">
-                                            <input type="text" class="celular" placeholder="Telefone celular" id="inpTelCell">
-                                            <button class="adicionar">Adicionar</button>
+                                            <input type="text" class="celular" placeholder="Telefone celular"
+                                                id="inpTelCell">
+                                            
                                         </div>
+                                        <button class="adicionar" onclick="inserirTelefone()">Adicionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -136,6 +137,47 @@
 
             
 
+    }
+
+    function inserirTelefone() {
+        var telF = inpTelFixo.value
+        var telC = inpTelCell.value
+
+        if (telF == '') {
+            telF = 'Não tem'
+        }
+
+        if (telC == '') {
+            telC = 'Não tem'
+        }
+
+        if (telC == 'Não tem' && telF == 'Não tem') {
+            alert("Preencha os dois")
+            // tirar aviso e deixar mensagem
+        } else {
+
+            fetch("/funcionarios/inserirTelefone", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    telFServer: telF,
+                    telCServer: telC,
+                    FkEmpresaServer: sessionStorage.FKEMPRESA,
+                    FkFuncServer: sessionStorage.ID_FUNCIONARIO
+                }),
+            })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+
+                });
+            alert("telefone enviado com sucesso")
+            // tirar aviso e deixar mensagem
+            limparTel()
+        }
     }
 
     inpTelFixo.addEventListener('input', function (event) {
@@ -208,10 +250,11 @@
 
         if (idUsuario >= 0) {
             nomeFunc.innerHTML = `<p>${nomeUsuario}</p>`
+        } else {
+          window.location = "../index.html"
         }
     }
     verificar()
-
 </script>
 
 </body>
