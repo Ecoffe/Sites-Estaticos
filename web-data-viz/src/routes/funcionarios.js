@@ -20,4 +20,9 @@ router.post("/inserirAdicional", function (req, res) {
     funcionarioController.inserirAdicional(req, res);
 });
 
+router.post("/inserirTelefone", function (req, res) {
+    funcionarioController.inserirTelefone(req, res);
+  });
+  
+
 module.exports = router;

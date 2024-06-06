@@ -137,9 +137,47 @@ function inserirAdicional(req, res) {
 
 }
 
+
+function inserirTelefone(req, res) {
+
+    var telC = req.body.telCServer
+    var telF = req.body.telFServer
+    var fkEmpresa = req.body.FkEmpresaServer
+    var fkFunc = req.body.FkFuncServer
+  
+    if (telC == undefined) {
+      res.status(400).send("Seu telCell está undefined!");
+  } else if (telF == undefined) {
+      res.status(400).send("Seu telFixo está undefined!");
+  } else if (fkEmpresa == undefined) {
+    res.status(400).send("Seu fkEmpresa está undefined!");
+  } else if (fkFunc == undefined) {
+    res.status(400).send("Seu fkFunc está undefined!");
+  } else {
+  
+      // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+      funcionarioModel.inserirTelefone(telC, telF, fkEmpresa, fkFunc)
+          .then(
+              function (resultado) {
+                  res.json(resultado);
+              }
+          ).catch(
+              function (erro) {
+                  console.log(erro);
+                  console.log(
+                      "\nHouve um erro ao realizar o cadastro! Erro: ",
+                      erro.sqlMessage
+                  );
+                  res.status(500).json(erro.sqlMessage);
+              }
+          );
+  }
+  }
+
 module.exports = {
     autenticar,
     listar,
     cadastrarFunc,
-    inserirAdicional
+    inserirAdicional,
+    inserirTelefone
 }

@@ -38,9 +38,18 @@ function inserirAdicional(cep, numero, complemento, fkFunc, fkEmpresa) {
     return database.executar(instrucaoSql)
 }
 
+function inserirTelefone(telC, telF, fkEmpresa, fkFunc) {
+    var instrucaoSql = `
+    insert into telefone (telCelular, telFixo, fkEmpresa, fkFuncionario) values ('${telC}', '${telF}', '${fkEmpresa}', '${fkFunc}');
+    `
+  
+    return database.executar(instrucaoSql)
+  }
+
 module.exports = {
     autenticar,
     listar,
     cadastrarFunc,
-    inserirAdicional
+    inserirAdicional,
+    inserirTelefone
 };
