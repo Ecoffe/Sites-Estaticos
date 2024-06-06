@@ -130,6 +130,8 @@
     </div>
 </body>
 <script>
+
+    let proximaAtualiacao;
     var nomeEstufa = sessionStorage.NOME_ESTUFA;
     estufaAtual.innerHTML = `<h1>${nomeEstufa}</h1>`
 
@@ -151,7 +153,6 @@
 
 
     obterDadosGrafico()
-
 
     function obterDadosGrafico() {
         const idEstufa = sessionStorage.ID_ESTUFA;
@@ -206,7 +207,7 @@
                     borderWidth: 4,
                     borderColor: '#EE7214',
                     backgroundColor: '#EE7214',
-                    tension: 0.1
+                    tension: 0.5
                 }]
         };
 
@@ -249,7 +250,7 @@
                     borderWidth: 4,
                     borderColor: '#EE7214',
                     backgroundColor: '#EE7214',
-                    tension: 0.1
+                    tension: 0.5
                 }]
         };
 
@@ -273,6 +274,7 @@
             document.getElementById(`myChartUmidade`),
             config
         );
+        
 
     }
 
@@ -292,7 +294,7 @@
                                 <p>${medida.temperatura}°</p>
                             </div>
                         </div>`;
-                        }else if(medida.temperatura < 17 || medida.temperatura > 24){
+                        } else if (medida.temperatura < 17 || medida.temperatura > 24) {
                             indicadorTemp.innerHTML = `<div class="boxKpi">
                             <p>Temperatura atual</p>
                             <div class="kpi" style="background-color: yellow;">
@@ -300,7 +302,7 @@
                                 <p>${medida.temperatura}°</p>
                             </div>
                         </div>`;
-                        }else if(medida.temperatura < 23 || medida.temperatura > 18){
+                        } else if (medida.temperatura < 23 || medida.temperatura > 18) {
                             indicadorTemp.innerHTML = `<div class="boxKpi">
                             <p>Temperatura atual</p>
                             <div class="kpi" style="background-color: green;">
@@ -310,7 +312,7 @@
                         </div>`;
                         }
 
-                        if(medida.umidade < 40 || medida.umidade > 90){
+                        if (medida.umidade < 40 || medida.umidade > 90) {
                             indicadorUmi.innerHTML = `<div class="boxKpi">
                             <p>Temperatura atual</p>
                             <div class="kpi" style="background-color: red;">
@@ -318,7 +320,7 @@
                                 <p>${medida.umidade}%</p>
                             </div>
                         </div>`;
-                        }else if(medida.umidade < 60 || medida.umidade > 80){
+                        } else if (medida.umidade < 60 || medida.umidade > 80) {
                             indicadorUmi.innerHTML = `<div class="boxKpi">
                             <p>Temperatura atual</p>
                             <div class="kpi" style="background-color: yellow;">
@@ -326,7 +328,7 @@
                                 <p>${medida.umidade}%</p>
                             </div>
                         </div>`;
-                        }else if(medida.umidade < 80 || medida.umidade > 60){
+                        } else if (medida.umidade < 80 || medida.umidade > 60) {
                             indicadorUmi.innerHTML = `<div class="boxKpi">
                             <p>Temperatura atual</p>
                             <div class="kpi" style="background-color: green;">
@@ -336,6 +338,7 @@
                         </div>`;
                         }
                     });
+                    proximaAtualizacao = setTimeout(() => listarKpi(), 500);
                 });
             })
             .catch(function (resposta) {
@@ -343,6 +346,7 @@
             });
     }
     listarKpi();
+
 </script>
 
 </html>
