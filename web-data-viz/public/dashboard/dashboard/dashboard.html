@@ -83,12 +83,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- fim da regua indicadora -->
-
 
                 <div class="tituloestufas">
-                    <div>
-                        <h1>Estufa 05</h1>
+                    <div id="estufaAtual">
                     </div>
                     <div>
                         <h1>
@@ -99,40 +96,26 @@
                         </h1>
                     </div>
                 </div>
-                <div class="tabela">
+                <div class="tabela" id="graficos">
                     <div>
-                        <canvas id="myChart1" style="position: relative; height:45vh; width:35vw"></canvas>
+                        <canvas id="myChartTemperatura" style="position: relative; height:45vh; width:35vw"></canvas>
                     </div>
                     <div>
-                        <canvas id="myChart2" style="position: relative; height:45vh; width:35vw"></canvas>
+                        <canvas id="myChartUmidade" style="position: relative; height:45vh; width:35vw"></canvas>
                     </div>
                 </div>
                 <div class="indicadores">
-                    <!-- <div class="legendaKPI">
-                        <div class="legenda">
-                            <div class="legColor1"></div>
-                            <p>Critico</p>
-                        </div>
-                        <div class="legenda">
-                            <div class="legColor2"></div>
-                            <p>Perigoso</p>
-                        </div>
-                        <div class="legenda">
-                            <div class="legColor4"></div>
-                            <p>Normal</p>
-                        </div>
-                    </div> -->
                     <div class="boxKpi">
                         <p>Temperatura atual</p>
                         <div class="kpi">
-                            <img src="./assets/imgs/iconTemp.svg" alt="" style="height: 70px; width: 70px;">
+                            <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
                             <p>40º</p>
                         </div>
                     </div>
                     <div class="boxKpi">
                         <p>Umidade atual</p>
                         <div class="kpi2">
-                            <img src="./assets/imgs/iconUmi.svg" alt="" style="height: 70px; width: 70px;">
+                            <img src="./assets/imgs/iconUmi.svg" style="height: 70px; width: 70px;">
                             <p>55%</p>
                         </div>
                     </div>
@@ -142,6 +125,8 @@
     </div>
 </body>
 <script>
+    var nomeEstufa = sessionStorage.NOME_ESTUFA;
+    estufaAtual.innerHTML = `<h1>${nomeEstufa}</h1>`
 
     function verificar() {
         var idUsuario = sessionStorage.ID_USUARIO;
@@ -158,53 +143,132 @@
     }
 
 
-    const ctx1 = document.getElementById('myChart1');
+    obterDadosGrafico()
 
-    new Chart(ctx1, {
-        type: 'line',
-        data: {
-            labels: ['12:00', '12:30', '13:00', '13:30', '14:00', '14:30'],
-            datasets: [{
-                label: 'Temperatura(ºC)',
-                data: [17, 19, 22, 18, 23, 40],
-                borderWidth: 4,
-                borderColor: '#EE7214',
-                backgroundColor: '#EE7214'
-            },]
 
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
+    function obterDadosGrafico() {
+        const idEstufa = sessionStorage.ID_ESTUFA;
+        console.log("ID Estufa no sessionStorage:", idEstufa);
+        if (!idEstufa) {
+            console.error("ID da estufa não encontrado na sessionStorage");
+            return;
         }
-    });
 
-    const ctx2 = document.getElementById('myChart2');
+        fetch(`/medidas/ultimasTemperatura?idEstufaServer=${idEstufa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    plotarGraficoTemperatura(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        }).catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
 
-    new Chart(ctx2, {
-        type: 'line',
-        data: {
-            labels: ['12:00', '12:30', '13:00', '13:30', '14:00', '14:30'],
-            datasets: [{
-                label: 'Umidade(%)',
-                data: [75, 80, 78, 85, 80, 55], // Novos dados adicionados aqui
-                borderWidth: 4,
-                borderColor: '#0B7F99',
-                backgroundColor: '#0B7F99'
-            },]
+        fetch(`/medidas/ultimasUmidade?idEstufaServer=${idEstufa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    plotarGraficoUmidade(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        }).catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
 
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
+    // Temperatura
+    function plotarGraficoTemperatura(resposta) {
+        console.log('iniciando plotagem do gráfico...');
+
+        let labels = [];
+
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Temperatura',
+                    data: [],
+                    fill: false,
+                    borderWidth: 4,
+                    borderColor: '#EE7214',
+                    backgroundColor: '#EE7214',
+                    tension: 0.1
+                }]
+        };
+
+        console.log('Dados recebidos para plotar no gráfico Temperatura:', resposta);
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.diaHora);
+            dados.datasets[0].data.push(registro.temperatura);
         }
-    });
+
+        console.log('Labels:', labels);
+        console.log('Dados do Dataset:', dados.datasets);
+
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        let myChartTemp = new Chart(
+            document.getElementById(`myChartTemperatura`),
+            config
+        );
+
+    }
+
+    // Umidade
+    function plotarGraficoUmidade(resposta) {
+        console.log('iniciando plotagem do gráfico...');
+
+        let labels = [];
+
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Umidade',
+                    data: [],
+                    fill: false,
+                    borderWidth: 4,
+                    borderColor: '#EE7214',
+                    backgroundColor: '#EE7214',
+                    tension: 0.1
+                }]
+        };
+
+        console.log('Dados recebidos para plotar no gráfico Temperatura:', resposta);
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.diaHora);
+            dados.datasets[0].data.push(registro.umidade);
+        }
+
+        console.log('Labels:', labels);
+        console.log('Dados do Dataset:', dados.datasets);
+
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        let myChartUmi = new Chart(
+            document.getElementById(`myChartUmidade`),
+            config
+        );
+
+    }
+
 </script>
 
 </html>

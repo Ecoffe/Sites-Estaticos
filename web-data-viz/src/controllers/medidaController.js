@@ -1,18 +1,17 @@
 var medidaModel = require("../models/medidaModel");
 
-function buscarUltimasMedidas(req, res) {
+function buscarUltimasMedidasTemperatura(req, res) {
+    const idEstufa = req.query.idEstufaServer;
+    console.log(idEstufa);
+    if (!idEstufa) {
+        return res.status(400).send("idEstufaServer não fornecido");
+    }
 
-    const limite_linhas = 7;
-
-    var idestufa = req.params.idestufa;
-
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
-
-    medidaModel.buscarUltimasMedidas(idestufa, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidasTemperatura(idEstufa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
-            res.status(204).send("Nenhum resultado encontrado!")
+            res.status(204).send("Nenhum resultado encontrado!");
         }
     }).catch(function (erro) {
         console.log(erro);
@@ -21,18 +20,17 @@ function buscarUltimasMedidas(req, res) {
     });
 }
 
+function buscarUltimasMedidasUmidade(req, res) {
+    const idEstufa = req.query.idEstufaServer;
+    if (!idEstufa) {
+        return res.status(400).send("idEstufaServer não fornecido");
+    }
 
-function buscarMedidasEmTempoReal(req, res) {
-
-    var idestufa = req.params.idestufa;
-
-    console.log(`Recuperando medidas em tempo real`);
-
-    medidaModel.buscarMedidasEmTempoReal(idestufa).then(function (resultado) {
+    medidaModel.buscarUltimasMedidasUmidade(idEstufa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
-            res.status(204).send("Nenhum resultado encontrado!")
+            res.status(204).send("Nenhum resultado encontrado!");
         }
     }).catch(function (erro) {
         console.log(erro);
@@ -42,7 +40,6 @@ function buscarMedidasEmTempoReal(req, res) {
 }
 
 module.exports = {
-    buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
-
+    buscarUltimasMedidasTemperatura,
+    buscarUltimasMedidasUmidade
 }
