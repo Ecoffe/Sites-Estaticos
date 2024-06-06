@@ -89,14 +89,16 @@
 </body>
 <script>
     function verificar() {
-        var idUsuario = sessionStorage.ID_USUARIO;
-        var nomeUsuario = sessionStorage.NOME_USUARIO;
+    var idUsuario = sessionStorage.ID_USUARIO;
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
 
-        if (idUsuario >= 0) {
-            nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`
-        }
+    if (idUsuario >= 0) {
+      nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`;
+    } else {
+      window.location = "../index.html";
     }
-    verificar()
+  }
+  verificar();
 
     function apagarSession(){
         sessionStorage.clear();

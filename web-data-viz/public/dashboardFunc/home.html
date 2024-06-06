@@ -112,9 +112,12 @@
 
         if (idUsuario >= 0) {
             nomeFunc.innerHTML = `<p>${nomeUsuario}</p>`
+        } else {
+          window.location = "../index.html"
         }
     }
     verificar()
+    
     function apagarSession() {
     sessionStorage.clear();
   }
