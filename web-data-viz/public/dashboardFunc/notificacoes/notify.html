@@ -85,13 +85,14 @@
     </div>
 </body>
 <script>
-
 function verificar() {
         var idUsuario = sessionStorage.ID_FUNCIONARIO;
         var nomeUsuario = sessionStorage.NOME_FUNCIONARIO;
 
         if (idUsuario >= 0) {
             nomeFunc.innerHTML = `<p>${nomeUsuario}</p>`
+        } else {
+          window.location = "../index.html"
         }
     }
     verificar()
