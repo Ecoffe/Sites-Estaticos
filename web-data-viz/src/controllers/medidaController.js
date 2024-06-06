@@ -1,5 +1,19 @@
 var medidaModel = require("../models/medidaModel");
 
+
+
+function listarKpi(req, res) {
+    const idEstufa = req.query.idEstufaServer;
+    if (!idEstufa) {
+        return res.status(400).json({ error: "idEstufa não fornecido" });
+    }
+    funcionarioModel.listarKpi(idEstufa).then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarUltimasMedidasTemperatura(req, res) {
     const idEstufa = req.query.idEstufaServer;
     console.log(idEstufa);
@@ -41,5 +55,6 @@ function buscarUltimasMedidasUmidade(req, res) {
 
 module.exports = {
     buscarUltimasMedidasTemperatura,
-    buscarUltimasMedidasUmidade
+    buscarUltimasMedidasUmidade,
+    listarKpi
 }

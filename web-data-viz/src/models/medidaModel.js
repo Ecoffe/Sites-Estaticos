@@ -1,5 +1,14 @@
 var database = require("../database/config");
 
+
+function listarKpi(idEstufa) {
+    var instrucao = `
+        select temperatura, umidade from dados join sensor on fkSensor = idSensor where fkSensor = 1 and fkEstufa = ${idEstufa} order by idDados desc limit 1;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function buscarUltimasMedidasTemperatura(idEstufa) { 
     var instrucao = `select temperatura, DATE_FORMAT(diaHora, '%H:%i') as diaHora from dados join sensor on fkSensor = idSensor where fkSensor = 1 and fkEstufa = ${idEstufa} order by idDados desc limit 7;`;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -14,5 +23,6 @@ function buscarUltimasMedidasUmidade(idEstufa) {
 
 module.exports = {
     buscarUltimasMedidasTemperatura,
-    buscarUltimasMedidasUmidade
+    buscarUltimasMedidasUmidade,
+    listarKpi
 }

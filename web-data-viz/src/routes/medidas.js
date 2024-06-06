@@ -10,4 +10,8 @@ router.get("/ultimasUmidade", function (req, res) {
     medidaController.buscarUltimasMedidasUmidade(req, res);
 });
 
+router.get("/listarKpi", function (req, res) {
+    funcionarioController.listarKpi(req, res);
+});
+
 module.exports = router;

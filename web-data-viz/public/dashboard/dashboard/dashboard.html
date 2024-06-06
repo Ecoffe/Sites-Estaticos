@@ -104,12 +104,12 @@
                         <canvas id="myChartUmidade" style="position: relative; height:45vh; width:35vw"></canvas>
                     </div>
                 </div>
-                <div class="indicadores">
+                <div class="indicadores" id="indicadores">
                     <div class="boxKpi">
                         <p>Temperatura atual</p>
                         <div class="kpi">
                             <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
-                            <p>40º</p>
+                            <p>5</p>
                         </div>
                     </div>
                     <div class="boxKpi">
@@ -269,6 +269,168 @@
 
     }
 
+</script>
+<script>
+
+    
+obterDadosKpi()
+
+
+function obterDadosKpi() {
+    const idEstufa = sessionStorage.ID_ESTUFA;
+    console.log("ID Estufa no sessionStorage:", idEstufa);
+    if (!idEstufa) {
+        console.error("ID da estufa não encontrado na sessionStorage");
+        return;
+    }
+
+    fetch(`/medidas/ultimasTemperatura?idEstufaServer=${idEstufa}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
+                plotarKpiTemperatura(resposta);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    }).catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+
+    fetch(`/medidas/ultimasUmidade?idEstufaServer=${idEstufa}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
+                plotarKpiUmidade(resposta);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    }).catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}
+
+
+function plotarKpiTemperatura(resposta) {
+        console.log('iniciando plotagem do gráfico...');
+
+        let labels = [];
+
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Temperatura',
+                    data: [],
+                    fill: false,
+                    borderWidth: 4,
+                    borderColor: '#EE7214',
+                    backgroundColor: '#EE7214',
+                    tension: 0.1
+                }]
+        };
+
+        console.log('Dados recebidos para plotar no gráfico Temperatura:', resposta);
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.diaHora);
+            dados.datasets[0].data.push(registro.temperatura);
+        }
+
+        console.log('Labels:', labels);
+        console.log('Dados do Dataset:', dados.datasets);
+
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        let myChartTemp = new Chart(
+            document.getElementById(`myChartTemperatura`),
+            config
+        );
+
+    }
+
+    // Umidade
+    function plotarGraficoUmidade(resposta) {
+        console.log('iniciando plotagem do gráfico...');
+
+        let labels = [];
+
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Umidade',
+                    data: [],
+                    fill: false,
+                    borderWidth: 4,
+                    borderColor: '#EE7214',
+                    backgroundColor: '#EE7214',
+                    tension: 0.1
+                }]
+        };
+
+        console.log('Dados recebidos para plotar no gráfico Temperatura:', resposta);
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.diaHora);
+            dados.datasets[0].data.push(registro.umidade);
+        }
+
+        console.log('Labels:', labels);
+        console.log('Dados do Dataset:', dados.datasets);
+
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        let myChartUmi = new Chart(
+            document.getElementById(``),
+            config
+        );
+
+    }
+
+
+
+    function listarKpi() {
+    const idEstufa = sessionStorage.ID_ESTUFA;
+        fetch(`/medidas/listar?idEstufaServer=${idEstufa}`, {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                resposta.json().then((resposta) => {
+                    resposta.forEach((medida) => {
+                        boxCad.innerHTML += `<div class="boxKpi">
+                        <p>Temperatura atual</p>
+                        <div class="kpi">
+                            <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                            <p>${medida.temperatura}</p>
+                        </div>
+                    </div>
+                    <div class="boxKpi">
+                        <p>Umidade atual</p>
+                        <div class="kpi2">
+                            <img src="./assets/imgs/iconUmi.svg" style="height: 70px; width: 70px;">
+                            <p>${medida.umidade}</p>
+                        </div>
+                    </div>`;
+                    });
+                });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+    listarKpi();
 </script>
 
 </html>
