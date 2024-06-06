@@ -17,7 +17,7 @@ select * from empresa;
 create table funcionario(
 	idFuncionario int primary key auto_increment,
 	nomeFuncionario varchar(100),
-	cpf char(14),
+	cpf char(18),
     emailFuncionario varchar(90),
 	senhaFuncionario varchar(45),
 	diaInscricao datetime default current_timestamp,
