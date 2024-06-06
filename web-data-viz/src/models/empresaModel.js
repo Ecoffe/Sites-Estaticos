@@ -24,4 +24,12 @@ function cadastrar(razaoSocial, cnpj) {
   return database.executar(instrucaoSql);
 }
 
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar };
+function inserirAdicional(cep, numero, complemento, fkEmpresa) {
+  var instrucaoSql = `
+  insert into endereco (cep, numero, complemento, fkEmpresa) values ('${cep}', '${numero}', '${complemento}', '${fkEmpresa}');
+  `
+
+  return database.executar(instrucaoSql)
+}
+
+module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, inserirAdicional };

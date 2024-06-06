@@ -14,7 +14,9 @@
     <div class="header">
         <div class="container">
             <a class="titulo" href="../../index.html">ecoffe</a>
-            <p>Nome Funcionário</p>
+            <div class="nomeFunc" id="nomeFunc">
+                <p>Nome Func</p>
+            </div>
         </div>
     </div>
 
@@ -63,21 +65,21 @@
                                 <div class="endereco">
                                     Endereço:
                                     <div class="formsEnd">
-                                        <input type="text" class="cep" placeholder="CEP">
-                                        <input type="text" class="numero" placeholder="Número">
-                                        <input type="text" class="complemento" placeholder="Complemento">
-                                        <button class="btnInscricao">Completar Inscrição</button>
+                                        <input type="text" class="cep" placeholder="CEP" id="inpCEP">
+                                        <input type="number" class="numero" placeholder="Número" id="inpNumero">
+                                        <input type="text" class="complemento" placeholder="Complemento" id="inpComplemento">
+                                      <button class="btnInscricao" onclick="inserirAdicional(), reload()">Completar Inscrição</button>
                                     </div>
                                 </div>
                                 <div class="fone">
                                     Número de telefone:
                                     <div class="formsFone">
                                         <div class="fones">
-                                            <input type="text" class="fixo" placeholder="Telefone Fixo">
+                                            <input type="text" class="fixo" placeholder="Telefone Fixo" id="inpTelFixo">
                                             <button class="adicionar">Adicionar</button>
                                         </div>
                                         <div class="fones">
-                                            <input type="text" class="celular" placeholder="Telefone celular">
+                                            <input type="text" class="celular" placeholder="Telefone celular" id="inpTelCell">
                                             <button class="adicionar">Adicionar</button>
                                         </div>
                                     </div>
@@ -106,6 +108,109 @@
         infor.style.display = 'none';
         acessi.style.display = 'block';
     }
+
+    function inserirAdicional() {
+        var cep = inpCEP.value
+        var numero = inpNumero.value
+        var complemento = inpComplemento.value
+
+        fetch("/funcionarios/inserirAdicional", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                cepServer: cep,
+                numeroServer: numero,
+                complementoServer: complemento,
+                FkFuncionarioServer: sessionStorage.ID_FUNCIONARIO,
+            }),
+        })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+
+            });
+
+            
+
+    }
+
+    inpTelFixo.addEventListener('input', function (event) {
+        var cell = event.target.value;
+
+        cell = cell.replace(/\D/g, '');
+
+        if (cell.length > 0) {
+            cell = '(' + cell.substring(0);
+        }
+
+        if (cell.length > 3) {
+            cell = cell.substring(0, 3) + ')' + cell.substring(3);
+        }
+
+        if (cell.length > 8) {
+            cell = cell.substring(0, 8) + '-' + cell.substring(8);
+        }
+
+        if (cell.length > 13) {
+            cell = cell.substring(0, 13)
+        }
+
+        event.target.value = cell;
+    });
+
+    inpTelCell.addEventListener('input', function (event) {
+        var cell = event.target.value;
+
+        cell = cell.replace(/\D/g, '');
+
+        if (cell.length > 0) {
+            cell = '(' + cell.substring(0);
+        }
+
+        if (cell.length > 3) {
+            cell = cell.substring(0, 3) + ')' + cell.substring(3);
+        }
+
+        if (cell.length > 9) {
+            cell = cell.substring(0, 9) + '-' + cell.substring(9);
+        }
+
+        if (cell.length > 14) {
+            cell = cell.substring(0, 14)
+        }
+
+        event.target.value = cell;
+    });
+
+    inpCEP.addEventListener('input', function (event) {
+        var cep = event.target.value;
+
+        cep = cep.replace(/\D/g, '');
+
+        if (cep.length > 5) {
+            cep = cep.substring(0, 5) + '-' + cep.substring(5);
+        }
+
+        if (cep.length > 9) {
+            cep = cep.substring(0, 9)
+        }
+        
+        event.target.value = cep;
+    });
+
+    function verificar() {
+        var idUsuario = sessionStorage.ID_FUNCIONARIO;
+        var nomeUsuario = sessionStorage.NOME_FUNCIONARIO;
+
+        if (idUsuario >= 0) {
+            nomeFunc.innerHTML = `<p>${nomeUsuario}</p>`
+        }
+    }
+    verificar()
+
 </script>
 
 </body>

@@ -34,9 +34,9 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
                         res.json({
-                            id: resultadoAutenticar[0].id,
-                            nome: resultadoAutenticar[0].nome,
-                            email: resultadoAutenticar[0].email,
+                            id: resultadoAutenticar[0].idFuncionario,
+                            nome: resultadoAutenticar[0].nomeFuncionario,
+                            email: resultadoAutenticar[0].emailFuncionario,
                             cpf: resultadoAutenticar[0].cpf,
                             senha: resultadoAutenticar[0].senha
                         });
@@ -96,8 +96,46 @@ function cadastrarFunc(req, res) {
     }
 }
 
+function inserirAdicional(req, res) {
+   
+    var cep = req.body.cepServer
+    var numero = req.body.numeroServer
+    var complemento = req.body.complementoServer
+    var fkFunc = req.body.FkFuncionarioServer 
+
+    if (cep == undefined) {
+        res.status(400).send("Seu cep está undefined!");
+    } else if (numero == undefined) {
+        res.status(400).send("Seu numero está undefined!");
+    } else if (complemento == undefined) {
+        res.status(400).send("Seu complemento está undefined!");
+    } else if (fkFunc == undefined) {
+        res.status(400).send("Seu fkFunc está undefined!");
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        funcionarioModel.inserirAdicional(cep, numero, complemento, fkFunc)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+}
+
 module.exports = {
     autenticar,
     listar,
-    cadastrarFunc
+    cadastrarFunc,
+    inserirAdicional
 }

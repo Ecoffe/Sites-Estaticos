@@ -14,7 +14,9 @@
     <div class="header">
         <div class="container">
             <a class="titulodash" href="../index.html">ecoffe</a>
-            <p>Nome Funcionário</p>
+            <div class="nomeFunc" id="nomeFunc">
+                <p>Nome Func</p>
+            </div>
         </div>
     </div>
 
@@ -111,3 +113,18 @@
         </div>
     </div>
 </body>
+
+<script>
+
+    function verificar() {
+        var idUsuario = sessionStorage.ID_FUNCIONARIO;
+        var nomeUsuario = sessionStorage.NOME_FUNCIONARIO;
+
+        if (idUsuario >= 0) {
+            nomeFunc.innerHTML = `<p>${nomeUsuario}</p>`
+        }
+    }
+    verificar()
+
+
+</script>
