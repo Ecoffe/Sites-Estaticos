@@ -119,11 +119,21 @@
                 data: [17, 19, 22, 18, 23, 40],
                 borderWidth: 4,
                 borderColor: '#EE7214',
-                backgroundColor: '#EE7214'
+                backgroundColor: '#EE7214',
             },]
 
         },
         options: {
+            plugins: {
+                    legend: {
+                        labels: {
+                            usePointStyle: true, // Habilita o uso do estilo de ponto na legenda
+                            pointStyle: 'rectRounded', // Define o estilo do ponto como círculo
+                            borderWidth: 4,
+                            boxSizing: 20
+                        }
+                    }
+                },
             scales: {
                 y: {
                     beginAtZero: true

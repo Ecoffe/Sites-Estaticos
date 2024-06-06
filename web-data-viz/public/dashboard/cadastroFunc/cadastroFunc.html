@@ -64,7 +64,7 @@
                             <input type="password" name="" class="senha" placeholder="Senha" id="senhaFunc">
                             <input type="password" class="confSenha" placeholder="Confirmar Senha" id="confSenhaFunc">
                         </div>
-                        <button class="btnCadastrar" onclick="cadastrar()">Cadastrar</button>
+                        <button class="btnCadastrar" onclick="cadastrar(), recarregarPag()">Cadastrar</button>
                     </div>
                 </div>
                 <div class="cadastrados">
@@ -192,6 +192,10 @@
 
         event.target.value = cpf;
     });
+
+    function recarregarPag(){
+        location.reload();
+    }
 
 </script>
 
