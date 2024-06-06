@@ -145,43 +145,42 @@
 
     obterDadosGrafico()
 
-    var idEstufa = sessionStorage.ID_ESTUFA;
 
     function obterDadosGrafico() {
+        const idEstufa = sessionStorage.ID_ESTUFA;
+        console.log("ID Estufa no sessionStorage:", idEstufa);
+        if (!idEstufa) {
+            console.error("ID da estufa não encontrado na sessionStorage");
+            return;
+        }
 
         fetch(`/medidas/ultimasTemperatura?idEstufaServer=${idEstufa}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
-
                     plotarGraficoTemperatura(resposta);
-
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
+        }).catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
 
         fetch(`/medidas/ultimasUmidade?idEstufaServer=${idEstufa}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
-
                     plotarGraficoUmidade(resposta);
-
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
+        }).catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
     }
 
     // Temperatura
@@ -252,7 +251,7 @@
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             labels.push(registro.diaHora);
-            dados.datasets[0].data.push(registro.temperatura);
+            dados.datasets[0].data.push(registro.umidade);
         }
 
         console.log('Labels:', labels);
