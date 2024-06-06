@@ -252,7 +252,7 @@ a {
 
 }
 
-.dashboard .container3 .box .config .conteudo .infor .conteudo .fone .formsFone{
+.dashboard .container3 .box .config .conteudo .infor .conteudo .fone .formsFone {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -343,4 +343,28 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.fone {
+    height: fit-content;
+}
+
+#alerta {
+    height: 70px;
+    width: 450px;
+    background-color: #f7b787;
+    position: absolute;
+    top: 68vh;
+    left: 46vw;
+    border-radius: 15px;
+    border: solid 3px #527853b1;
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    display: none;
+    text-align: center;
+    transition: 1s;
 }
