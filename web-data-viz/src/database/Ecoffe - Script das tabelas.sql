@@ -103,6 +103,8 @@ create table dados(
 
 select * from dados;
 
+SET lc_time_names = 'pt_BR';
+select monthname(diaHora) as mes, round(avg(temperatura)) as 'mediaTemp', round(avg(umidade)) as 'mediaUmi'from dados group by mes order by diaHora;
 
 -- ARMAZENAR AS NOTIFICAÇÕES REGISTRADAS
 create table notificacoes(

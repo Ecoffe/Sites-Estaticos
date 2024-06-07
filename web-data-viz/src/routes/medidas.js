@@ -14,4 +14,8 @@ router.get("/listarKpi", function (req, res) {
     medidaController.listarKpi(req, res);
 });
 
+router.get("/buscarMensal", function (req, res) {
+    medidaController.buscarMensal(req, res);
+});
+
 module.exports = router;

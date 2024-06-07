@@ -21,8 +21,16 @@ function buscarUltimasMedidasUmidade(idEstufa) {
     return database.executar(instrucao);
 }
 
+function buscarMensal() {
+    var instrucaoSql = `
+    select monthname(diaHora) as mes, round(avg(temperatura)) as 'mediaTemp', round(avg(umidade)) as 'mediaUmi'from dados join sensor on fkSensor = idSensor where fkSensor = 1 and fkEstufa = 1 group by mes order by diaHora;
+    `
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarUltimasMedidasTemperatura,
     buscarUltimasMedidasUmidade,
-    listarKpi
+    listarKpi,
+    buscarMensal
 }
