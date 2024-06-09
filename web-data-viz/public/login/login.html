@@ -93,7 +93,7 @@
         if(cnpjVar == "" || senhaVar == ""){
             alert('Preencha todos os campos!')
         } 
-        
+
         console.log("FORM LOGIN: ", cnpjVar);
         console.log("FORM SENHA: ", senhaVar);
 
@@ -128,7 +128,7 @@
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
-                divErro.innerHTML = `<span class="spnErro">Senha ou CPNPJ inválidos!</span>`
+                divErro.innerHTML = `<span class="spnErro">Senha ou CNPJ inválidos!</span>`
 
                 resposta.text().then(texto => {
                     console.error(texto);
