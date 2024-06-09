@@ -83,19 +83,19 @@
         event.target.value = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
     });
 
-    function criar() {
-        divErroEmail.innerHTML = ''
-        divErroCnpj.innerHTML = ''
-        divErroSenha.innerHTML = ''
-        divErroSenhaConf.innerHTML = ''
+    // function criar() {
+    //     divErroEmail.innerHTML = ''
+    //     divErroCnpj.innerHTML = ''
+    //     divErroSenha.innerHTML = ''
+    //     divErroSenhaConf.innerHTML = ''
 
-        var nomeEmpresa = inputRazaoSocial.value
-        var nomeFantasia = inputNomeFant.value
-        var email = inputEmailEmp.value
-        var cnpj = inputCnpjEmp.value
-        var senha = inputSenha.value
-        var senhaConf = inputConfSenha.value
-    }
+    //     var nomeEmpresa = inputRazaoSocial.value
+    //     var nomeFantasia = inputNomeFant.value
+    //     var email = inputEmailEmp.value
+    //     var cnpj = inputCnpjEmp.value
+    //     var senha = inputSenha.value
+    //     var senhaConf = inputConfSenha.value
+    // }
 
 
     function cadastrar() {
@@ -112,10 +112,9 @@
             alert('Preencha todos os campos')
         }
 
-
         // Validação dos nomes
-        var tam_nomeEmpresa = nomeEmpresa.length;
-        var tam_nomeFantasia = nomeFantasia.length;
+        // var tam_nomeEmpresa = nomeEmpresa.length;
+        // var tam_nomeFantasia = nomeFantasia.length;
 
         // if (tam_nomeEmpresa <= 1 || tam_nomeFantasia <= 1) {
         //     if (tam_nomeEmpresa <= 1) {
@@ -128,33 +127,27 @@
         //     }
         // }
 
-
         // Validação do email
-        if (email.indexOf('@') == -1) {
+        if (emailVar.indexOf('@') == -1) {
             divErroEmail.innerHTML = `<span class="spnErro">Deve haver ao menos um @</span>`
         }
 
-
         // Validação do CNPJ
-        var tam_cnpj = cnpj.length;
+        var tam_cnpj = cnpjVar.length;
 
         if (tam_cnpj < 14) {
             divErroCnpj.innerHTML = `<span class="spnErro">CNPJ inválido</span>`
         }
 
-
         // Validação das senhas
-        var tam_senha = senha.length;
+        var tam_senha = senhaVar.length;
 
         if (tam_senha <= 6) {
             divErroSenha.innerHTML = `<span class="spnErro">Insira uma senha de, no mínimo, 8 caracteres</span>`
-        }
-
-        if (senha != senhaConf) {
-            divErroSenhaConf.innerHTML = `<span class="spnErro">Senhas não estão combinando</span>`
-        }
-
-        fetch("/usuarios/cadastrar", {
+        } else if (senhaVar != confirmacaoSenhaVar) {
+            divErroSenhaConf.innerHTML = `<span class="spnErro">Senhas não são compatíveis</span>`
+        } else{
+            fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -187,6 +180,9 @@
 
         return false;
 
+        }
+
+        
        
     }
 
