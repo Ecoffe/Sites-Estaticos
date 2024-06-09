@@ -106,13 +106,7 @@
         var cnpjVar = inputCnpjEmp.value
         var senhaVar = inputSenha.value;
         var confirmacaoSenhaVar = inputConfSenha.value;
-
-          // Validação dos campos preenchidos
-        if (nomeEmpVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || cnpjVar == "") {
-            alert('Preencha todos os campos')
-        }
-
-        // Validação dos nomes
+          // Validação dos nomes
         // var tam_nomeEmpresa = nomeEmpresa.length;
         // var tam_nomeFantasia = nomeFantasia.length;
 
@@ -127,22 +121,14 @@
         //     }
         // }
 
-        // Validação do email
-        if (emailVar.indexOf('@') == -1) {
+          // Validação dos campos preenchidos
+        if (nomeEmpVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || cnpjVar == "") {
+            alert('Preencha todos os campos')
+        } else if (emailVar.indexOf('@') == -1) { // Validação do email
             divErroEmail.innerHTML = `<span class="spnErro">Deve haver ao menos um @</span>`
-        }
-
-        // Validação do CNPJ
-        var tam_cnpj = cnpjVar.length;
-
-        if (tam_cnpj < 14) {
+        } else if (cnpjVar.length< 14) {  // Validação do CNPJ
             divErroCnpj.innerHTML = `<span class="spnErro">CNPJ inválido</span>`
-        }
-
-        // Validação das senhas
-        var tam_senha = senhaVar.length;
-
-        if (tam_senha <= 6) {
+        } else if (senhaVar.length <= 6) { // Validação das senhas
             divErroSenha.innerHTML = `<span class="spnErro">Insira uma senha de, no mínimo, 8 caracteres</span>`
         } else if (senhaVar != confirmacaoSenhaVar) {
             divErroSenhaConf.innerHTML = `<span class="spnErro">Senhas não são compatíveis</span>`
@@ -181,11 +167,7 @@
         return false;
 
         }
-
-        
-       
     }
-
 
     // function sumirMensagem() {
     //     cardErro.style.display = "none";
