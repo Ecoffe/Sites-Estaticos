@@ -95,10 +95,20 @@
         var cnpj = inputCnpjEmp.value
         var senha = inputSenha.value
         var senhaConf = inputConfSenha.value
+    }
 
 
-        // Validação dos campos preenchidos
-        if (nomeEmpresa == "" || nomeFantasia == "" || email == "" || senha == "" || senhaConf == "" || cnpj == "") {
+    function cadastrar() {
+
+        var razaoSocialVar = inputRazaoSocial.value;
+        var nomeEmpVar = inputNomeFant.value;
+        var emailVar = inputEmailEmp.value;
+        var cnpjVar = inputCnpjEmp.value
+        var senhaVar = inputSenha.value;
+        var confirmacaoSenhaVar = inputConfSenha.value;
+
+          // Validação dos campos preenchidos
+        if (nomeEmpVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || cnpjVar == "") {
             alert('Preencha todos os campos')
         }
 
@@ -122,7 +132,6 @@
         // Validação do email
         if (email.indexOf('@') == -1) {
             divErroEmail.innerHTML = `<span class="spnErro">Deve haver ao menos um @</span>`
-
         }
 
 
@@ -144,17 +153,6 @@
         if (senha != senhaConf) {
             divErroSenhaConf.innerHTML = `<span class="spnErro">Senhas não estão combinando</span>`
         }
-    }
-
-
-    function cadastrar() {
-
-        var razaoSocialVar = inputRazaoSocial.value;
-        var nomeEmpVar = inputNomeFant.value;
-        var emailVar = inputEmailEmp.value;
-        var cnpjVar = inputCnpjEmp.value
-        var senhaVar = inputSenha.value;
-        var confirmacaoSenhaVar = inputConfSenha.value;
 
         fetch("/usuarios/cadastrar", {
             method: "POST",
@@ -188,6 +186,8 @@
             });
 
         return false;
+
+       
     }
 
 
