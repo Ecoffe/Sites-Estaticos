@@ -101,15 +101,9 @@
         var cpfVar = inputCpf.value;
         var senhaVar = inputSenha.value;
 
-        // if (cpfVar == "" || senhaVar == "") {
-        //     cardErro.style.display = "block"
-        //     mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-        //     finalizarAguardar();
-        //     return false;
-        // }
-        // else {
-        //     setInterval(sumirMensagem, 5000)
-        // }
+        if(cpfVar == "" || senhaVar == ""){
+            alert('Preencha todos os campos!')
+        } 
 
         console.log("FORM LOGIN: ", cpfVar);
         console.log("FORM SENHA: ", senhaVar);
@@ -146,6 +140,8 @@
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
+
+                divErro.innerHTML = `<span class="spnErro">Senha ou CPF inválidos!</span>`
 
                 resposta.text().then(texto => {
                     console.error(texto);
