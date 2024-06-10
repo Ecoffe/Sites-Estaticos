@@ -23,6 +23,10 @@ router.post("/inserirAdicional", function (req, res) {
 router.post("/inserirTelefone", function (req, res) {
     funcionarioController.inserirTelefone(req, res);
   });
+
+router.get("/pegarDados", function (req, res) {
+    funcionarioController.pegarDados(req, res);
+})
   
 
 module.exports = router;

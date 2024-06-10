@@ -61,7 +61,7 @@
                 <!-- POPUP DE ALERTA -->
                 <div id="alerta">
                 </div>
-                
+
                 <div class="cadastro">
                     <h1>Cadastre seus funcionários</h1>
                     <div class="forms">
@@ -84,6 +84,19 @@
             </div>
         </div>
     </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <!-- <div class="titulo">
+            <h1>Editar funcionario</h1>
+          </div> -->
+            <div class="formsEstufas" id="infoFunc">
+                
+            </div>
+            
+        </div>
     </div>
 </body>
 <script>
@@ -165,7 +178,7 @@
                 resposta.json().then((resposta) => {
                     resposta.forEach((funcionario) => {
                         boxCad.style.display = 'block';
-                        boxCad.innerHTML += `<div class="cad"><div class="card"><p>${funcionario.nomeFuncionario} - ${funcionario.cpf}</p></div><div class="btnCard"><button>+</button></div>`;
+                        boxCad.innerHTML += `<div class="cad"><div class="card"><p>${funcionario.nomeFuncionario} - ${funcionario.cpf}</p></div><div class="btnCard"><button onclick="exibirModal(), pegarDados(${funcionario.idFuncionario})">+</button></div>`;
                     });
                 });
             })
@@ -174,6 +187,36 @@
             });
     }
 
+    function pegarDados(idFuncionario) {
+        var fkEmpresaServer = sessionStorage.ID_USUARIO;
+        var texto = ''
+
+        fetch(`/funcionarios/pegarDados?fkEmpresaServer=${fkEmpresaServer}&idFuncServer=${idFuncionario}`, {
+            method: "Get",
+        })
+            .then(function (resposta) {
+                resposta.json().then((resposta) => {
+                    resposta.forEach((funcionario) => {
+
+                        var nome = document.getElementById("nomeFunc")
+
+                        console.log(funcionario.nomeFuncionario)
+                        console.log(funcionario.cpf)
+                        console.log(funcionario.emailFuncionario)
+                        console.log(funcionario.senhaFuncionario)
+                        console.log(funcionario.dia)
+
+
+                        infoFunc.innerHTML = `
+                        <p id="nomeFunc"><b>Nome:</b> ${funcionario.nomeFuncionario}</p>
+                        <p id="inpcpfFunc"><b>CPF:</b> ${funcionario.cpf}</p>
+                        <p id="emailFunc"><b>Email:</b> ${funcionario.emailFuncionario}</p>
+                        <p id="momento"><b>Dia de Inscrição:</b> ${funcionario.dia}</p>`;
+
+                    });
+                });
+            })
+    }
 
     function sumirMensagem() {
         cardErro.style.display = "none";
@@ -205,6 +248,48 @@
 
     function recarregarPag() {
         location.reload();
+    }
+
+    var modal = document.getElementById("myModal");
+
+    // Pegue o botão que abre o modal
+    var btn = document.getElementById("openModalBtn");
+
+    // Pegue o elemento <span> que fecha o modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // Quando o usuário clicar no botão, abra o modal
+    function exibirModal() {
+        var modal = document.getElementById("myModal")
+        modal.style.display = "flex";
+    };
+
+    // Quando o usuário clicar no <span> (x), feche o modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // Quando o usuário clicar em qualquer lugar fora do modal, feche-o
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+
+    function consultar(idFuncionario) {
+        var fkEmpresaServer = sessionStorage.ID_USUARIO;
+        fetch(
+            `/funcionarios/consultar?idFuncionarioServer=${idFuncionario}&fkEmpresaServer=${fkEmpresaServer}`,
+            {
+                method: "POST",
+            }
+        ).then(function (resposta) {
+            resposta.json().then((json) => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                window.location = "./dashboard/cadastroFunc.html";
+            });
+        });
     }
 
 </script>

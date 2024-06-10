@@ -18,7 +18,7 @@
         <div class="container">
             <a class="titulo" href="../../index.html">ecoffe</a>
             <div class="nomeEmpresa" id="nomeEmpresa">
-                <p>Nome Empresa</p>
+                <p></p>
             </div>
         </div>
     </div>
@@ -63,17 +63,10 @@
                 </div>
                 
                 <div class="tituloestufas">
-                    <div>
-                        <h1>Estufa 05</h1>
+                    <div class="nomeEstufa" id="nomeEstufa">
+                        <p>nome estufa</p>
                     </div>
-                    <div>
-                        <h1>
-                            Sensor: <select name="" id="">
-                                <option value="#">Selecione um sensor</option>
-                                <option value="1">Sensor 01</option>
-                            </select>
-                        </h1>
-                    </div>
+                    
                 </div>
                 <div class="tabela">
                     <div>
@@ -107,9 +100,11 @@
     function verificar() {
         var idUsuario = sessionStorage.ID_USUARIO;
         var nomeUsuario = sessionStorage.NOME_USUARIO;
+        var nomedaEstufa = sessionStorage.NOME_ESTUFA;
 
         if (idUsuario >= 0) {
             nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`;
+            nomeEstufa.innerHTML = `<p>${nomedaEstufa}</p>`
         } else {
             window.location = "../index.html";
         }

@@ -1,6 +1,5 @@
 create database ecoffe;
 use ecoffe;
-
 -- CADASTRO DE EMPRESA
 create table empresa(
 	idEmpresa int primary key auto_increment,
@@ -18,7 +17,7 @@ select * from empresa;
 create table funcionario(
 	idFuncionario int primary key auto_increment,
 	nomeFuncionario varchar(100),
-	cpf char(18),
+	cpf char(14),
     emailFuncionario varchar(90),
 	senhaFuncionario varchar(45),
 	diaInscricao datetime default current_timestamp,
@@ -27,6 +26,7 @@ create table funcionario(
 			references empresa(idEmpresa));
 
 select * from funcionario;
+select nomeFuncionario, cpf, emailFuncionario, senhaFuncionario, date_format(diaInscricao,"%d/%m/%y") from funcionario where idFuncionario = 1 and fkEmpresa = 1;
 
 
 -- TABELAS P/ ENDEREÇOS
@@ -55,7 +55,7 @@ create table telefone(
 		constraint fkTelefoneEmpresa foreign key (fkEmpresa)
 			references empresa(idEmpresa));
 
-select * from telefone;
+select * from endereco;
          
          
 -- CADASTRO DE ESTUFAS
@@ -68,6 +68,8 @@ create table estufa(
 		constraint fkEstufaEmpresa foreign key (fkEmpresa)
 			references empresa(idEmpresa));
 
+
+
 select * from estufa;
 
 -- CADASTRO DOS SENSORES
@@ -78,9 +80,10 @@ create table sensor(
 		constraint fkSensorEstufa foreign key(fkEstufa)
 			references estufa(idEstufa));
 
-select * from sensor;
 insert into sensor values
-(default, 'testando', 1);
+(2, 'teste2', 2);
+
+select * from sensor;
 
 
 
@@ -92,6 +95,9 @@ create table metrica(
     minUmid double,
     maxUmid double,
     fkSensor int, foreign key (fkSensor) references sensor (idSensor));
+    
+insert into metrica values
+(default, 0, 50, 30, 60, 2);
     
 select * from metrica;
 
@@ -105,22 +111,30 @@ create table dados(
     umidade double,
     diaHora datetime default current_timestamp);
 
-select * from dados;
 insert into dados values
-(default, 1, 5, 65, default),
-(default, 1, 10, 65, default),
-(default, 1, 12, 65, default),
-(default, 1, 35, 65, default),
-(default, 1, 48, 65, default),
-(default, 1, 50, 65, default);
+(default, 2, 35, 55, default);
+
+select * from dados;
+
+SELECT 
+    e.nomeEstufa,
+    CASE
+        WHEN d.temperatura < m.minTemp THEN CONCAT('Temperatura muito baixa: ', d.temperatura, '°C')
+        WHEN d.temperatura > m.maxTemp THEN CONCAT('Temperatura muito alta: ', d.temperatura, '°C')
+        ELSE CONCAT('Temperatura normal: ', d.temperatura, '°C')
+    END AS nivelDeRisco,
+    d.diaHora
+FROM 
+    dados d
+JOIN 
+    sensor s ON d.fkSensor = s.idSensor
+JOIN 
+    estufa e ON s.fkEstufa = e.idEstufa
+JOIN 
+    metrica m ON d.fkSensor = m.fkSensor;
 
 
-SELECT temperatura, umidade, DATE_FORMAT(diaHora,'%H:%i:%s') AS momento, fkSensor FROM dados WHERE fkSensor = 1 ORDER BY idDados LIMIT 1;
-
--- SET lc_time_names = 'pt_BR';
--- select monthname(diaHora) as mes, round(avg(temperatura)) as 'mediaTemp', round(avg(umidade)) as 'mediaUmi'from dados group by mes order by diaHora;]
-
-select monthname(diaHora) as 'Mês', round(avg(temperatura)) as 'MédiaTemp', round(avg(umidade)) as 'MédiaUmi'from dados join sensor on fkSensor = idSensor where fkSensor = 1 and fkEstufa = 1 group by diaHora order by diaHora;
+select estufa.nome as Estufa;
 
 -- ARMAZENAR AS NOTIFICAÇÕES REGISTRADAS
 create table notificacoes(
@@ -132,7 +146,6 @@ fkDado int,
 
 select * from notificacoes;
 
-
 -- ARMAZENAR MENSAGENS VINDAS DA HOME P/ ATENDIMENTO
 create table sachome (
 idMensagem int primary key auto_increment,
@@ -142,6 +155,12 @@ mensagem varchar (300));
 
 select * from sachome;
 
+SELECT nomeEstufa, umidade, temperatura 
+FROM estufa 
+JOIN sensor ON idEstufa = fkEstufa 
+JOIN dados ON idSensor = fkSensor 
+WHERE fkEmpresa = 1 
+group by nomeEstufa, umidade, temperatura;
 
 -- ARMAZENAR MENSAGENS VINDAS DA HOME P/ ATENDIMENTO
 create table sacdashboard (
@@ -152,34 +171,23 @@ mensagem varchar (300));
 
 select * from sacdashboard;
 
-
-
-
-
-
-
-
--- SELECTS ANTERIORES
-
 -- Exibir as empresas com respectivos CNPJs e os funcionários com respectivo CPF.
 select empresa.nomeFantasia as 'Empresa',
 	empresa.cnpj as 'CNPJ',
     funcionario.nomeFuncionario as 'Funcionário',
     funcionario.cpf as 'CPF'
     from empresa join funcionario on funcionario.fkEmpresa = empresa.idEmpresa;
-    
 
 -- Exibir os telefones dos funcionários e empreas, caso seja necessário entrar em contato. 
 select 	empresa.nomeFantasia as 'Empresa',
 	telefone.telCelular as 'Telefone Celular',
 	telefone.telFixo as 'Telefone Fixo'
     from telefone join empresa on telefone.fkEmpresa = empresa.idEmpresa;
-    
+
 select funcionario.nomeFuncionario as 'Funcionário',
 telefone.telCelular as 'Telefone Celular',
 	telefone.telFixo as 'Telefone Fixo'
     from telefone join funcionario on telefone.fkFuncionario = funcionario.idFuncionario;
-
 
 -- Exibir as estufas das empresas, junto as descrições.
 select empresa.nomeFantasia as 'Empresa',
@@ -200,7 +208,6 @@ select estufa.nomeEstufa as 'Estufa',
     from estufa join sensor on sensor.fkEstufa = estufa.idEstufa
     join metrica on metrica.fkSensor = sensor.idSensor
     join dados on dados.fkSensor = sensor.idSensor;
-    
 
 -- Exibir as mensagens vindas da tela inicial para entrarmos em contato
 select sachome.idMensagem as 'ID Mensagem',
@@ -208,7 +215,7 @@ select sachome.idMensagem as 'ID Mensagem',
         sachome.assunto as 'Assunto',
 		sachome.mensagem as 'Mensagem:'
         from sachome;
-        
+
 -- Exibir as mensagens vindas da tela da dashboard para entrarmos em contato
 select sacdashboard.idMensagem as 'ID Mensagem',
 		sacdashboard.email as 'Email',
@@ -225,5 +232,3 @@ select estufa.nomeEstufa as 'Estufa',
     from estufa join sensor on sensor.fkEstufa = estufa.idEstufa
 		join dados on dados.fkSensor = sensor.idSensor
 		join notificacoes on notificacoes.fkDado = dados.idDados;
-        
-        

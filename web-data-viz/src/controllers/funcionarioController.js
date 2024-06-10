@@ -174,10 +174,38 @@ function inserirTelefone(req, res) {
   }
   }
 
+  function pegarDados(req, res) {
+    var idFunc = req.query.idFuncServer;
+    var fkEmpresa = req.query.fkEmpresaServer
+
+    if (idFunc == undefined) {
+        res.status(400).send("idFunc esta undefined")
+    } else if (fkEmpresa == undefined) {
+        res.status(400).send("fkEmpresa esta undefined")
+    } else {
+
+        funcionarioModel.pegarDados(idFunc, fkEmpresa)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro)
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: erro.sqlMessage"
+                    );
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
+  }
+
 module.exports = {
     autenticar,
     listar,
     cadastrarFunc,
     inserirAdicional,
-    inserirTelefone
+    inserirTelefone,
+    pegarDados
 }

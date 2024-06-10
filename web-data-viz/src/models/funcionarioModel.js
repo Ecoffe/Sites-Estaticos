@@ -46,10 +46,19 @@ function inserirTelefone(telC, telF, fkEmpresa, fkFunc) {
     return database.executar(instrucaoSql)
   }
 
+function pegarDados(idFunc, fkEmpresa){
+    var instrucaoSql = `
+    select nomeFuncionario, cpf, emailFuncionario, senhaFuncionario, date_format(diaInscricao,"%d/%m/%y") as dia from funcionario where idFuncionario = ${idFunc} and fkEmpresa = ${fkEmpresa};
+    `
+
+    return database.executar(instrucaoSql)
+}
+
 module.exports = {
     autenticar,
     listar,
     cadastrarFunc,
     inserirAdicional,
-    inserirTelefone
+    inserirTelefone,
+    pegarDados
 };
