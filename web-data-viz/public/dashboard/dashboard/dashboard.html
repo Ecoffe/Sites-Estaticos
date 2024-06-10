@@ -134,6 +134,10 @@
 <script>
 
     let proximaAtualiacao;
+    let proximaAtualiacaoTemp;
+    let proximaAtualiacaoUmi;
+
+
     var nomeEstufa = sessionStorage.NOME_ESTUFA;
     estufaAtual.innerHTML = `<h1>${nomeEstufa}</h1>`
 
@@ -206,7 +210,7 @@
                     label: 'Temperatura',
                     data: [],
                     fill: false,
-                    borderWidth: 4,
+                    borderWidth: 5,
                     borderColor: '#EE7214',
                     backgroundColor: '#EE7214',
                     tension: 0.5
@@ -234,7 +238,58 @@
             config
         );
 
+        setTimeout(() => atualizarUmi(dados, myChartTemp), 500);
+
     }
+
+    // Atualização da Temperatura
+    function atualizarTemp(dados, myChartTemp) {
+        const idEstufa = sessionStorage.ID_ESTUFA;
+
+        fetch(`/medidas/atualizacaoTemp?idEstufaServer=${idEstufa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    obterDadosGrafico();
+                    
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+                    if (novoRegistro[0].diaHora == dados.labels[dados.labels.length - 1]) {
+
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].diaHora)
+
+                        console.log("Horário do último dado capturado:")
+                        console.log(dados.labels[dados.labels.length - 1])
+                        
+                    } else {
+                        dados.labels.shift(); 
+                        dados.labels.push(novoRegistro[0].diaHora);
+
+                        dados.datasets[0].data.shift(); 
+                        dados.datasets[0].data.push(novoRegistro[0].temperatura);
+
+                        myChartTemp.update();
+                    }
+
+                    proximaAtualiacaoTemp = setTimeout(() => atualizarTemp(dados, myChartTemp), 500);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+
+                proximaAtualiacaoTemp = setTimeout(() => atualizarTemp(dados, myChartTemp), 500);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
 
     // Umidade
     function plotarGraficoUmidade(resposta) {
@@ -249,7 +304,7 @@
                     label: 'Umidade',
                     data: [],
                     fill: false,
-                    borderWidth: 4,
+                    borderWidth: 5,
                     borderColor: '#EE7214',
                     backgroundColor: '#EE7214',
                     tension: 0.5
@@ -276,7 +331,57 @@
             document.getElementById(`myChartUmidade`),
             config
         );
-        
+
+        setTimeout(() => atualizarUmi(dados, myChartUmi), 500);
+    }
+
+
+    // Atualização da Umidade
+    function atualizarUmi(dados, myChartUmi) {
+        const idEstufa = sessionStorage.ID_ESTUFA;
+
+        fetch(`/medidas/atualizacaoUmi?idEstufaServer=${idEstufa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    obterDadosGrafico();
+                    
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+                    if (novoRegistro[0].diaHora == dados.labels[dados.labels.length - 1]) {
+
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].diaHora)
+
+                        console.log("Horário do último dado capturado:")
+                        console.log(dados.labels[dados.labels.length - 1])
+                        
+                    } else {
+                    
+                        dados.labels.shift(); 
+                        dados.labels.push(novoRegistro[0].diaHora);
+
+                        dados.datasets[0].data.shift(); 
+                        dados.datasets[0].data.push(novoRegistro[0].umidade);
+
+                        myChartUmi.update();
+                    }
+
+                    proximaAtualiacaoUmi = setTimeout(() => atualizarUmi(dados, myChartUmi), 500);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+
+                proximaAtualiacaoUmi = setTimeout(() => atualizarUmi(dados, myChart), 500);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
 
     }
 
@@ -316,7 +421,7 @@
 
                         if (medida.umidade < 40 || medida.umidade > 90) {
                             indicadorUmi.innerHTML = `<div class="boxKpi">
-                            <p>Temperatura atual</p>
+                            <p>Umidade atual</p>
                             <div class="kpi" style="background-color: red;">
                                 <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
                                 <p>${medida.umidade}%</p>
@@ -324,7 +429,7 @@
                         </div>`;
                         } else if (medida.umidade < 60 || medida.umidade > 80) {
                             indicadorUmi.innerHTML = `<div class="boxKpi">
-                            <p>Temperatura atual</p>
+                            <p>Umidade atual</p>
                             <div class="kpi" style="background-color: yellow;">
                                 <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
                                 <p>${medida.umidade}%</p>
@@ -332,7 +437,7 @@
                         </div>`;
                         } else if (medida.umidade < 80 || medida.umidade > 60) {
                             indicadorUmi.innerHTML = `<div class="boxKpi">
-                            <p>Temperatura atual</p>
+                            <p>Umidade atual</p>
                             <div class="kpi" style="background-color: green;">
                                 <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
                                 <p>${medida.umidade}%</p>

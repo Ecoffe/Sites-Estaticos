@@ -22,4 +22,12 @@ router.get("/tempo-real/:idEstufa", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 });
 
+router.get("/AtualizacaoUmi", function (req, res) {
+    medidaController.atualizacaoUmidade(req, res);
+});
+
+router.get("/AtualizacaoTemp", function (req, res) {
+    medidaController.atualizacaoTemperatura(req, res);
+});
+
 module.exports = router;

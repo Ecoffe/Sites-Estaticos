@@ -80,22 +80,6 @@
     });
 
 
-
-    // function login() {
-    //     var cpf = inputCpf.value;
-    //     var senha = inputSenha.value;
-    //     var cpfValido = "123.123.123-12";
-    //     var senhaValido = "amocafe123";
-    //     var botao = document.getElementById("btnLogin")
-
-    //     botao.href = "../dashboardFunc/home.html"
-    //     if (cpf == cpfValido && senha == senhaValido) {
-    //         window.location.href = botao.href;
-    //     } else {
-    //         divErro.innerHTML = `<span class="spnErro">CPF ou senha invalido</span>`
-    //     }
-    // }
-
     function entrar() {
 
         var cpfVar = inputCpf.value;
@@ -131,9 +115,7 @@
                     sessionStorage.ID_FUNCIONARIO = json.id;
                     sessionStorage.FKEMPRESA = json.fkEmpresa
 
-                    // setTimeout(function () {
-                    //     window.location = "../dashboard/home.html";
-                    // }, 1000); // apenas para exibir o loading
+    
                     window.location = "../dashboardFunc/home.html";
                 });
 

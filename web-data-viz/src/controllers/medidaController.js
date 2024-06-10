@@ -1,7 +1,5 @@
 var medidaModel = require("../models/medidaModel");
 
-
-
 function listarKpi(req, res) {
     const idEstufa = req.query.idEstufaServer;
     
@@ -52,10 +50,6 @@ function buscarUltimasMedidasUmidade(req, res) {
 }
 
 function buscarMensal(req, res) {
-    // const idEstufa = req.body.idEstufaServer;
-    // if (!idEstufa) {
-    //     return res.status(400).send("idEstufa não fornecido")
-    // }
 
     medidaModel.buscarMensal().then(function (resultado) {
         if (resultado.length > 0) {
@@ -89,10 +83,32 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+function atualizacaoUmidade(req, res) {
+    const idEstufa = req.query.idEstufaServer;
+    
+    medidaModel.atualizacaoUmidade(idEstufa).then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function atualizacaoTemperatura(req, res) {
+    const idEstufa = req.query.idEstufaServer;
+    
+    medidaModel.atualizacaoTemperatura(idEstufa).then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     buscarUltimasMedidasTemperatura,
     buscarUltimasMedidasUmidade,
     listarKpi,
     buscarMensal,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal, 
+    atualizacaoUmidade,
+    atualizacaoTemperatura
 }
