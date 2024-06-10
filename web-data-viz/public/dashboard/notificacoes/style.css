@@ -259,3 +259,13 @@ a{
     display: flex;
     
 }
+
+small {
+    font-size: 12px;
+    margin: 0;
+  }
+
+.textos{
+    display: flex;
+    flex-direction: column;
+}
