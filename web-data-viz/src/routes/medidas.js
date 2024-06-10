@@ -18,4 +18,8 @@ router.get("/buscarMensal", function (req, res) {
     medidaController.buscarMensal(req, res);
 });
 
+router.get("/tempo-real/:idEstufa", function (req, res) {
+    medidaController.buscarMedidasEmTempoReal(req, res);
+});
+
 module.exports = router;

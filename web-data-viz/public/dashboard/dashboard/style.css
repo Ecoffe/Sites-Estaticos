@@ -427,7 +427,7 @@ a {
   }
   
   .perigo-frio {
-    background-color: #5c6bc0;
+    background-color: #ff3c00;
   }
   
   .perigo-quente {
@@ -435,7 +435,7 @@ a {
   }
   
   .alerta-frio {
-    background-color: #42a5f5;
+    background-color: #ffee58;
   }
   
   .alerta-quente {
@@ -444,4 +444,63 @@ a {
   
   .ideal {
     background-color: #9ccc65;
+  }
+
+  
+  
+  /* popup de alerta */
+#alerta {
+    position: absolute;
+    /* background-color: red; */
+    right: 70px;
+    bottom: 30px;
+    width: 250px;
+    height: 100px;
+  }
+
+  .mensagem-alarme {
+    background-color: #f7b787;
+    border-radius: 5px;
+    width: 300px;
+    height: 80px;
+    margin: 10px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  .mensagem-alarme h3, small {
+    font-size: 12px;
+    margin: 0;
+  }
+  
+  .mensagem-alarme .informacao {
+    width: 66%;
+  }
+  
+  .alarme-sino {
+    width: 48px;
+    height: 48px;
+    animation-name: bell;
+    animation-duration: 4s;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
+    background-size: cover;
+    animation-iteration-count: infinite;
+    scale: 0.7;
+  }
+  
+  @keyframes bell {
+    0%   {transform: rotate(25deg)}
+    25%  {transform: rotate(-25deg)}
+    50%  {transform: rotate(25deg)}
+    75%  {transform: rotate(-25deg)}
+    100% {transform: rotate(25deg)}
+  }
+
+  .cor-alerta {
+    width: 13%;
+    height: 30%;
+    border-radius: 50%;
+    display: inline-block;
   }

@@ -9,9 +9,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
+
+    <script src="../../js/alerta.js"></script>
+
 </head>
 
-<body onload="listar()">
+<body onload="listar(), obterdados()">
     <div class="header">
         <div class="container">
             <a class="titulo" href="../../index.html">ecoffe</a>
@@ -54,6 +57,11 @@
     <div class="dashboard">
         <div class="container3">
             <div class="box">
+
+                <!-- POPUP DE ALERTA -->
+                <div id="alerta">
+                </div>
+                
                 <div class="cadastro">
                     <h1>Cadastre seus funcionários</h1>
                     <div class="forms">
@@ -80,16 +88,16 @@
 </body>
 <script>
     function verificar() {
-    var idUsuario = sessionStorage.ID_USUARIO;
-    var nomeUsuario = sessionStorage.NOME_USUARIO;
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var nomeUsuario = sessionStorage.NOME_USUARIO;
 
-    if (idUsuario >= 0) {
-      nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`;
-    } else {
-      window.location = "../index.html";
+        if (idUsuario >= 0) {
+            nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`;
+        } else {
+            window.location = "../index.html";
+        }
     }
-  }
-  verificar();
+    verificar();
     function apagarSession() {
         sessionStorage.clear();
     }
@@ -194,7 +202,7 @@
         event.target.value = cpf;
     });
 
-    function recarregarPag(){
+    function recarregarPag() {
         location.reload();
     }
 

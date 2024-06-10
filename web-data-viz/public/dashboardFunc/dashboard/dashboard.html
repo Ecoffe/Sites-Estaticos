@@ -8,9 +8,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
+
+    <script src="../../js/alerta.js"></script>
+
 </head>
 
-<body>
+<body onload="obterdados()">
     <div class="header">
         <div class="container">
             <a class="titulo" href="../../index.html">ecoffe</a>
@@ -51,6 +54,11 @@
     <div class="dashboard">
         <div class="container3">
             <div class="box">
+
+                <!-- POPUP DE ALERTA -->
+                <div id="alerta">
+                </div>
+
                 <div class="tituloestufas">
                     <div>
                         <h1>Estufa 05</h1>
@@ -125,15 +133,15 @@
         },
         options: {
             plugins: {
-                    legend: {
-                        labels: {
-                            usePointStyle: true, // Habilita o uso do estilo de ponto na legenda
-                            pointStyle: 'rectRounded', // Define o estilo do ponto como círculo
-                            borderWidth: 4,
-                            boxSizing: 20
-                        }
+                legend: {
+                    labels: {
+                        usePointStyle: true, // Habilita o uso do estilo de ponto na legenda
+                        pointStyle: 'rectRounded', // Define o estilo do ponto como círculo
+                        borderWidth: 4,
+                        boxSizing: 20
                     }
-                },
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true
@@ -173,7 +181,7 @@
         if (idUsuario >= 0) {
             nomeFunc.innerHTML = `<p>${nomeUsuario}</p>`
         } else {
-          window.location = "../index.html"
+            window.location = "../index.html"
         }
     }
     verificar()

@@ -1,76 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard | Empresa</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="shortcut icon"
-      href="./assets/imgs/ico.ico"
-      type="image/x-icon"
-    />
-  </head>
 
-  <body onload="listar()">
-    <div class="header">
-      <div class="container">
-        <a class="titulodash" href="../index.html">ecoffe</a>
-        <div class="nomEmpresa" id="nomeEmpresa">
-          <p>Nome Empresa</p>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Empresa</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon" />
+
+  <script src="../../js/alerta.js"></script>
+
+</head>
+
+<body onload="listar(), obterdados()">
+  <div class="header">
+    <div class="container">
+      <a class="titulodash" href="../index.html">ecoffe</a>
+      <div class="nomEmpresa" id="nomeEmpresa">
+        <p>Nome Empresa</p>
       </div>
     </div>
+  </div>
 
-    <div class="leftInfo">
-      <div class="container2">
-        <div class="btnsDash">
-          <div class="leftBtns">
-            <a href="#"><button class="btnshome">Estufas</button></a>
-          </div>
-          <div class="leftBtns">
-            <a href="./dashboard/dashboard.html"
-              ><button class="btnsdashboards">Dashboards</button></a
-            >
-          </div>
-          <div class="leftBtns">
-            <a href="./dasboardmensal/dashboardmensal.html"
-              ><button class="btnsmensal">Dados mensais</button></a
-            >
-          </div>
-          <div class="leftBtns">
-            <a href="./notificacoes/notify.html"
-              ><button class="btnsnotify">Notificações</button></a
-            >
-          </div>
-          <div class="leftBtns">
-            <a href="./cadastroFunc/cadastroFunc.html"
-              ><button class="btnscadastrar">Cadastrar</button></a
-            >
-          </div>
-          <div class="leftBtns">
-            <a href="./config/config.html"
-              ><button class="btnsconfig">Configurações</button></a
-            >
-          </div>
+  <div class="leftInfo">
+    <div class="container2">
+      <div class="btnsDash">
+        <div class="leftBtns">
+          <a href="#"><button class="btnshome">Estufas</button></a>
         </div>
-        <div class="btnSair">
-          <a href="../login/login.html"
-            ><button class="btn" onclick="apagarSession()">
-              Sair da conta
-            </button></a
-          >
+        <div class="leftBtns">
+          <a href="./dashboard/dashboard.html"><button class="btnsdashboards">Dashboards</button></a>
+        </div>
+        <div class="leftBtns">
+          <a href="./dasboardmensal/dashboardmensal.html"><button class="btnsmensal">Dados mensais</button></a>
+        </div>
+        <div class="leftBtns">
+          <a href="./notificacoes/notify.html"><button class="btnsnotify">Notificações</button></a>
+        </div>
+        <div class="leftBtns">
+          <a href="./cadastroFunc/cadastroFunc.html"><button class="btnscadastrar">Cadastrar</button></a>
+        </div>
+        <div class="leftBtns">
+          <a href="./config/config.html"><button class="btnsconfig">Configurações</button></a>
         </div>
       </div>
+      <div class="btnSair">
+        <a href="../login/login.html"><button class="btn" onclick="apagarSession()">
+            Sair da conta
+          </button></a>
+      </div>
     </div>
+  </div>
 
-    <div class="dashboard">
-      <div class="container3">
-        <div class="box">
-          <h1>Visão geral de suas estufas</h1>
-          <div class="conteudo">
-            <!-- <div class="indicadores">
+  <div class="dashboard">
+    <div class="container3">
+      <div class="box">
+
+        <!-- POPUP DE ALERTA -->
+        <div id="alerta">
+        </div>
+
+        <h1>Visão geral de suas estufas</h1>
+        <div class="conteudo">
+          <!-- <div class="indicadores">
                         <div class="metrica">
                             <div class="indi1">
                                 <p>Crítico</p>
@@ -99,39 +92,40 @@
                             </div>
                         </div>
                     </div> -->
-            <div class="estufas">
-              <div class="conjunto1" id="estufasA"></div>
-              <div class="conjunto2">
-                <div class="estufaadd">
-                  <button id="openModalBtn">Adicionar estufa</button>
-                </div>
+          <div class="estufas">
+            <div class="conjunto1" id="estufasA"></div>
+            <div class="conjunto2">
+              <div class="estufaadd">
+                <button id="openModalBtn">Adicionar estufa</button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class="titulo">
-          <h1>Adicione Estufa</h1>
-        </div>
-        <div class="formsEstufas">
-          <p>Nome da Estufa</p>
-          <input type="text" id="nomeEstufa" />
-          <p>Tamanho Estufa em M²</p>
-          <input type="number" id="tamEstufa" />
-          <p>Descrição da Estufa</p>
-          <textarea name="" maxlength="300" id="descEstufa"></textarea>
-          <div class="btnAdicione">
-            <button onclick="cadastrar(), recarregarPag()">Adicionar Estufa</button>
-          </div>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="titulo">
+        <h1>Adicione Estufa</h1>
+      </div>
+      <div class="formsEstufas">
+        <p>Nome da Estufa</p>
+        <input type="text" id="nomeEstufa" />
+        <p>Tamanho Estufa em M²</p>
+        <input type="number" id="tamEstufa" />
+        <p>Descrição da Estufa</p>
+        <textarea name="" maxlength="300" id="descEstufa"></textarea>
+        <div class="btnAdicione">
+          <button onclick="cadastrar(), recarregarPag()">Adicionar Estufa</button>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
 <script>
   function verificar() {
@@ -145,7 +139,7 @@
     }
   }
   verificar();
-  
+
   function apagarSession() {
     sessionStorage.clear();
   }
@@ -238,7 +232,7 @@
     });
   }
 
-  function recarregarPag(){
+  function recarregarPag() {
     location.reload();
   }
 </script>

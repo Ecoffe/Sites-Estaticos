@@ -8,9 +8,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
+
+    <script src="../js/alerta.js"></script>
+
 </head>
 
-<body onload="listar()">
+<body onload="listar(), obterdados()">
     <div class="header">
         <div class="container">
             <a class="titulodash" href="../index.html">ecoffe</a>
@@ -60,6 +63,11 @@
       <div class="dashboard">
         <div class="container3">
           <div class="box">
+
+             <!-- POPUP DE ALERTA -->
+             <div id="alerta">
+            </div>
+
             <h1>Visão geral de suas estufas</h1>
             <div class="conteudo">
               <!-- <div class="indicadores">

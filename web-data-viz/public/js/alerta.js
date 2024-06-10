@@ -1,36 +1,36 @@
 var alertas = [];
 
-function obterdados(idestufa) {
-    fetch(`/medidas/tempo-real/${idestufa}`)
+function obterdados(idEstufa) {
+    fetch(`/medidas/tempo-real/${idEstufa}`)
         .then(resposta => {
             if (resposta.status == 200) {
                 resposta.json().then(resposta => {
 
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    alertar(resposta, idestufa);
+                    alertar(resposta, idEstufa);
                 });
             } else {
-                console.error(`Nenhum dado encontrado para o id ${idestufa} ou erro na API`);
+                console.error(`Nenhum dado encontrado para o id ${idEstufa} ou erro na API`);
             }
         })
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados do estufa p/ gráfico: ${error.message}`);
         });
-
 }
 
-function alertar(resposta, idestufa) {
+function alertar(resposta, idEstufa) {
     var temp = resposta[0].temperatura;
 
     var grauDeAviso = '';
 
     var limites = {
-        muito_quente: 23,
-        quente: 22,
-        ideal: 20,
-        frio: 10,
-        muito_frio: 5
+        muito_quente: 31,
+        quente: 24,
+        idealmax: 23,
+        idealmin: 18,
+        frio: 17,
+        muito_frio: 10
     };
 
     var classe_temperatura = 'cor-alerta';
@@ -39,57 +39,57 @@ function alertar(resposta, idestufa) {
         classe_temperatura = 'cor-alerta perigo-quente';
         grauDeAviso = 'perigo quente'
         grauDeAvisoCor = 'cor-alerta perigo-quente'
-        exibirAlerta(temp, idestufa, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor)
     }
     else if (temp < limites.muito_quente && temp >= limites.quente) {
         classe_temperatura = 'cor-alerta alerta-quente';
         grauDeAviso = 'alerta quente'
         grauDeAvisoCor = 'cor-alerta alerta-quente'
-        exibirAlerta(temp, idestufa, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor)
     }
-    else if (temp < limites.quente && temp > limites.frio) {
+    else if (temp < limites.idealmax && temp > limites.idealmin) {
         classe_temperatura = 'cor-alerta ideal';
-        removerAlerta(idestufa);
+        removerAlerta(idEstufa);
     }
     else if (temp <= limites.frio && temp > limites.muito_frio) {
         classe_temperatura = 'cor-alerta alerta-frio';
         grauDeAviso = 'alerta frio'
         grauDeAvisoCor = 'cor-alerta alerta-frio'
-        exibirAlerta(temp, idestufa, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor)
     }
     else if (temp <= limites.muito_frio) {
         classe_temperatura = 'cor-alerta perigo-frio';
         grauDeAviso = 'perigo frio'
         grauDeAvisoCor = 'cor-alerta perigo-frio'
-        exibirAlerta(temp, idestufa, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor)
     }
 
     var card;
 
-    if (document.getElementById(`temp_estufa_${idestufa}`) != null) {
-        document.getElementById(`temp_estufa_${idestufa}`).innerHTML = temp + "°C";
+    if (document.getElementById(`temp_estufa_${idEstufa}`) != null) {
+        document.getElementById(`temp_estufa_${idEstufa}`).innerHTML = temp + "°C";
     }
 
-    if (document.getElementById(`card_${idestufa}`)) {
-        card = document.getElementById(`card_${idestufa}`)
+    if (document.getElementById(`card_${idEstufa}`)) {
+        card = document.getElementById(`card_${idEstufa}`)
         card.className = classe_temperatura;
     }
 }
 
-function exibirAlerta(temp, idestufa, grauDeAviso, grauDeAvisoCor) {
-    var indice = alertas.findIndex(item => item.idestufa == idestufa);
+function exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor) {
+    var indice = alertas.findIndex(item => item.idEstufa == idEstufa);
 
     if (indice >= 0) {
-        alertas[indice] = { idestufa, temp, grauDeAviso, grauDeAvisoCor }
+        alertas[indice] = { idEstufa, temp, grauDeAviso, grauDeAvisoCor }
     } else {
-        alertas.push({ idestufa, temp, grauDeAviso, grauDeAvisoCor });
+        alertas.push({ idEstufa, temp, grauDeAviso, grauDeAvisoCor });
     }
 
     exibirCards();
 }
 
-function removerAlerta(idestufa) {
-    alertas = alertas.filter(item => item.idestufa != idestufa);
+function removerAlerta(idEstufa) {
+    alertas = alertas.filter(item => item.idEstufa != idEstufa);
     exibirCards();
 }
 
@@ -102,14 +102,16 @@ function exibirCards() {
     }
 }
 
-function transformarEmDiv({ idestufa, temp, grauDeAviso, grauDeAvisoCor }) {
+function transformarEmDiv({idEstufa, temp, grauDeAviso, grauDeAvisoCor}) {
 
-    var descricao = JSON.parse(sessionStorage.estufaS).find(item => item.id == idestufa).descricao;
+    var nomeEstufa = sessionStorage.NOME_ESTUFA;
+    // var descricao = JSON.parse(sessionStorage.ID_ESTUFA).find(item => item.idEstufa == idEstufa).descricao;
+    
     return `
     <div class="mensagem-alarme">
         <div class="informacao">
             <div class="${grauDeAvisoCor}">&#12644;</div> 
-            <h3>${descricao} está em estado de ${grauDeAviso}!</h3>
+            <h3>${nomeEstufa.toUpperCase()} está em estado de ${grauDeAviso}!</h3>
             <small>Temperatura capturada: ${temp}°C.</small>   
         </div>
         <div class="alarme-sino"></div>
@@ -118,8 +120,8 @@ function transformarEmDiv({ idestufa, temp, grauDeAviso, grauDeAvisoCor }) {
 }
 
 function atualizacaoPeriodica() {
-    JSON.parse(sessionStorage.estufaS).forEach(item => {
-        obterdados(item.id)
+    JSON.parse(sessionStorage.ID_ESTUFA).forEach(item => {
+        obterdados(item.idEstufa)
     });
-    setTimeout(atualizacaoPeriodica, 5000);
+    setTimeout(atualizacaoPeriodica, 2000);
 }

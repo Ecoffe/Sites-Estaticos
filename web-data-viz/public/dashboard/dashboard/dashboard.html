@@ -7,10 +7,14 @@
     <title>Dashboard | Empresa</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
+
+    <script src="../../js/alerta.js"></script>
+
+
     <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
 </head>
 
-<body>
+<body onload="obterdados()">
     <div class="header">
         <div class="container">
             <a class="titulo" href="../../index.html">ecoffe</a>
@@ -55,6 +59,11 @@
     <div class="dashboard">
         <div class="container3">
             <div class="box">
+
+                <!-- POPUP DE ALERTA -->
+                <div id="alerta">
+                </div>
+
                 <!-- regua indicadora acima do gráfico -->
                 <div class="reguaIndicadores">
                     <p class="titulo-legenda">
@@ -294,7 +303,7 @@
                                 <p>${medida.temperatura}°</p>
                             </div>
                         </div>`;
-                        } else if (medida.temperatura < 17 || medida.temperatura > 24) {
+                        } else if (medida.temperatura < 17 || medida.temperatura > 23) {
                             indicadorTemp.innerHTML = `<div class="boxKpi">
                             <p>Temperatura atual</p>
                             <div class="kpi" style="background-color: yellow;">

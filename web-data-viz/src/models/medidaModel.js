@@ -23,8 +23,16 @@ function buscarUltimasMedidasUmidade(idEstufa) {
 
 function buscarMensal() {
     var instrucaoSql = `
-    select monthname(diaHora) as mes, round(avg(temperatura)) as 'mediaTemp', round(avg(umidade)) as 'mediaUmi'from dados join sensor on fkSensor = idSensor where fkSensor = 1 and fkEstufa = 1 group by mes order by diaHora;
+    select monthname(diaHora) as 'Mês', round(avg(temperatura)) as 'MédiaTemp', round(avg(umidade)) as 'MédiaUmi'from dados join sensor on fkSensor = idSensor where fkSensor = 1 and fkEstufa = 1 group by diaHora order by diaHora;
     `
+    return database.executar(instrucaoSql);
+}
+
+function buscarMedidasEmTempoReal(idEstufa) {
+
+    var instrucaoSql = `SELECT temperatura, umidade, DATE_FORMAT(diaHora,'%H:%i:%s') AS momento, fkSensor FROM dados WHERE fkSensor = 1 order by idDados desc limit 1;`;
+
+    console.log("Executando a instrução SQL dos alertas: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
@@ -32,5 +40,6 @@ module.exports = {
     buscarUltimasMedidasTemperatura,
     buscarUltimasMedidasUmidade,
     listarKpi,
-    buscarMensal
+    buscarMensal,
+    buscarMedidasEmTempoReal
 }

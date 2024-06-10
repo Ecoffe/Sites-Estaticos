@@ -8,9 +8,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
+
+    <script src="../../js/alerta.js"></script>
+
 </head>
 
-<body onload="listar()">
+<body onload="listar(), obterdados()">
     <div class="header">
         <div class="container">
             <a class="titulo" href="../../index.html">ecoffe</a>
@@ -53,6 +56,11 @@
     <div class="dashboard">
         <div class="container3">
             <div class="box">
+
+                <!-- POPUP DE ALERTA -->
+                <div id="alerta">
+                </div>
+                
                 <h1>Configurações</h1>
                 <div class="config">
                     <div class="menu">
@@ -94,7 +102,7 @@
                                 </div>
                             </div>
 
-                            <div id="alerta">
+                            <div id="alerta1">
                                 <p id="mensagemAlerta"></p>
                             </div>
                         </div>
@@ -157,7 +165,7 @@
 
         if (cep == '' || numero == ''){
             mensagemAlerta.innerHTML = `Preencha todos os campos para prosseguir!`
-            alerta.style.display = 'block'
+            alerta1.style.display = 'block'
             sumirAlerta()
         } else {
 
@@ -182,7 +190,7 @@
 
         limparEndereco()
         mensagemAlerta.innerHTML = `Endereço cadastrado com sucesso!`;
-        alerta.style.display = 'block';
+        alerta1.style.display = 'block';
         sumirAlerta()
         //ARRUMAR PRECISA DAS VALIDAÇÕES
     }
@@ -202,7 +210,7 @@
 
         if (telC == 'Não tem' && telF == 'Não tem') {
             mensagemAlerta.innerHTML = `Preencha algum campo para prosseguir!`
-            alerta.style.display = 'block'
+            alerta1.style.display = 'block'
             sumirAlerta()
         } else {
 
@@ -224,7 +232,7 @@
 
                 });
             mensagemAlerta.innerHTML = `Telefone(s) registrado(s) com sucesso!`
-            alerta.style.display = 'block'
+            alerta1.style.display = 'block'
             sumirAlerta()
             limparTel()
         }
@@ -244,7 +252,7 @@
 
     function sumirAlerta() {
         setTimeout(() => {
-            alerta.style.display = 'none'
+            alerta1.style.display = 'none'
         }, 2000);
     }
 
