@@ -143,8 +143,12 @@ function obterdados(idEstufa) {
 
 function alertar(resposta, idEstufa) {
     var temp = resposta[0].temperatura;
-
+    var momento = resposta[0].momento;
+    var dia = resposta[0].dia;
     var grauDeAviso = '';
+
+    console.log(momento)
+    console.log(dia)
 
     var limites = {
         muito_quente: 31,
@@ -161,29 +165,29 @@ function alertar(resposta, idEstufa) {
         classe_temperatura = 'cor-alerta perigo-quente';
         grauDeAviso = 'Perigo quente'
         grauDeAvisoCor = 'cor-alerta perigo-quente'
-        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
     }
-    else if (temp < limites.muito_quente && temp >= limites.quente) {
+    else if (temp < limites.muito_quente && temp >= limites.quente, momento, dia) {
         classe_temperatura = 'cor-alerta alerta-quente';
         grauDeAviso = 'Alerta quente'
         grauDeAvisoCor = 'cor-alerta alerta-quente'
-        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
     }
-    else if (temp < limites.idealmax && temp > limites.idealmin) {
+    else if (temp < limites.idealmax && temp > limites.idealmin, momento, dia) {
         classe_temperatura = 'cor-alerta ideal';
         removerAlerta(idEstufa);
     }
-    else if (temp <= limites.frio && temp > limites.muito_frio) {
+    else if (temp <= limites.frio && temp > limites.muito_frio, momento, dia) {
         classe_temperatura = 'cor-alerta alerta-frio';
         grauDeAviso = 'Alerta frio'
         grauDeAvisoCor = 'cor-alerta alerta-frio'
-        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
     }
     else if (temp <= limites.muito_frio) {
         classe_temperatura = 'cor-alerta perigo-frio';
         grauDeAviso = 'Perigo frio'
         grauDeAvisoCor = 'cor-alerta perigo-frio'
-        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
     }
 
     var card;
@@ -198,13 +202,14 @@ function alertar(resposta, idEstufa) {
     }
 }
 
-function exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor) {
+function exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia) {
+    console.log(momento)
     var indice = alertas.findIndex(item => item.idEstufa == idEstufa);
 
     if (indice >= 0) {
-        alertas[indice] = { idEstufa, temp, grauDeAviso, grauDeAvisoCor }
+        alertas[indice] = { idEstufa, temp, grauDeAviso, grauDeAvisoCor, momento, dia }
     } else {
-        alertas.push({ idEstufa, temp, grauDeAviso, grauDeAvisoCor });
+        alertas.push({ idEstufa, temp, grauDeAviso, grauDeAvisoCor, momento , dia});
     }
 
     exibirCards();
@@ -224,16 +229,15 @@ function exibirCards() {
     }
 }
 
-function transformarEmDiv({idEstufa, temp, grauDeAviso, grauDeAvisoCor}) {
-
+function transformarEmDiv({idEstufa, temp, grauDeAviso, grauDeAvisoCor, momento, dia}) {
     var nomeEstufa = sessionStorage.NOME_ESTUFA;
     // var descricao = JSON.parse(sessionStorage.ID_ESTUFA).find(item => item.idEstufa == idEstufa).descricao;
     
     return `
     <div class="tituloN" id="tituloN">
         <h2>${nomeEstufa.toUpperCase()} - ${grauDeAviso}</h2>
-        <h2>Data: 09/05/2024</h2> 
-        <h2>Hora: 10:12</h2>
+        <h2>Data: ${dia}</h2> 
+        <h2>Hora: ${momento}</h2>
     </div>
 
     <div class="texto">

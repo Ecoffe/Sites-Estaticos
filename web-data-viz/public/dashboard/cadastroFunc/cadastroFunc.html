@@ -77,7 +77,7 @@
                 </div>
                 <div class="cadastrados">
                     <h1>Funcionários</h1>
-                    <div class="boxCad" id="boxCad">
+                    <div class="boxCad" id="boxCad" style="display: none;">
                         <!-- <div class="cad"><div class="card"><p>Enzo Silva - CPF:xxx.xxx.xxx-xx</p></div><div class="btnCard"><button>+</button></div> -->
                     </div>
                 </div>
@@ -164,6 +164,7 @@
             .then(function (resposta) {
                 resposta.json().then((resposta) => {
                     resposta.forEach((funcionario) => {
+                        boxCad.style.display = 'block';
                         boxCad.innerHTML += `<div class="cad"><div class="card"><p>${funcionario.nomeFuncionario} - ${funcionario.cpf}</p></div><div class="btnCard"><button>+</button></div>`;
                     });
                 });

@@ -12,4 +12,8 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.post("/sacHOME", function(req, res){
+    usuarioController.sacHOME(req, res)
+});
+
 module.exports = router;

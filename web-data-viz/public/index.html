@@ -142,18 +142,19 @@
             </div>
             <div class="forms">
                 <p>Insira seu email:</p>
-                <input type="email" placeholder="Email" style="font-family: 'Poppins', sans-serif;">
+                <input type="email" placeholder="Email" id="inpEmail" style="font-family: 'Poppins', sans-serif;">
                 <p>Insira sua mensagem:</p>
-                <textarea name="" id="" cols="30" rows="9" placeholder="Mensagem"
+                <textarea name="" id="inpMensagem" cols="30" rows="9" placeholder="Mensagem"
                     style="font-family: 'Poppins', sans-serif;"></textarea>
 
                 <div class="btnForms">
-                    <button>Enviar</button>
+                    <button onclick="enviarMensagem()">Enviar</button>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
 <script>
 
     function verificar() {
@@ -225,6 +226,38 @@
             }
         });
     });
+
+    function enviarMensagem() {
+            var email = inpEmail.value
+            var mensagem = inpMensagem.value
+            console.log("função começou:" + email + mensagem)
+
+            if (email != '' || mensagem != '') {
+
+                console.log("entrou no if")
+
+                fetch("/usuarios/sacHOME", {
+                        method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                body: JSON.stringify({
+                    mensagemServer: mensagem,
+                    emailServer: email
+            }),
+            })
+        alert("Mensagem enviada!") 
+        limpartInput()
+    } else {
+        alert("Preencha todos os campos!") 
+    }
+}
+
+function limpartInput(){
+    document.getElementById('inpEmail').value = '';
+    document.getElementById('inpMensagem').value = '';
+}
+
 </script>
 
 </html>

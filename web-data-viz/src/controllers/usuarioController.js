@@ -85,7 +85,37 @@ function cadastrar(req, res) {
     }
 }
 
+function sacHOME(req, res) {
+    var email = req.body.emailServer
+    var mensagem = req.body.mensagemServer
+
+    if (email == undefined) {
+        res.status(400).send("Seu email esta undefined")
+    } else if (mensagem == undefined) {
+        res.status(400).send("Sua mensagem esta undefined")
+    } else {
+
+        usuarioModel.sacHOME(email, mensagem)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                    console.log(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    sacHOME
 }

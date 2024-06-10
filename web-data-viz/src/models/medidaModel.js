@@ -30,7 +30,7 @@ function buscarMensal() {
 
 function buscarMedidasEmTempoReal(idEstufa) {
 
-    var instrucaoSql = `SELECT temperatura, umidade, DATE_FORMAT(diaHora,'%H:%i:%s') AS momento, fkSensor FROM dados WHERE fkSensor = 1 order by idDados desc limit 1;`;
+    var instrucaoSql = `SELECT temperatura, umidade, DATE_FORMAT(diaHora,'%H:%i') AS momento, DATE_FORMAT(diaHora, '%d/%m/%y') AS dia, fkSensor FROM dados WHERE fkSensor = 1 order by idDados desc limit 1;`;
 
     console.log("Executando a instrução SQL dos alertas: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
