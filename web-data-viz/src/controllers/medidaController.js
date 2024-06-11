@@ -103,6 +103,20 @@ function atualizacaoTemperatura(req, res) {
     });
 }
 
+function mensalKpi(req, res) {
+    medidaModel.buscarMensal().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado");
+        }
+    }).catch(function (erro) {
+        console.log("Houve um erro ao pegar as medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 module.exports = {
     buscarUltimasMedidasTemperatura,
     buscarUltimasMedidasUmidade,
@@ -110,5 +124,6 @@ module.exports = {
     buscarMensal,
     buscarMedidasEmTempoReal, 
     atualizacaoUmidade,
-    atualizacaoTemperatura
+    atualizacaoTemperatura,
+    mensalKpi
 }

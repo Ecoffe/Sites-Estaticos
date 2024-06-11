@@ -30,4 +30,8 @@ router.get("/AtualizacaoTemp", function (req, res) {
     medidaController.atualizacaoTemperatura(req, res);
 });
 
+router.get("/mensalKpi", function (req, res) {
+    medidaController.mensalKpi(req, res)
+})
+
 module.exports = router;
