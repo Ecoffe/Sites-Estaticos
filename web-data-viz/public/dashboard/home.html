@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon" />
 
-  <script src="../../js/alerta.js"></script>
+  <script src="../js/alerta.js"></script>
 
 </head>
 
@@ -58,6 +58,8 @@
       <div class="box">
 
         <!-- POPUP DE ALERTA -->
+        <div id="alertaUmi">
+        </div>
         <div id="alerta">
         </div>
 
@@ -205,7 +207,7 @@
       .then(function (resposta) {
         resposta.json().then((resposta) => {
           resposta.forEach((estufa) => {
-            estufasA.innerHTML += `<a onclick="consultar(${estufa.idEstufa})"><div data-id="${estufa.idEstufa}" class="estufa1"><p>${estufa.nomeEstufa}</p></div></a>`;
+            estufasA.innerHTML += `<a onclick="consultar(${estufa.idEstufa})"><div id="teste${estufa.idEstufa}" data-id="${estufa.idEstufa}" class="estufa1"><p>${estufa.nomeEstufa}</p></div></a>`;
           });
         });
       })

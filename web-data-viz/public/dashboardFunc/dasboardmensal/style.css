@@ -368,3 +368,34 @@ align-items: flex-start;
     border-radius: 50%;
     display: inline-block;
   }
+
+  #alertaUmi {
+    position: absolute;
+    /* background-color: rgb(0, 204, 255); */ 
+    right: 70px;
+    bottom: 140px;
+    width: 250px;
+    height: 100px;
+  }
+
+  .mensagem-alarmeumi {
+    /* background-color: #527853; */
+    background-color: #f7b787;
+    border-radius: 5px;
+    width: 300px;
+    height: 80px;
+    margin: 10px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .mensagem-alarmeumi h3, small {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .mensagem-alarmeumi .informacao {
+    width: 66%;
+  }
