@@ -207,7 +207,7 @@
       .then(function (resposta) {
         resposta.json().then((resposta) => {
           resposta.forEach((estufa) => {
-            estufasA.innerHTML += `<a onclick="consultar(${estufa.idEstufa})"><div id="teste${estufa.idEstufa}" data-id="${estufa.idEstufa}" class="estufa1"><p>${estufa.nomeEstufa}</p></div></a>`;
+            estufasA.innerHTML += `<a onclick="consultar(${estufa.idEstufa})"><div id="testee${estufa.idEstufa}" data-id="${estufa.idEstufa}" class="estufa1"><p>${estufa.nomeEstufa}</p></div></a>`;
           });
         });
       })
@@ -237,4 +237,85 @@
   function recarregarPag() {
     location.reload();
   }
+</script>
+
+
+
+
+
+<script>
+
+function obterdados(idEstufa) {
+    fetch(`/medidas/tempo-real/${idEstufa}`)
+        .then(resposta => {
+            if (resposta.status == 200) {
+                resposta.json().then(resposta => {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    // alertar(resposta, idEstufa);
+                    // alertar2(resposta, idEstufa);
+                    alertare(resposta, idEstufa);
+                });
+            } else {
+                console.error(`Nenhum dado encontrado para o id ${idEstufa} ou erro na API`);
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados do estufa p/ gráfico: ${error.message}`);
+        });
+}
+
+function alertare(resposta, idEstufa) {
+    var temp = resposta[0].temperatura;
+
+    var grauDeAviso = '';
+
+    //temperatura
+    var limites = {
+        muito_quente: 31,
+        quente: 24,
+        idealmax: 23,
+        idealmin: 18,
+        frio: 17,
+        muito_frio: 10
+    };
+
+    var classe_temperatura = 'cor-alerta';
+
+    if (temp >= limites.muito_quente) {
+        classe_temperatura = 'cor-alerta perigo-quente';
+        grauDeAviso = 'crítico'
+        grauDeAvisoCor = 'red'
+        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor)
+    }
+    else if (temp < limites.muito_quente && temp >= limites.quente) {
+        classe_temperatura = 'cor-alerta alerta-quente';
+        grauDeAviso = 'perigoso'
+        grauDeAvisoCor = 'yellow'
+        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor)
+    }
+    else if (temp < limites.idealmax && temp > limites.idealmin) {
+        classe_temperatura = 'cor-alerta ideal';
+        removerAlerta(idEstufa);
+    }
+    else if (temp <= limites.frio && temp > limites.muito_frio) {
+        classe_temperatura = 'cor-alerta alerta-frio';
+        grauDeAviso = 'perigoso'
+        grauDeAvisoCor = 'yellow'
+        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor)
+    }
+    else if (temp <= limites.muito_frio) {
+        classe_temperatura = 'cor-alerta perigo-frio';
+        grauDeAviso = 'crítico'
+        grauDeAvisoCor = 'red'
+        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor)
+    }
+
+    var testee = document.getElementById(`testee1`);
+    testee.style.backgroundColor = `${grauDeAvisoCor}`;
+
+}
+
+
 </script>

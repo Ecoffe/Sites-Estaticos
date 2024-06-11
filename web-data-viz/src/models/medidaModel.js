@@ -23,7 +23,7 @@ function buscarUltimasMedidasUmidade(idEstufa) {
 
 function buscarMensal() {
     var instrucaoSql = `
-    select monthname(diaHora) as 'Mês', round(avg(temperatura)) as 'MédiaTemp', round(avg(umidade)) as 'MédiaUmi'from dados join sensor on fkSensor = idSensor where fkSensor = 1 and fkEstufa = 1 group by diaHora order by diaHora;
+    select monthname(diaHora) as 'Mês', round(avg(temperatura)) as 'MédiaTemp', round(avg(umidade)) as 'MédiaUmi'from dados join sensor where fkSensor = 1 where fkSensor = 1 and fkEstufa = 1 group by 'Mês' order by diaHora;
     `
     return database.executar(instrucaoSql);
 }
