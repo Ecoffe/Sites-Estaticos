@@ -45,7 +45,8 @@
                 </div>
             </div>
             <div class="btnSair">
-                <a href="../../login/login.html"><button class="btn">Sair da conta</button></a>
+                <a href="../../login/login.html" onclick="apagarSession()"><button class="btn">Sair da
+                        conta</button></a>
             </div>
         </div>
     </div>
@@ -61,23 +62,17 @@
                 </div>
 
                 <div class="tituloestufas">
-                    <div>
-                        <h1>Estufa 05</h1>
-                    </div>
-                    <div>
-                        <h1>
-                            Sensor: <select name="" id="">
-                                <option value="#">Selecione um sensor</option>
-                                <option value="1">Sensor 01</option>
-                            </select>
-                        </h1>
+                    <div id="estufaAtual">
+                        <h1>Estufa</h1>
                     </div>
                 </div>
+
                 <div class="tabela">
                     <div>
                         <canvas id="myChart1" style="position: relative; height:30vh; width:50vw"></canvas>
                     </div>
                 </div>
+
                 <div class="indicadores">
                     <div class="boxKpi">
                         <p>Mês critico e sua média apontada</p>
@@ -94,49 +89,97 @@
         </div>
     </div>
 </body>
+
+</html>
+
 <script>
-    const ctx1 = document.getElementById('myChart1');
-
-    new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
-            datasets: [{
-                label: 'Temperatura(ºC)',
-                data: [17, 19, 35, 18, 16, 30],
-                // borderWidth: 4,
-                borderColor: '#EE7214',
-                backgroundColor: '#EE7214'
-            }, {
-                label: 'Umidade(%)',
-                data: [73, 60, 40, 65, 60, 45], // Novos dados adicionados aqui
-                // borderWidth: 4,
-                borderColor: '#0B7F99',
-                backgroundColor: '#0B7F99'
-            }]
-
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-        }
-    });
+    var nomeEstufa = sessionStorage.NOME_ESTUFA;
+    estufaAtual.innerHTML = `<h1>${nomeEstufa}</h1>`
 
     function verificar() {
         var idUsuario = sessionStorage.ID_FUNCIONARIO;
         var nomeUsuario = sessionStorage.NOME_FUNCIONARIO;
 
+
         if (idUsuario >= 0) {
             nomeFunc.innerHTML = `<p>${nomeUsuario}</p>`
+            nomeEstufa.innerHTML = `<p>${estufaAtual}}</p>`
+
         } else {
             window.location = "../index.html"
         }
     }
     verificar()
 
-</script>
+    function apagarSession() {
+        sessionStorage.clear();
+    }
 
-</html>
+    const ctx1 = document.getElementById('myChart1');
+
+
+    function buscarMensal() {
+        // var idEstufa = sessionStorage.ID_ESTUFA
+        fetch(`/medidas/buscarMensal`, {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                resposta.json().then((resposta) => {
+                    plotarGraficoMensal(resposta); // Passando a resposta como parâmetro
+                });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+
+    function plotarGraficoMensal(resposta) { // Recebendo a resposta como parâmetro
+        console.log('iniciando plotagem do gráfico...');
+
+        let labels = [];
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Umidade',
+                    data: [],
+                    fill: false,
+                    borderWidth: 4,
+                    borderColor: '#527853',
+                    backgroundColor: '#527853',
+                    tension: 0.5
+                },
+                {
+                    label: 'temperatura',
+                    data: [],
+                    fill: false,
+                    borderWidth: 4,
+                    borderColor: '#EE7214',
+                    backgroundColor: '#EE7214',
+                    tension: 0.5
+                }
+            ]
+        };
+
+        for (let i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.mes);
+            dados.datasets[0].data.push(registro.mediaUmi);
+            dados.datasets[1].data.push(registro.mediaTemp);
+        }
+
+        console.log('Labels:', labels);
+        console.log('Dados do Dataset:', dados.datasets);
+
+        const config = {
+            type: 'bar',
+            data: dados,
+        };
+
+        let myChart = new Chart(
+            document.getElementById(`myChart1`),
+            config
+        );
+    }
+    buscarMensal()
+</script>

@@ -41,7 +41,8 @@
                 </div>
             </div>
             <div class="btnSair">
-                <a href="../../login/login.html"><button class="btn">Sair da conta</button></a>
+                <a href="../../login/login.html" onclick="apagarSession()"><button class="btn">Sair da
+                        conta</button></a>
             </div>
         </div>
     </div>
@@ -65,150 +66,145 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card2">
-                        <div class="icon">
-                        </div>
-                        <div class="textos">
-                      
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+</html>
+
 <script>
-function verificar() {
+    function verificar() {
         var idUsuario = sessionStorage.ID_FUNCIONARIO;
         var nomeUsuario = sessionStorage.NOME_FUNCIONARIO;
 
         if (idUsuario >= 0) {
             nomeFunc.innerHTML = `<p>${nomeUsuario}</p>`
         } else {
-          window.location = "../index.html"
+            window.location = "../index.html"
         }
     }
     verificar()
 
-</script>
-
-</html>
-
-<script>
+    function apagarSession() {
+        sessionStorage.clear();
+    }
+    
     var alertas = [];
 
-function obterdados(idEstufa) {
-    fetch(`/medidas/tempo-real/${idEstufa}`)
-        .then(resposta => {
-            if (resposta.status == 200) {
-                resposta.json().then(resposta => {
+    function obterdados(idEstufa) {
+        fetch(`/medidas/tempo-real/${idEstufa}`)
+            .then(resposta => {
+                if (resposta.status == 200) {
+                    resposta.json().then(resposta => {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    alertar(resposta, idEstufa);
-                });
-            } else {
-                console.error(`Nenhum dado encontrado para o id ${idEstufa} ou erro na API`);
-            }
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados do estufa p/ gráfico: ${error.message}`);
-        });
-}
-
-function alertar(resposta, idEstufa) {
-    var temp = resposta[0].temperatura;
-    var momento = resposta[0].momento;
-    var dia = resposta[0].dia;
-    var grauDeAviso = '';
-
-    console.log(momento)
-    console.log(dia)
-
-    var limites = {
-        muito_quente: 31,
-        quente: 24,
-        idealmax: 23,
-        idealmin: 18,
-        frio: 17,
-        muito_frio: 10
-    };
-
-    var classe_temperatura = 'cor-alerta';
-
-    if (temp >= limites.muito_quente) {
-        classe_temperatura = 'cor-alerta perigo-quente';
-        grauDeAviso = 'Estado: Crítico'
-        grauDeAvisoCor = 'cor-alerta perigo-quente'
-        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
-    }
-    else if (temp < limites.muito_quente && temp >= limites.quente, momento, dia) {
-        classe_temperatura = 'cor-alerta alerta-quente';
-        grauDeAviso = 'Estado: Perigoso'
-        grauDeAvisoCor = 'cor-alerta alerta-quente'
-        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
-    }
-    else if (temp < limites.idealmax && temp > limites.idealmin, momento, dia) {
-        classe_temperatura = 'cor-alerta ideal';
-        removerAlerta(idEstufa);
-    }
-    else if (temp <= limites.frio && temp > limites.muito_frio, momento, dia) {
-        classe_temperatura = 'cor-alerta alerta-frio';
-        grauDeAviso = 'Estado: Perigoso' 
-        grauDeAvisoCor = 'cor-alerta alerta-frio'
-        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
-    }
-    else if (temp <= limites.muito_frio) {
-        classe_temperatura = 'cor-alerta perigo-frio';
-        grauDeAviso = 'Estado: Crítico'
-        grauDeAvisoCor = 'cor-alerta perigo-frio'
-        exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
+                        alertar(resposta, idEstufa);
+                    });
+                } else {
+                    console.error(`Nenhum dado encontrado para o id ${idEstufa} ou erro na API`);
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do estufa p/ gráfico: ${error.message}`);
+            });
     }
 
-    var card;
+    function alertar(resposta, idEstufa) {
+        var temp = resposta[0].temperatura;
+        var momento = resposta[0].momento;
+        var dia = resposta[0].dia;
+        var grauDeAviso = '';
 
-    if (document.getElementById(`temp_estufa_${idEstufa}`) != null) {
-        document.getElementById(`temp_estufa_${idEstufa}`).innerHTML = temp + "°C";
+        console.log(momento)
+        console.log(dia)
+
+        var limites = {
+            muito_quente: 31,
+            quente: 24,
+            idealmax: 23,
+            idealmin: 18,
+            frio: 17,
+            muito_frio: 10
+        };
+
+        var classe_temperatura = 'cor-alerta';
+
+        if (temp >= limites.muito_quente) {
+            classe_temperatura = 'cor-alerta perigo-quente';
+            grauDeAviso = 'Estado: Crítico'
+            grauDeAvisoCor = 'cor-alerta perigo-quente'
+            exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
+        }
+        else if (temp < limites.muito_quente && temp >= limites.quente, momento, dia) {
+            classe_temperatura = 'cor-alerta alerta-quente';
+            grauDeAviso = 'Estado: Perigoso'
+            grauDeAvisoCor = 'cor-alerta alerta-quente'
+            exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
+        }
+        else if (temp < limites.idealmax && temp > limites.idealmin, momento, dia) {
+            classe_temperatura = 'cor-alerta ideal';
+            removerAlerta(idEstufa);
+        }
+        else if (temp <= limites.frio && temp > limites.muito_frio, momento, dia) {
+            classe_temperatura = 'cor-alerta alerta-frio';
+            grauDeAviso = 'Estado: Perigoso'
+            grauDeAvisoCor = 'cor-alerta alerta-frio'
+            exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
+        }
+        else if (temp <= limites.muito_frio) {
+            classe_temperatura = 'cor-alerta perigo-frio';
+            grauDeAviso = 'Estado: Crítico'
+            grauDeAvisoCor = 'cor-alerta perigo-frio'
+            exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
+        }
+
+        var card;
+
+        if (document.getElementById(`temp_estufa_${idEstufa}`) != null) {
+            document.getElementById(`temp_estufa_${idEstufa}`).innerHTML = temp + "°C";
+        }
+
+        if (document.getElementById(`card_${idEstufa}`)) {
+            card = document.getElementById(`card_${idEstufa}`)
+            card.className = classe_temperatura;
+        }
     }
 
-    if (document.getElementById(`card_${idEstufa}`)) {
-        card = document.getElementById(`card_${idEstufa}`)
-        card.className = classe_temperatura;
-    }
-}
+    function exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia) {
+        console.log(momento)
+        var indice = alertas.findIndex(item => item.idEstufa == idEstufa);
 
-function exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia) {
-    console.log(momento)
-    var indice = alertas.findIndex(item => item.idEstufa == idEstufa);
+        if (indice >= 0) {
+            alertas[indice] = { idEstufa, temp, grauDeAviso, grauDeAvisoCor, momento, dia }
+        } else {
+            alertas.push({ idEstufa, temp, grauDeAviso, grauDeAvisoCor, momento, dia });
+        }
 
-    if (indice >= 0) {
-        alertas[indice] = { idEstufa, temp, grauDeAviso, grauDeAvisoCor, momento, dia }
-    } else {
-        alertas.push({ idEstufa, temp, grauDeAviso, grauDeAvisoCor, momento , dia});
+        exibirCards();
     }
 
-    exibirCards();
-}
-
-function removerAlerta(idEstufa) {
-    alertas = alertas.filter(item => item.idEstufa != idEstufa);
-    exibirCards();
-}
-
-function exibirCards() {
-    textos.innerHTML = '';
-
-    for (var i = 0; i < alertas.length; i++) {
-        var mensagem = alertas[i];
-        textos.innerHTML += transformarEmDiv(mensagem);
+    function removerAlerta(idEstufa) {
+        alertas = alertas.filter(item => item.idEstufa != idEstufa);
+        exibirCards();
     }
-}
 
-function transformarEmDiv({idEstufa, temp, grauDeAviso, grauDeAvisoCor, momento, dia}) {
-    var nomeEstufa = sessionStorage.NOME_ESTUFA;
-    // var descricao = JSON.parse(sessionStorage.ID_ESTUFA).find(item => item.idEstufa == idEstufa).descricao;
-    
-    return `
+    function exibirCards() {
+        textos.innerHTML = '';
+
+        for (var i = 0; i < alertas.length; i++) {
+            var mensagem = alertas[i];
+            textos.innerHTML += transformarEmDiv(mensagem);
+        }
+    }
+
+    function transformarEmDiv({ idEstufa, temp, grauDeAviso, grauDeAvisoCor, momento, dia }) {
+        var nomeEstufa = sessionStorage.NOME_ESTUFA;
+        // var descricao = JSON.parse(sessionStorage.ID_ESTUFA).find(item => item.idEstufa == idEstufa).descricao;
+
+        return `
     <div class="tituloN" id="tituloN">
         <h2>${nomeEstufa.toUpperCase()} - ${grauDeAviso}</h2>
         <h2>Data: ${dia}</h2> 
@@ -219,12 +215,12 @@ function transformarEmDiv({idEstufa, temp, grauDeAviso, grauDeAvisoCor, momento,
         <p>A temperatura chegou a <span style="color: red;">${temp}°C</span></p>
     </div>
     `;
-}
+    }
 
-function atualizacaoPeriodica() {
-    JSON.parse(sessionStorage.ID_ESTUFA).forEach(item => {
-        obterdados(item.idEstufa)
-    });
-    setTimeout(atualizacaoPeriodica, 2000);
-}
+    function atualizacaoPeriodica() {
+        JSON.parse(sessionStorage.ID_ESTUFA).forEach(item => {
+            obterdados(item.idEstufa)
+        });
+        setTimeout(atualizacaoPeriodica, 2000);
+    }
 </script>

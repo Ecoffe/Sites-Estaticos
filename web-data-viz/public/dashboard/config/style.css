@@ -319,10 +319,65 @@ a {
 
 
 
-.dashboard .container3 .box .config .acessibilidade {
+.dashboard .container3 .box .config .acessi {
     width: 80%;
     height: 100%;
 
+}
+
+.dashboard .container3 .box .config .conteudo .acessi .formsSensor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.dashboard .container3 .box .config .conteudo .acessi .conteudo input {
+    font-family: 'Poppins', sans-serif;
+    width: 390px;
+    height: 35px;
+    margin-top: 9px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    border: 2px solid black;
+    padding-left: 5px;
+}
+
+.dashboard .container3 .box .config .conteudo .acessi .formsSensor select {
+    font-family: 'Poppins', sans-serif;
+    width: 400px;
+    height: 35px;
+    border-radius: 10px;
+    margin-top: 9px;
+    font-weight: 700;
+    font-size: 14px;
+    border: 2px solid black;
+    padding-left: 5px;
+
+
+}
+
+.dashboard .container3 .box .config .conteudo .acessi .formsSensor .btnInscricao {
+    background-color: #2C3333;
+    margin-top: 9px;
+    color: #FFF;
+    width: 327px;
+    height: 45px;
+    font-family: 'Poppins';
+    border-radius: 25px;
+    border: 2px solid black;
+    font-weight: 700;
+    transition: 800ms;
+}
+
+.dashboard .container3 .box .config .conteudo .acessi .formsSensor .btnInscricao:hover {
+    transition: 800ms;
+    background-color: #FFF;
+    color: #2C3333;
+    font-family: 'Poppins';
+    font-weight: 700;
+    cursor: pointer;
 }
 
 .dashboard .container3 .box .btnSair {

@@ -83,22 +83,10 @@
         event.target.value = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
     });
 
-    // function criar() {
-    //     divErroEmail.innerHTML = ''
-    //     divErroCnpj.innerHTML = ''
-    //     divErroSenha.innerHTML = ''
-    //     divErroSenhaConf.innerHTML = ''
-
-    //     var nomeEmpresa = inputRazaoSocial.value
-    //     var nomeFantasia = inputNomeFant.value
-    //     var email = inputEmailEmp.value
-    //     var cnpj = inputCnpjEmp.value
-    //     var senha = inputSenha.value
-    //     var senhaConf = inputConfSenha.value
-    // }
 
 
     function cadastrar() {
+        var valido = true
 
         var razaoSocialVar = inputRazaoSocial.value;
         var nomeEmpVar = inputNomeFant.value;
@@ -106,33 +94,34 @@
         var cnpjVar = inputCnpjEmp.value
         var senhaVar = inputSenha.value;
         var confirmacaoSenhaVar = inputConfSenha.value;
-          // Validação dos nomes
-        // var tam_nomeEmpresa = nomeEmpresa.length;
-        // var tam_nomeFantasia = nomeFantasia.length;
-
-        // if (tam_nomeEmpresa <= 1 || tam_nomeFantasia <= 1) {
-        //     if (tam_nomeEmpresa <= 1) {
-        //         divErroNomeEmpresa.innerHTML = `<span class="spnErro">Insira um nome válido</span>`
-
-        //     }
-        //     if (tam_nomeFantasia <= 1) {
-        //         divErroNomeFant.innerHTML = `<span class="spnErro">Insira um nome válido</span>`
-
-        //     }
-        // }
 
           // Validação dos campos preenchidos
         if (nomeEmpVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || cnpjVar == "") {
             alert('Preencha todos os campos')
-        } else if (emailVar.indexOf('@') == -1) { // Validação do email
+            valido = false
+        }
+
+        if (emailVar.indexOf('@') == -1) { // Validação do email
             divErroEmail.innerHTML = `<span class="spnErro">Deve haver ao menos um @</span>`
-        } else if (cnpjVar.length< 14) {  // Validação do CNPJ
+            valido = false
+        } 
+
+        if (cnpjVar.length< 14) {  // Validação do CNPJ
             divErroCnpj.innerHTML = `<span class="spnErro">CNPJ inválido</span>`
-        } else if (senhaVar.length <= 6) { // Validação das senhas
+            valido = false
+        } 
+
+        if (senhaVar.length <= 6) { // Validação das senhas
             divErroSenha.innerHTML = `<span class="spnErro">Insira uma senha de, no mínimo, 8 caracteres</span>`
-        } else if (senhaVar != confirmacaoSenhaVar) {
+            valido = false
+        }
+
+        if (senhaVar != confirmacaoSenhaVar) {
             divErroSenhaConf.innerHTML = `<span class="spnErro">Senhas não são compatíveis</span>`
-        } else{
+            valido = false
+        }
+
+        if(valido == true){
             fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {
@@ -169,7 +158,4 @@
         }
     }
 
-    // function sumirMensagem() {
-    //     cardErro.style.display = "none";
-    // }
 </script>

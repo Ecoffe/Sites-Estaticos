@@ -36,7 +36,6 @@
                 </div>
                 <div class="btnEntrar">
                     <button class="btnLogin" id="btnLogin" onclick="entrar()">Entrar</button>
-                    <button class="btnEsqSenha">Esqueceu a senha?</button>
                 </div>
                 <div class="temConta">
                     <span>Crie uma conta na <a href="../cadastro/cadastro.html">ecoffe?</a></span>
@@ -113,7 +112,7 @@
                     sessionStorage.EMAIL_FUNCIONARIO = json.email;
                     sessionStorage.NOME_FUNCIONARIO = json.nome;
                     sessionStorage.ID_FUNCIONARIO = json.id;
-                    sessionStorage.FKEMPRESA = json.fkEmpresa
+                    sessionStorage.FK_EMPRESA = json.fkEmpresa
 
     
                     window.location = "../dashboardFunc/home.html";

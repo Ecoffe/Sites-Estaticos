@@ -33,7 +33,8 @@
                     <a href="../dashboard/dashboard.html"><button class="btnsdashboards">Dashboards</button></a>
                 </div>
                 <div class="leftBtns">
-                    <a href="../dasboardmensal/dashboardmensal.html"><button class="btnsmensal">Dados mensais</button></a>
+                    <a href="../dasboardmensal/dashboardmensal.html"><button class="btnsmensal">Dados
+                            mensais</button></a>
                 </div>
                 <div class="leftBtns">
                     <a href="../notificacoes/notify.html"><button class="btnsnotify">Notificações</button></a>
@@ -43,7 +44,8 @@
                 </div>
             </div>
             <div class="btnSair">
-                <a href="../../login/login.html"><button class="btn">Sair da conta</button></a>
+                <a href="../../login/login.html" onclick="apagarSession()"><button class="btn">Sair da
+                        conta</button></a>
             </div>
         </div>
     </div>
@@ -52,21 +54,16 @@
         <div class="container3">
             <div class="box">
 
-                 <!-- POPUP DE ALERTA -->
-                 <div id="alertaUmi">
+                <!-- POPUP DE ALERTA -->
+                <div id="alertaUmi">
                 </div>
-                 <div id="alerta">
+                <div id="alerta">
                 </div>
 
                 <h1>Configurações</h1>
                 <div class="config">
                     <div class="menu">
-                        <!-- <div onclick="info()" class="buttonConfig">
-                            <p>Informações</p>
-                        </div>
-                        <div onclick="acessibilidade()" class="buttonConfig">
-                            <p>Acessibilidade</p>
-                        </div> -->
+
                     </div>
                     <div class="conteudo">
                         <div class="infor" id="infor">
@@ -77,8 +74,10 @@
                                     <div class="formsEnd">
                                         <input type="text" class="cep" placeholder="CEP" id="inpCEP">
                                         <input type="number" class="numero" placeholder="Número" id="inpNumero">
-                                        <input type="text" class="complemento" placeholder="Complemento" id="inpComplemento">
-                                      <button class="btnInscricao" onclick="inserirAdicional(), reload()">Completar Inscrição</button>
+                                        <input type="text" class="complemento" placeholder="Complemento"
+                                            id="inpComplemento">
+                                        <button class="btnInscricao" onclick="inserirAdicional(), reload()">Completar
+                                            Inscrição</button>
                                     </div>
                                 </div>
                                 <div class="fone">
@@ -90,7 +89,7 @@
                                         <div class="fones">
                                             <input type="text" class="celular" placeholder="Telefone celular"
                                                 id="inpTelCell">
-                                            
+
                                         </div>
                                         <button class="adicionar" onclick="inserirTelefone()">Adicionar</button>
                                     </div>
@@ -110,6 +109,10 @@
     </div>
 </body>
 <script>
+    function apagarSession() {
+        sessionStorage.clear();
+    }
+
     function info() {
         acessi.style.display = 'none';
         infor.style.display = 'block';
@@ -137,7 +140,7 @@
                 numeroServer: numero,
                 complementoServer: complemento,
                 FkFuncionarioServer: sessionStorage.ID_FUNCIONARIO,
-                fkEmpresaServer: sessionStorage.FKEMPRESA
+                fkEmpresaServer: sessionStorage.FK_EMPRESA
             }),
         })
             .catch(function (resposta) {
@@ -145,7 +148,7 @@
 
             });
 
-            
+
 
     }
 
@@ -176,7 +179,7 @@
                     // Agora vá para o arquivo routes/usuario.js
                     telFServer: telF,
                     telCServer: telC,
-                    FkEmpresaServer: sessionStorage.FKEMPRESA,
+                    FkEmpresaServer: sessionStorage.FK_EMPRESA,
                     FkFuncServer: sessionStorage.ID_FUNCIONARIO
                 }),
             })
@@ -250,7 +253,7 @@
         if (cep.length > 9) {
             cep = cep.substring(0, 9)
         }
-        
+
         event.target.value = cep;
     });
 
@@ -261,7 +264,7 @@
         if (idUsuario >= 0) {
             nomeFunc.innerHTML = `<p>${nomeUsuario}</p>`
         } else {
-          window.location = "../index.html"
+            window.location = "../index.html"
         }
     }
     verificar()

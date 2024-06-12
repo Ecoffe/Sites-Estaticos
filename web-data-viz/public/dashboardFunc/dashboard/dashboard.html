@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="btnSair">
-                <a href="../../login/login.html"><button class="btn">Sair da conta</button></a>
+                <a href="../../login/login.html" onclick="apagarSession()"><button class="btn">Sair da conta</button></a>
             </div>
         </div>
     </div>
@@ -61,54 +61,65 @@
                 <div id="alerta">
                 </div>
 
-                <div class="tituloestufas">
-                    <div>
-                        <h1>Estufa 05</h1>
-                    </div>
-                    <div>
-                        <h1>
-                            Sensor: <select name="" id="">
-                                <option value="#">Selecione um sensor</option>
-                                <option value="1">Sensor 01</option>
-                            </select>
-                        </h1>
+                <!-- regua indicadora acima do gráfico -->
+                <div class="reguaIndicadores">
+                    <p class="titulo-legenda">
+                        Parâmetros para Alertas
+                    </p>
+                    <div class="parametros-alerta">
+                        <div class="item-regua perigo-frio">
+                            <p>Crítico</p>
+                            <p> &lt;11°C <br> >80% </p>
+                        </div>
+                        <div class="item-regua alerta-frio">
+                            <p>Perigoso</p>
+                            <p>11°C a 17°C <br> 80% a 90%</p>
+                        </div>
+                        <div class="item-regua ideal">
+                            <p>Ideal</p>
+                            <p>18°C a 23°C <br> 61% a 80%</p>
+                        </div>
+                        <div class="item-regua alerta-quente">
+                            <p>Perigoso</p>
+                            <p>24°C a 30°C <br> 40% a 60%</p>
+                        </div>
+                        <div class="item-regua perigo-quente">
+                            <p>Crítico</p>
+                            <p> >30°C <br> &lt;40%</p>
+                        </div>
                     </div>
                 </div>
-                <div class="tabela">
+
+                <div class="tituloestufas">
+                    <div id="estufaAtual">
+                    </div>
+                    
+                </div>
+                <div class="tabela" id="graficos">
                     <div>
-                        <canvas id="myChart1" style="position: relative; height:50vh; width:35vw"></canvas>
+                        <canvas id="myChartTemperatura" style="position: relative; height:45vh; width:35vw"></canvas>
                     </div>
                     <div>
-                        <canvas id="myChart2" style="position: relative; height:50vh; width:35vw"></canvas>
+                        <canvas id="myChartUmidade" style="position: relative; height:45vh; width:35vw"></canvas>
                     </div>
                 </div>
                 <div class="indicadores">
-                    <div class="legendaKPI">
-                        <div class="legenda">
-                            <div class="legColor1"></div>
-                            <p>Critico</p>
-                        </div>
-                        <div class="legenda">
-                            <div class="legColor2"></div>
-                            <p>Perigoso</p>
-                        </div>
-                        <div class="legenda">
-                            <div class="legColor4"></div>
-                            <p>Normal</p>
+                    <div class="indicador" id="indicadorTemp">
+                        <div class="boxKpi">
+                            <p>Temperatura atual</p>
+                            <div class="kpi" style="background-color: transparent;">
+                                <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                                <p></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="boxKpi">
-                        <p>Temperatura atual</p>
-                        <div class="kpi">
-                            <img src="./assets/imgs/iconTemp.svg" alt="" style="height: 80px; width: 80px;">
-                            <p>40º</p>
-                        </div>
-                    </div>
-                    <div class="boxKpi">
-                        <p>Umidade atual</p>
-                        <div class="kpi2">
-                            <img src="./assets/imgs/iconUmi.svg" alt="" style="height: 80px; width: 80px;">
-                            <p>55%</p>
+                    <div class="indicador" id="indicadorUmi">
+                        <div class="boxKpi">
+                            <p>Umidade atual</p>
+                            <div class="kpi" style="background-color: transparent;">
+                                <img src="./assets/imgs/iconUmi.svg" style="height: 70px; width: 70px;">
+                                <p></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -116,65 +127,20 @@
         </div>
     </div>
 </body>
+
+</html>
+
 <script>
+     function apagarSession() {
+        sessionStorage.clear();
+    }
 
-    const ctx1 = document.getElementById('myChart1');
+    let proximaAtualiacao;
+    let proximaAtualiacaoTemp;
+    let proximaAtualiacaoUmi;
 
-    new Chart(ctx1, {
-        type: 'line',
-        data: {
-            labels: ['12:00', '12:30', '13:00', '13:30', '14:00', '14:30'],
-            datasets: [{
-                label: 'Temperatura(ºC)',
-                data: [17, 19, 22, 18, 23, 40],
-                borderWidth: 4,
-                borderColor: '#EE7214',
-                backgroundColor: '#EE7214',
-            },]
-
-        },
-        options: {
-            plugins: {
-                legend: {
-                    labels: {
-                        usePointStyle: true, // Habilita o uso do estilo de ponto na legenda
-                        pointStyle: 'rectRounded', // Define o estilo do ponto como círculo
-                        borderWidth: 4,
-                        boxSizing: 20
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-        }
-    });
-
-    const ctx2 = document.getElementById('myChart2');
-
-    new Chart(ctx2, {
-        type: 'line',
-        data: {
-            labels: ['12:00', '12:30', '13:00', '13:30', '14:00', '14:30'],
-            datasets: [{
-                label: 'Umidade(%)',
-                data: [75, 80, 78, 85, 80, 55], // Novos dados adicionados aqui
-                borderWidth: 4,
-                borderColor: '#0B7F99',
-                backgroundColor: '#0B7F99'
-            },]
-
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-        }
-    });
+    var nomeEstufa = sessionStorage.NOME_ESTUFA;
+    estufaAtual.innerHTML = `<h1>${nomeEstufa}</h1>`
 
     function verificar() {
         var idUsuario = sessionStorage.ID_FUNCIONARIO;
@@ -187,6 +153,302 @@
         }
     }
     verificar()
-</script>
 
-</html>
+    obterDadosGrafico()
+
+    function obterDadosGrafico() {
+        const idEstufa = sessionStorage.ID_ESTUFA;
+        console.log("ID Estufa no sessionStorage:", idEstufa);
+        if (!idEstufa) {
+            console.error("ID da estufa não encontrado na sessionStorage");
+            return;
+        }
+
+        fetch(`/medidas/ultimasTemperatura?idEstufaServer=${idEstufa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    plotarGraficoTemperatura(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        }).catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
+        fetch(`/medidas/ultimasUmidade?idEstufaServer=${idEstufa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    plotarGraficoUmidade(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        }).catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    // Temperatura
+    function plotarGraficoTemperatura(resposta) {
+        console.log('iniciando plotagem do gráfico...');
+
+        let labels = [];
+
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Temperatura',
+                    data: [],
+                    fill: false,
+                    borderWidth: 5,
+                    borderColor: '#EE7214',
+                    backgroundColor: '#EE7214',
+                    tension: 0.5
+                }]
+        };
+
+        console.log('Dados recebidos para plotar no gráfico Temperatura:', resposta);
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.diaHora);
+            dados.datasets[0].data.push(registro.temperatura);
+        }
+
+        console.log('Labels:', labels);
+        console.log('Dados do Dataset:', dados.datasets);
+
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        let myChartTemp = new Chart(
+            document.getElementById(`myChartTemperatura`),
+            config
+        );
+
+        setTimeout(() => atualizarUmi(dados, myChartTemp), 500);
+
+    }
+
+    // Atualização da Temperatura
+    function atualizarTemp(dados, myChartTemp) {
+        const idEstufa = sessionStorage.ID_ESTUFA;
+
+        fetch(`/medidas/atualizacaoTemp?idEstufaServer=${idEstufa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    obterDadosGrafico();
+                    
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+                    if (novoRegistro[0].diaHora == dados.labels[dados.labels.length - 1]) {
+
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].diaHora)
+
+                        console.log("Horário do último dado capturado:")
+                        console.log(dados.labels[dados.labels.length - 1])
+                        
+                    } else {
+                        dados.labels.shift(); 
+                        dados.labels.push(novoRegistro[0].diaHora);
+
+                        dados.datasets[0].data.shift(); 
+                        dados.datasets[0].data.push(novoRegistro[0].temperatura);
+
+                        myChartTemp.update();
+                    }
+
+                    proximaAtualiacaoTemp = setTimeout(() => atualizarTemp(dados, myChartTemp), 500);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+
+                proximaAtualiacaoTemp = setTimeout(() => atualizarTemp(dados, myChartTemp), 500);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+
+    // Umidade
+    function plotarGraficoUmidade(resposta) {
+        console.log('iniciando plotagem do gráfico...');
+
+        let labels = [];
+
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Umidade',
+                    data: [],
+                    fill: false,
+                    borderWidth: 5,
+                    borderColor: '#EE7214',
+                    backgroundColor: '#EE7214',
+                    tension: 0.5
+                }]
+        };
+
+        console.log('Dados recebidos para plotar no gráfico Temperatura:', resposta);
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.diaHora);
+            dados.datasets[0].data.push(registro.umidade);
+        }
+
+        console.log('Labels:', labels);
+        console.log('Dados do Dataset:', dados.datasets);
+
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        let myChartUmi = new Chart(
+            document.getElementById(`myChartUmidade`),
+            config
+        );
+
+        setTimeout(() => atualizarUmi(dados, myChartUmi), 500);
+    }
+
+
+    // Atualização da Umidade
+    function atualizarUmi(dados, myChartUmi) {
+        const idEstufa = sessionStorage.ID_ESTUFA;
+
+        fetch(`/medidas/atualizacaoUmi?idEstufaServer=${idEstufa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    obterDadosGrafico();
+                    
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+                    if (novoRegistro[0].diaHora == dados.labels[dados.labels.length - 1]) {
+
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].diaHora)
+
+                        console.log("Horário do último dado capturado:")
+                        console.log(dados.labels[dados.labels.length - 1])
+                        
+                    } else {
+                    
+                        dados.labels.shift(); 
+                        dados.labels.push(novoRegistro[0].diaHora);
+
+                        dados.datasets[0].data.shift(); 
+                        dados.datasets[0].data.push(novoRegistro[0].umidade);
+
+                        myChartUmi.update();
+                    }
+
+                    proximaAtualiacaoUmi = setTimeout(() => atualizarUmi(dados, myChartUmi), 500);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+
+                proximaAtualiacaoUmi = setTimeout(() => atualizarUmi(dados, myChart), 500);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    function listarKpi() {
+        const idEstufa = sessionStorage.ID_ESTUFA;
+        fetch(`/medidas/listarKpi?idEstufaServer=${idEstufa}`, {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                resposta.json().then((resposta) => {
+                    resposta.forEach((medida) => {
+                        if (medida.temperatura < 11 || medida.temperatura > 30) {
+                            indicadorTemp.innerHTML = `<div class="boxKpi">
+                            <p>Temperatura atual</p>
+                            <div class="kpi" style="background-color: red;">
+                                <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                                <p>${medida.temperatura}°</p>
+                            </div>
+                        </div>`;
+                        } else if (medida.temperatura < 17 || medida.temperatura > 23) {
+                            indicadorTemp.innerHTML = `<div class="boxKpi">
+                            <p>Temperatura atual</p>
+                            <div class="kpi" style="background-color: yellow;">
+                                <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                                <p>${medida.temperatura}°</p>
+                            </div>
+                        </div>`;
+                        } else if (medida.temperatura < 23 || medida.temperatura > 18) {
+                            indicadorTemp.innerHTML = `<div class="boxKpi">
+                            <p>Temperatura atual</p>
+                            <div class="kpi" style="background-color: green;">
+                                <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                                <p>${medida.temperatura}°</p>
+                            </div>
+                        </div>`;
+                        }
+
+                        if (medida.umidade < 40 || medida.umidade > 90) {
+                            indicadorUmi.innerHTML = `<div class="boxKpi">
+                            <p>Umidade atual</p>
+                            <div class="kpi" style="background-color: red;">
+                                <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                                <p>${medida.umidade}%</p>
+                            </div>
+                        </div>`;
+                        } else if (medida.umidade < 60 || medida.umidade > 80) {
+                            indicadorUmi.innerHTML = `<div class="boxKpi">
+                            <p>Umidade atual</p>
+                            <div class="kpi" style="background-color: yellow;">
+                                <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                                <p>${medida.umidade}%</p>
+                            </div>
+                        </div>`;
+                        } else if (medida.umidade < 80 || medida.umidade > 60) {
+                            indicadorUmi.innerHTML = `<div class="boxKpi">
+                            <p>Umidade atual</p>
+                            <div class="kpi" style="background-color: green;">
+                                <img src="./assets/imgs/iconTemp.svg" style="height: 70px; width: 70px;">
+                                <p>${medida.umidade}%</p>
+                            </div>
+                        </div>`;
+                        }
+                    });
+                    proximaAtualizacao = setTimeout(() => listarKpi(), 500);
+                });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+    listarKpi();
+
+
+</script>

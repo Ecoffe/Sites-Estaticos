@@ -65,8 +65,8 @@
                 </div>
                 
                 <div class="tituloestufas">
-                    <div class="nomeEstufa" id="nomeEstufa">
-                        <p>nome estufa</p>
+                    <div id="estufaAtual">
+                        <h1>Estufa</h1>
                     </div>
                     
                 </div>
@@ -86,27 +86,21 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="boxKpi">
-                        <p>Medições do mês</p>
-                        <div class="kpi2">
-                            <p>Temperatura: 35°C</p>
-                            <p>Umidade do ar: 40%</p>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
     </div>
 </body>
 <script>
+    var nomeEstufa = sessionStorage.NOME_ESTUFA;
+    estufaAtual.innerHTML = `<h1>${nomeEstufa}</h1>`
+    
     function verificar() {
         var idUsuario = sessionStorage.ID_USUARIO;
         var nomeUsuario = sessionStorage.NOME_USUARIO;
-        var nomedaEstufa = sessionStorage.NOME_ESTUFA;
 
         if (idUsuario >= 0) {
             nomeEmpresa.innerHTML = `<p>${nomeUsuario}</p>`;
-            nomeEstufa.innerHTML = `<p>${nomedaEstufa}</p>`
         } else {
             window.location = "../index.html";
         }

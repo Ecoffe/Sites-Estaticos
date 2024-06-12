@@ -2,140 +2,102 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Funcionário</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Funcionário</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="./assets/imgs/ico.ico" type="image/x-icon">
 
-    <script src="../js/alerta.js"></script>
+  <script src="../js/alerta.js"></script>
 
 </head>
 
 <body onload="listar(), obterdados()">
-    <div class="header">
-        <div class="container">
-            <a class="titulodash" href="../index.html">ecoffe</a>
-            <div class="nomeFunc" id="nomeFunc">
-                <p>Nome Func</p>
-            </div>
-        </div>
+  <div class="header">
+    <div class="container">
+      <a class="titulodash" href="../index.html">ecoffe</a>
+      <div class="nomeFunc" id="nomeFunc">
+        <p>Nome Func</p>
+      </div>
     </div>
+  </div>
 
-    <div class="leftInfo">
-        <div class="container2">
-          <div class="btnsDash">
-            <div class="leftBtns">
-              <a href="#"><button class="btnshome">Estufas</button></a>
-            </div>
-            <div class="leftBtns">
-              <a href="./dashboard/dashboard.html"
-                ><button class="btnsdashboards">Dashboards</button></a
-              >
-            </div>
-            <div class="leftBtns">
-              <a href="./dasboardmensal/dashboardmensal.html"
-                ><button class="btnsmensal">Dados mensais</button></a
-              >
-            </div>
-            <div class="leftBtns">
-              <a href="./notificacoes/notify.html"
-                ><button class="btnsnotify">Notificações</button></a
-              >
-            </div>
-            <div class="leftBtns">
-              <a href="./config/config.html"
-                ><button class="btnsconfig">Configurações</button></a
-              >
-            </div>
-          </div>
-          <div class="btnSair">
-            <a href="../login/login.html"
-              ><button class="btn" onclick="apagarSession()">
-                Sair da conta
-              </button></a
-            >
-          </div>
+  <div class="leftInfo">
+    <div class="container2">
+      <div class="btnsDash">
+        <div class="leftBtns">
+          <a href="#"><button class="btnshome">Estufas</button></a>
+        </div>
+        <div class="leftBtns">
+          <a href="./dashboard/dashboard.html"><button class="btnsdashboards">Dashboards</button></a>
+        </div>
+        <div class="leftBtns">
+          <a href="./dasboardmensal/dashboardmensal.html"><button class="btnsmensal">Dados mensais</button></a>
+        </div>
+        <div class="leftBtns">
+          <a href="./notificacoes/notify.html"><button class="btnsnotify">Notificações</button></a>
+        </div>
+        <div class="leftBtns">
+          <a href="./config/config.html"><button class="btnsconfig">Configurações</button></a>
         </div>
       </div>
-  
-      <div class="dashboard">
-        <div class="container3">
-          <div class="box">
+      <div class="btnSair">
+        <a href="../login/login.html"><button class="btn" onclick="apagarSession()">
+            Sair da conta
+          </button></a>
+      </div>
+    </div>
+  </div>
 
-             <!-- POPUP DE ALERTA -->
-             <div id="alertaUmi">
-            </div>
-             <div id="alerta">
-            </div>
+  <div class="dashboard">
+    <div class="container3">
+      <div class="box">
 
-            <h1>Visão geral de suas estufas</h1>
-            <div class="conteudo">
-              <!-- <div class="indicadores">
-                          <div class="metrica">
-                              <div class="indi1">
-                                  <p>Crítico</p>
-                              </div>
-                              <div class="critico">
-                                  <p> >30°C ou &lt;18°C </p>
-                                  <p>&lt;40% ou >80%</p>
-                              </div>
-                          </div>
-                          <div class="metrica">
-                              <div class="indi2">
-                                  <p>Perigoso</p>
-                              </div>
-                              <div class="perigoso">
-                                  <p>24°C a 30°C</p>
-                                  <p>40% a 60%</p>
-                              </div>
-                          </div>
-                          <div class="metrica">
-                              <div class="indi3">
-                                  <p>Normal</p>
-                              </div>
-                              <div class="normal">
-                                  <p>18°C a 23°C</p>
-                                  <p>61% a 80%</p>
-                              </div>
-                          </div>
-                      </div> -->
-              <div class="estufas">
-                <div class="conjunto1" id="estufasA"></div>
-                <div class="conjunto2">
-                  
-                </div>
-              </div>
+        <!-- POPUP DE ALERTA -->
+        <div id="alertaUmi">
+        </div>
+        <div id="alerta">
+        </div>
+
+        <h1>Visão geral de suas estufas</h1>
+        <div class="conteudo">
+
+          <div class="estufas">
+            <div class="conjunto1" id="estufasA"></div>
+            <div class="conjunto2">
+
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
 </body>
 
 <script>
 
-    function verificar() {
-        var idUsuario = sessionStorage.ID_FUNCIONARIO;
-        var nomeUsuario = sessionStorage.NOME_FUNCIONARIO;
+  function verificar() {
+    var idUsuario = sessionStorage.ID_FUNCIONARIO;
+    var nomeUsuario = sessionStorage.NOME_FUNCIONARIO;
 
-        if (idUsuario >= 0) {
-            nomeFunc.innerHTML = `<p>${nomeUsuario}</p>`
-        } else {
-          window.location = "../index.html"
-        }
+    if (idUsuario >= 0) {
+      nomeFunc.innerHTML = `<p>${nomeUsuario}</p>`
+    } else {
+      window.location = "../index.html"
     }
-    verificar()
-    
-    function apagarSession() {
+  }
+  verificar()
+
+  function apagarSession() {
     sessionStorage.clear();
   }
 
   var listaEstufas = [];
 
   function listar() {
-    var fkEmpresaServer = sessionStorage.FKEMPRESA;
+    var fkEmpresaServer = sessionStorage.FK_EMPRESA;
     fetch(`/estufas/listar?fkEmpresaServer=${fkEmpresaServer}`, {
       method: "GET",
     })
@@ -152,7 +114,7 @@
   }
 
   function consultar(idEstufa) {
-    var fkEmpresaServer = sessionStorage.FKEMPRESA;
+    var fkEmpresaServer = sessionStorage.FK_EMPRESA;
     fetch(
       `/estufas/consultar?idEstufaServer=${idEstufa}&fkEmpresaServer=${fkEmpresaServer}`,
       {

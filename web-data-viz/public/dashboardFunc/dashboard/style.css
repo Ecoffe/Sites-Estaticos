@@ -1,491 +1,554 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 body {
-    background-color: #F9E8D9;
-    background-image: url(./assets/imgs/fundo.svg);
-    background-repeat: no-repeat;
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
+  background-color: #F9E8D9;
+  background-image: url(./assets/imgs/fundo.svg);
+  background-repeat: no-repeat;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .header {
-    width: 100%;
-    border-bottom: 1px black solid;
+  width: 100%;
+  border-bottom: 1px black solid;
 }
 
 .container {
-    background-color: #f7b787;
-    width: 100%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    height: 50px;
-    justify-content: space-around;
+  background-color: #f7b787;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  justify-content: space-around;
 }
 
 .titulo {
-    color: black;
-    width: fit-content;
-    font-weight: bold;
-    font-size: 24px;
-    align-items: start;
-    flex-direction: row;
-    width: 800px;
+  color: black;
+  width: fit-content;
+  font-weight: bold;
+  font-size: 24px;
+  align-items: start;
+  flex-direction: row;
+  width: 800px;
 
 }
 
 .leftInfo {
-    width: 277px;
-    margin-left: 10px;
-    margin-top: 60px;
-    position: absolute;
+  width: 277px;
+  margin-left: 10px;
+  margin-top: 60px;
+  position: absolute;
 }
 
 .leftInfo .container2 {
-    display: flex;
-    flex-direction: column;
-    height: 535px;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  height: 535px;
+  justify-content: space-between;
 }
 
 .leftInfo .container2 .leftBtns {
-    font-weight: 700;
-    margin-top: 5px;
+  font-weight: 700;
+  margin-top: 5px;
 }
 
 .leftInfo .container2 .btnSair button {
-    height: 62px;
-    width: 275px;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: start;
-    background-color: #FFFFF4;
-    border-radius: 15px;
-    border: none;
-    background-image: url(./assets/imgs/sair.png);
-    background-repeat: no-repeat;
-    background-position: 15px 18px;
-    padding-left: 50px;
-    background-size: 25px;
-    cursor: pointer;
+  height: 62px;
+  width: 275px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: start;
+  background-color: #FFFFF4;
+  border-radius: 15px;
+  border: none;
+  background-image: url(./assets/imgs/sair.png);
+  background-repeat: no-repeat;
+  background-position: 15px 18px;
+  padding-left: 50px;
+  background-size: 25px;
+  cursor: pointer;
 }
 
 .leftInfo .container2 .leftBtns .btnshome {
-    height: 62px;
-    width: 275px;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: start;
-    background-color: #FFFFF4;
-    border-radius: 15px;
-    border: none;
-    background-image: url(./assets/imgs/iconDash.svg);
-    background-repeat: no-repeat;
-    background-position: 15px 19px;
-    padding-left: 50px;
-    cursor: pointer;
+  height: 62px;
+  width: 275px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: start;
+  background-color: #FFFFF4;
+  border-radius: 15px;
+  border: none;
+  background-image: url(./assets/imgs/iconDash.svg);
+  background-repeat: no-repeat;
+  background-position: 15px 19px;
+  padding-left: 50px;
+  cursor: pointer;
 }
 
 .leftInfo .container2 .leftBtns .btnsdashboards {
-    height: 62px;
-    width: 275px;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: start;
-    background-color: #f7b787;
-    border-radius: 15px;
-    border: none;
-    background-image: url(./assets/imgs/chart.svg);
-    background-repeat: no-repeat;
-    background-position: 15px 18px;
-    padding-left: 50px;
-    cursor: pointer;
+  height: 62px;
+  width: 275px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: start;
+  background-color: #f7b787;
+  border-radius: 15px;
+  border: none;
+  background-image: url(./assets/imgs/chart.svg);
+  background-repeat: no-repeat;
+  background-position: 15px 18px;
+  padding-left: 50px;
+  cursor: pointer;
 }
 
 .leftInfo .container2 .leftBtns .btnsmensal {
-    height: 62px;
-    width: 275px;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: start;
-    background-color: #FFFFF4;
-    border-radius: 15px;
-    border: none;
-    background-image: url(./assets/imgs/calendario.svg);
-    background-repeat: no-repeat;
-    background-position: 15px 18px;
-    padding-left: 50px;
-    cursor: pointer;
+  height: 62px;
+  width: 275px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: start;
+  background-color: #FFFFF4;
+  border-radius: 15px;
+  border: none;
+  background-image: url(./assets/imgs/calendario.svg);
+  background-repeat: no-repeat;
+  background-position: 15px 18px;
+  padding-left: 50px;
+  cursor: pointer;
 }
 
 .leftInfo .container2 .leftBtns .btnsnotify {
-    height: 62px;
-    width: 275px;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: start;
-    background-color: #FFFFF4;
-    border-radius: 15px;
-    border: none;
-    background-image: url(./assets/imgs/iconNot.svg);
-    background-repeat: no-repeat;
-    background-position: 15px 18px;
-    padding-left: 50px;
-    cursor: pointer;
+  height: 62px;
+  width: 275px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: start;
+  background-color: #FFFFF4;
+  border-radius: 15px;
+  border: none;
+  background-image: url(./assets/imgs/iconNot.svg);
+  background-repeat: no-repeat;
+  background-position: 15px 18px;
+  padding-left: 50px;
+  cursor: pointer;
 }
 
 .leftInfo .container2 .leftBtns .btnscadastrar {
-    height: 62px;
-    width: 275px;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: start;
-    background-color: #FFFFF4;
-    border-radius: 15px;
-    border: none;
-    background-image: url(./assets/imgs/iconFunc.svg);
-    background-repeat: no-repeat;
-    padding-left: 50px;
-    cursor: pointer;
-    background-position: 15px 18px;
+  height: 62px;
+  width: 275px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: start;
+  background-color: #FFFFF4;
+  border-radius: 15px;
+  border: none;
+  background-image: url(./assets/imgs/iconFunc.svg);
+  background-repeat: no-repeat;
+  padding-left: 50px;
+  cursor: pointer;
+  background-position: 15px 18px;
 }
 
 .leftInfo .container2 .leftBtns .btnsconfig {
-    height: 62px;
-    width: 275px;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: start;
-    background-color: #FFFFF4;
-    border-radius: 15px;
-    border: none;
-    background-image: url(./assets/imgs/iconConfig.svg);
-    background-repeat: no-repeat;
-    background-position: 15px 19px;
-    padding-left: 50px;
-    cursor: pointer;
+  height: 62px;
+  width: 275px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: start;
+  background-color: #FFFFF4;
+  border-radius: 15px;
+  border: none;
+  background-image: url(./assets/imgs/iconConfig.svg);
+  background-repeat: no-repeat;
+  background-position: 15px 19px;
+  padding-left: 50px;
+  cursor: pointer;
 }
 
 .dashboard {
-    display: flex;
-    flex-direction: row-reverse;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .dashboard .container3 {
-    width: 1200px;
-    height: 595px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
+  width: 1200px;
+  height: 595px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
 }
 
 .dashboard .container3 .box {
-    width: 1160px;
-    height: 590px;
-    background-color: #FFFFF4;
-    border-radius: 15px;
-    padding: 20px;
-    padding-top: 5px;
-    margin-top: 50px;
+  width: 1160px;
+  height: 590px;
+  background-color: #FFFFF4;
+  border-radius: 15px;
+  padding: 20px;
+  padding-top: 5px;
+  margin-top: 50px;
 }
 
 .tabela {
-    display: flex;
-    justify-content: space-between;
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .dashboard .container3 .box select {
-    background-color: #FFFFF4;
-    height: 30px;
-    border-radius: 10px;
+  background-color: #FFFFF4;
+  height: 30px;
+  border-radius: 10px;
 
 }
 
 .dashboard .container3 .box .indicadores {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
 }
 
 .dashboard .container3 .box .indicadores .boxKpi p {
-    margin: 0;
-    font-weight: bold;
+  margin: 0;
+  font-weight: bold;
 }
 
 .dashboard .container3 .box .indicadores .boxKpi .kpi {
-    width: 200px;
-    height: 115px;
-    background-color: red;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid rgb(0, 0, 0);
-    border-radius: 15px;
+  width: 200px;
+  height: 115px;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 15px;
 }
 
 .dashboard .container3 .box .indicadores .boxKpi .kpi12 {
-    width: 200px;
-    height: 115px;
-    background-color: green;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid rgb(0, 0, 0);
-    border-radius: 15px;
+  width: 200px;
+  height: 115px;
+  background-color: green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 15px;
 }
 
 .dashboard .container3 .box .indicadores .boxKpi .kpi2 {
-    width: 200px;
-    height: 115px;
-    background-color: red;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid rgb(0, 0, 0);
-    border-radius: 15px;
+  width: 200px;
+  height: 115px;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 15px;
 }
 
 .dashboard .container3 .box .indicadores .boxKpi .kpi22 {
-    width: 200px;
-    height: 115px;
-    background-color: green;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid rgb(0, 0, 0);
-    border-radius: 15px;
+  width: 200px;
+  height: 115px;
+  background-color: green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 15px;
 }
 
 .dashboard .container3 .box .indicadores .boxKpi .kpi p {
-    font-size: 45px;
+  font-size: 45px;
 }
 
 .dashboard .container3 .box .indicadores .boxKpi .kpi2 p {
-    font-size: 45px;
+  font-size: 45px;
 }
 
 .dashboard .container3 .box .indicadores .boxKpi .kpi12 p {
-    font-size: 45px;
+  font-size: 45px;
 }
 
 .dashboard .container3 .box .indicadores .boxKpi .kpi22 p {
-    font-size: 45px;
+  font-size: 45px;
 }
 
 .dashboard .container3 .box .indicadores .legendaKPI {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 12px;
 }
 
 .dashboard .container3 .box .indicadores .legendaKPI .legenda {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .dashboard .container3 .box .indicadores .legendaKPI .legenda p {
-    margin: 8px
+  margin: 8px
 }
 
 .dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor1 {
-    height: 20px;
-    width: 40px;
-    border-radius: 15px;
-    border: 4px solid red;
-    background-color: red;
-    position: relative;
+  height: 20px;
+  width: 40px;
+  border-radius: 15px;
+  border: 4px solid red;
+  background-color: red;
+  position: relative;
 }
 
 .dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor1:hover::after {
-    content: ">30°C ou <18°C <40% ou >80%";
-    display: block;
-    position: absolute;
-    top: -100%;
-    right: 150%;
-    margin-left: 0px;
-    background-color: #fff;
-    padding: 5px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    width: 120px;
-    text-align: center;
+  content: ">30°C ou <18°C <40% ou >80%";
+  display: block;
+  position: absolute;
+  top: -100%;
+  right: 150%;
+  margin-left: 0px;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  width: 120px;
+  text-align: center;
 }
 
 .dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor2 {
-    height: 20px;
-    width: 40px;
-    border-radius: 15px;
-    border: 4px solid yellow;
-    background-color: yellow;
-    position: relative;
+  height: 20px;
+  width: 40px;
+  border-radius: 15px;
+  border: 4px solid yellow;
+  background-color: yellow;
+  position: relative;
 }
 
 .dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor2:hover::after {
-    content: "24°C a 30°C 40% a 60%";
-    display: block;
-    position: absolute;
-    top: -100%;
-    right: 150%;
-    margin-left: 0px;
-    background-color: #fff;
-    padding: 5px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    width: 120px;
-    text-align: center;
+  content: "24°C a 30°C 40% a 60%";
+  display: block;
+  position: absolute;
+  top: -100%;
+  right: 150%;
+  margin-left: 0px;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  width: 120px;
+  text-align: center;
 }
 
 .dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor4 {
-    height: 20px;
-    width: 40px;
-    border-radius: 15px;
-    border: 4px solid green;
-    background-color: green;
-    position: relative;
+  height: 20px;
+  width: 40px;
+  border-radius: 15px;
+  border: 4px solid green;
+  background-color: green;
+  position: relative;
 }
 
 .dashboard .container3 .box .indicadores .legendaKPI .legenda .legColor4:hover::after {
-    content: "18°C a 23°C 61% a 80%";
-    display: block;
-    position: absolute;
-    top: -100%;
-    right: 150%;
-    margin-left: 0px;
-    background-color: #fff;
-    padding: 5px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    width: 120px;
-    text-align: center;
+  content: "18°C a 23°C 61% a 80%";
+  display: block;
+  position: absolute;
+  top: -100%;
+  right: 150%;
+  margin-left: 0px;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  width: 120px;
+  text-align: center;
 }
 
 .tituloestufas {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
 }
 
 
+.reguaIndicadores {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+  margin-top: 5px;
+  background-color: #f7b787;
+  scale: .6;
+  position: absolute;
+  margin-left: 170px;
+  top: 50px;
+}
+
+.reguaIndicadores .titulo-legenda {
+  width: 100%;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  width: fit-content;
+  margin: 10px 20px;
+  align-self: center;
+}
+
+.parametros-alerta {
+  display: flex;
+  width: 100%;
+}
+
+.item-regua {
+  width: 20%;
+  text-align: center;
+  height: 80px;
+  /*aqui a altura dos coloridos*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+}
+
+.item-regua p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.item-regua p:nth-child(2) {
+  font-weight: 800;
+}
+
 .perigo-frio {
-    background-color: #ff3c00;
-  }
-  
-  .perigo-quente {
-    background-color: #ff3c00;
-  }
-  
-  .alerta-frio {
-    background-color: #ffee58;
-  }
-  
-  .alerta-quente {
-    background-color: #ffee58;
-  }
-  
-  .ideal {
-    background-color: #9ccc65;
-  }
+  background-color: #ff3c00;
+}
 
-   
+.perigo-quente {
+  background-color: #ff3c00;
+}
 
-  /* popup de alerta */
+.alerta-frio {
+  background-color: #ffee58;
+}
+
+.alerta-quente {
+  background-color: #ffee58;
+}
+
+.ideal {
+  background-color: #9ccc65;
+}
+
+
+
+/* popup de alerta */
 #alerta {
-    position: absolute;
-    /* background-color: red; */
-    right: 70px;
-    bottom: 30px;
-    width: 250px;
-    height: 100px;
+  position: absolute;
+  right: 70px;
+  bottom: 30px;
+  width: 250px;
+  height: 100px;
+}
+
+.mensagem-alarme {
+  background-color: #f7b787;
+  border-radius: 5px;
+  width: 300px;
+  height: 80px;
+  margin: 10px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.mensagem-alarme h3,
+small {
+  font-size: 12px;
+  margin: 0;
+}
+
+.mensagem-alarme .informacao {
+  width: 66%;
+}
+
+.alarme-sino {
+  width: 48px;
+  height: 48px;
+  animation-name: bell;
+  animation-duration: 4s;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
+  background-size: cover;
+  animation-iteration-count: infinite;
+  scale: 0.7;
+}
+
+@keyframes bell {
+  0% {
+    transform: rotate(25deg)
   }
 
-  .mensagem-alarme {
-    background-color: #f7b787;
-    border-radius: 5px;
-    width: 300px;
-    height: 80px;
-    margin: 10px;
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  
-  .mensagem-alarme h3, small {
-    font-size: 12px;
-    margin: 0;
-  }
-  
-  .mensagem-alarme .informacao {
-    width: 66%;
-  }
-  
-  .alarme-sino {
-    width: 48px;
-    height: 48px;
-    animation-name: bell;
-    animation-duration: 4s;
-    background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
-    background-size: cover;
-    animation-iteration-count: infinite;
-    scale: 0.7;
-  }
-  
-  @keyframes bell {
-    0%   {transform: rotate(25deg)}
-    25%  {transform: rotate(-25deg)}
-    50%  {transform: rotate(25deg)}
-    75%  {transform: rotate(-25deg)}
-    100% {transform: rotate(25deg)}
+  25% {
+    transform: rotate(-25deg)
   }
 
-  .cor-alerta {
-    width: 13%;
-    height: 30%;
-    border-radius: 50%;
-    display: inline-block;
+  50% {
+    transform: rotate(25deg)
   }
 
-  #alertaUmi {
-    position: absolute;
-    /* background-color: rgb(0, 204, 255); */ 
-    right: 70px;
-    bottom: 140px;
-    width: 250px;
-    height: 100px;
+  75% {
+    transform: rotate(-25deg)
   }
 
-  .mensagem-alarmeumi {
-    /* background-color: #527853; */
-    background-color: #f7b787;
-    border-radius: 5px;
-    width: 300px;
-    height: 80px;
-    margin: 10px;
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+  100% {
+    transform: rotate(25deg)
   }
+}
 
-  .mensagem-alarmeumi h3, small {
-    font-size: 12px;
-    margin: 0;
-  }
+.cor-alerta {
+  width: 13%;
+  height: 30%;
+  border-radius: 50%;
+  display: inline-block;
+}
 
-  .mensagem-alarmeumi .informacao {
-    width: 66%;
-  }
+#alertaUmi {
+  position: absolute;
+  /* background-color: rgb(0, 204, 255); */
+  right: 70px;
+  bottom: 140px;
+  width: 250px;
+  height: 100px;
+}
+
+.mensagem-alarmeumi {
+  /* background-color: #527853; */
+  background-color: #f7b787;
+  border-radius: 5px;
+  width: 300px;
+  height: 80px;
+  margin: 10px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.mensagem-alarmeumi h3,
+small {
+  font-size: 12px;
+  margin: 0;
+}
+
+.mensagem-alarmeumi .informacao {
+  width: 66%;
+}
