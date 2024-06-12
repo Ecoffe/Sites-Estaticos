@@ -1,8 +1,29 @@
 var medidaModel = require("../models/medidaModel");
 
+function lingua(req, res) {
+
+    medidaModel.lingua()
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
+
 function listarKpi(req, res) {
     const idEstufa = req.query.idEstufaServer;
-    
+
     medidaModel.listarKpi(idEstufa).then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
@@ -51,17 +72,22 @@ function buscarUltimasMedidasUmidade(req, res) {
 
 function buscarMensal(req, res) {
 
-    medidaModel.buscarMensal().then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado)
-        } else {
-            res.status(204).send("nenhum resultado encontrado")
-        }
-    }).catch(function (erro) {
-        console.log(erro)
-        console.log("Houve um erro ao pegar as meidas.", erro.sqlMessage)
-        res.status(500).json(erro.sqlMessage)
-    })
+    const idEstufa = req.query.idEstufaServer;
+    if (!idEstufa) {
+        return res.status(400).send("idEstufaServer não fornecido");
+    } else {
+        medidaModel.buscarMensal(idEstufa).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado)
+            } else {
+                res.status(204).send("nenhum resultado encontrado")
+            }
+        }).catch(function (erro) {
+            console.log(erro)
+            console.log("Houve um erro ao pegar as meidas.", erro.sqlMessage)
+            res.status(500).json(erro.sqlMessage)
+        })
+    }
 }
 
 function buscarMedidasEmTempoReal(req, res) {
@@ -85,7 +111,7 @@ function buscarMedidasEmTempoReal(req, res) {
 
 function atualizacaoUmidade(req, res) {
     const idEstufa = req.query.idEstufaServer;
-    
+
     medidaModel.atualizacaoUmidade(idEstufa).then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
@@ -95,7 +121,7 @@ function atualizacaoUmidade(req, res) {
 
 function atualizacaoTemperatura(req, res) {
     const idEstufa = req.query.idEstufaServer;
-    
+
     medidaModel.atualizacaoTemperatura(idEstufa).then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
@@ -104,16 +130,22 @@ function atualizacaoTemperatura(req, res) {
 }
 
 function mensalKpi(req, res) {
-    medidaModel.buscarMensal().then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado");
-        }
-    }).catch(function (erro) {
-        console.log("Houve um erro ao pegar as medidas.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
+
+    const idEstufa = req.query.idEstufaServer;
+    if (!idEstufa) {
+        return res.status(400).send("idEstufaServer não fornecido");
+    } else {
+        medidaModel.mensalKpi(idEstufa).then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado");
+            }
+        }).catch(function (erro) {
+            console.log("Houve um erro ao pegar as medidas.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
 }
 
 function alertaBanco(req, res) {
@@ -174,11 +206,12 @@ function alertaBancoUmi(req, res) {
 }
 
 module.exports = {
+    lingua,
     buscarUltimasMedidasTemperatura,
     buscarUltimasMedidasUmidade,
     listarKpi,
     buscarMensal,
-    buscarMedidasEmTempoReal, 
+    buscarMedidasEmTempoReal,
     atualizacaoUmidade,
     atualizacaoTemperatura,
     mensalKpi,
