@@ -140,7 +140,7 @@ function plotarGraficoMensal(resposta) { // Recebendo a resposta como parâmetro
                 label: 'Umidade',
                 data: [],
                 fill: false,
-                borderWidth: 4,
+                borderWidth: 0,
                 borderColor: '#527853',
                 backgroundColor: '#527853',
                 tension: 0.5
@@ -149,7 +149,7 @@ function plotarGraficoMensal(resposta) { // Recebendo a resposta como parâmetro
                 label: 'temperatura',
                 data: [],
                 fill: false,
-                borderWidth: 4,
+                borderWidth: 0,
                 borderColor: '#EE7214',
                 backgroundColor: '#EE7214',
                 tension: 0.5
@@ -178,6 +178,32 @@ function plotarGraficoMensal(resposta) { // Recebendo a resposta como parâmetro
     );
 }
     buscarMensal()
+
+    function mensalKpi() {
+    fetch(`/medidas/mensalKpi`, {
+        method: "GET",
+    })
+    .then(function (resposta) {
+        return resposta.json();
+    })
+    .then(function (dados) {
+        console.log("Dados recebidos:", dados);
+        // Aqui você pode manipular os dados e exibi-los na página
+        // Por exemplo, atualizando o conteúdo de um elemento HTML
+        // var resultadoDiv = document.getElementById("resultado");
+        // resultadoDiv.innerHTML = `
+        //     Mês: ${dados[0].mes}<br>
+        //     Temperatura Máxima: ${dados[0].tempMax}<br>
+        //     Umidade Mínima: ${dados[0].umidMin}
+        // `;
+    })
+    .catch(function (erro) {
+        console.log(`#ERRO: ${erro}`);
+    });
+}
+
+
+    mensalKpi()
 
 </script>
 

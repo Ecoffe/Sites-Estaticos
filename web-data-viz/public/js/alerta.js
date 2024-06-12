@@ -10,6 +10,7 @@ function obterdados(idEstufa) {
 
                     alertar(resposta, idEstufa);
                     alertar2(resposta, idEstufa);
+                    alertare(resposta, idEstufa);
                 });
             } else {
                 console.error(`Nenhum dado encontrado para o id ${idEstufa} ou erro na API`);
