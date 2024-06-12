@@ -2,6 +2,10 @@ var express = require("express");
 var router = express.Router();
 var medidaController = require("../controllers/medidaController");
 
+router.post("/lingua", function (req, res) {
+    medidaController.lingua(req, res);
+});
+
 router.get("/ultimasTemperatura", function (req, res) {
     medidaController.buscarUltimasMedidasTemperatura(req, res);
 });
