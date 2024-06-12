@@ -63,7 +63,12 @@
                 <h1>Configurações</h1>
                 <div class="config">
                     <div class="menu">
-
+                        <div onclick="acessibilidade()" class="buttonConfig">
+                            <p>Informações adicionais</p>
+                        </div>
+                        <div onclick="contato()" class="buttonConfig">
+                            <p>Contato</p>
+                        </div>
                     </div>
                     <div class="conteudo">
                         <div class="infor" id="infor">
@@ -99,6 +104,18 @@
                         <div class="acessi" id="acessi" style="display: none;">
                             <h2>acessibilidade</h2>
                         </div>
+
+                        <div class="contato" id="contato" style="display: none;">
+                            <h2>Contato</h2>
+                            <div>
+                                <div class="conteudo">
+                                    <a href="https://ecoffe.atlassian.net/servicedesk/customer/portal/1"
+                                        target="_blank"><button>Entre em contato com empresa</button></a>
+                                    <a href="https://bandteccom-my.sharepoint.com/:b:/g/personal/naomi_calisto_sptech_school/EWza2zZ9EklIs63EdN6CnVABG4ZapVPXO-g3v2PzmDSurA?e=hv3bvu"
+                                        target="_blank"><button>Manual de instalação</button></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -113,14 +130,19 @@
         sessionStorage.clear();
     }
 
-    function info() {
+    function acessibilidade() {
+        var ctt = document.getElementById("contato")
         acessi.style.display = 'none';
         infor.style.display = 'block';
+        ctt.style.display = 'none';
     }
 
-    function acessibilidade() {
+    function contato() {
+        var ctt = document.getElementById("contato")
+
+        acessi.style.display = 'none';
         infor.style.display = 'none';
-        acessi.style.display = 'block';
+        ctt.style.display = 'block';
     }
 
     function inserirAdicional() {

@@ -102,7 +102,7 @@ function mensalKpi(idEstufa) {
     return database.executar(instrucaoSql);
 }
 
-<<<<<<< HEAD
+
 function alertaBanco(temp, descricao) {
     var instrucaoSql = `
     insert into notificacoes(descricao, temperatura) values ('${descricao}', ${temp});
@@ -123,14 +123,6 @@ function alertaBancoUmi(umid, descricao) {
         buscarUltimasMedidasTemperatura,
         buscarUltimasMedidasUmidade,
         listarKpi,
-=======
-
-module.exports = {
-    lingua,
-    buscarUltimasMedidasTemperatura,
-    buscarUltimasMedidasUmidade,
-    listarKpi,
->>>>>>> 70c46899a28eb709a91e1b33d4d44e41182f231a
     buscarMensal,
     buscarMedidasEmTempoReal,
     atualizacaoUmidade,

@@ -452,3 +452,19 @@ a {
   .mensagem-alarmeumi .informacao {
     width: 66%;
   }
+
+  .conteudo button{
+    font-family: 'Poppins', sans-serif;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    margin-top: 9px;
+    font-weight: 700;
+    font-size: 14px;
+    border: 2px solid black;
+    margin-left: 10px;
+  }
+
+  .conteudo button:hover{
+    cursor: pointer;
+  }
