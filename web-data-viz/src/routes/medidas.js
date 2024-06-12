@@ -34,4 +34,12 @@ router.get("/mensalKpi", function (req, res) {
     medidaController.mensalKpi(req, res)
 })
 
+router.post("/alertaBanco", function (req,res) {
+    medidaController.alertaBanco(req, res)
+})
+
+router.post("/alertaBancoUmi", function (req,res) {
+    medidaController.alertaBancoUmi(req, res)
+})
+
 module.exports = router;

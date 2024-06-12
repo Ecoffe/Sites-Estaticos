@@ -141,8 +141,8 @@ function alertar2(resposta, idEstufa) {
         muito_quente: 91,
         quente: 90,
         idealmax: 80,
-        idealmin: 61,
-        frio: 60,
+        idealmin: 60,
+        frio: 59,
         muito_frio: 40
     };
 
@@ -244,3 +244,8 @@ function atualizacaoPeriodica() {
     setTimeout(atualizacaoPeriodica, 2000);
 }
 
+setInterval(() => {
+    transformarEmDivUmi()
+    transformarEmDiv()
+    obterdados
+}, 1000);

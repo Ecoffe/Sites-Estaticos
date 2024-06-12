@@ -65,7 +65,22 @@ function mensalKpi() {
     return database.executar(instrucaoSql);
 }
 
-    
+function alertaBanco(temp, descricao) {
+    var instrucaoSql = `
+    insert into notificacoes(descricao, temperatura) values ('${descricao}', ${temp});
+    `
+
+    return database.executar(instrucaoSql)
+}
+
+function alertaBancoUmi(umid, descricao) {
+    var instrucaoSql = `
+    insert into notificacoes(descricao, umidade) values ('${descricao}', ${umid});
+    `
+
+    return database.executar(instrucaoSql)
+} 
+
     module.exports = {
         buscarUltimasMedidasTemperatura,
         buscarUltimasMedidasUmidade,
@@ -74,5 +89,7 @@ function mensalKpi() {
     buscarMedidasEmTempoReal,
     atualizacaoUmidade,
     atualizacaoTemperatura,
-    mensalKpi
+    mensalKpi,
+    alertaBanco,
+    alertaBancoUmi
 }

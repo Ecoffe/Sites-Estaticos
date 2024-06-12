@@ -116,6 +116,62 @@ function mensalKpi(req, res) {
     });
 }
 
+function alertaBanco(req, res) {
+    var temp = req.body.tempServer
+    var descricao = req.body.descricaoServer
+
+    if (temp == undefined) {
+        res.status(400).send("temp está undefined!");
+    } else if (descricao == undefined) {
+        res.status(400).send("A descricao está undefined!");
+    } else {
+
+        medidaModel.alertaBanco(temp, descricao)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
+
+function alertaBancoUmi(req, res) {
+    var umid = req.body.umidServer
+    var descricao = req.body.descricaoServer
+
+    if (umid == undefined) {
+        res.status(400).send("umid está undefined!");
+    } else if (descricao == undefined) {
+        res.status(400).send("A descricao está undefined!");
+    } else {
+
+        medidaModel.alertaBanco(umid, descricao)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
 
 module.exports = {
     buscarUltimasMedidasTemperatura,
@@ -125,5 +181,7 @@ module.exports = {
     buscarMedidasEmTempoReal, 
     atualizacaoUmidade,
     atualizacaoTemperatura,
-    mensalKpi
+    mensalKpi,
+    alertaBanco,
+    alertaBancoUmi
 }

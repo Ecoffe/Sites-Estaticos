@@ -217,68 +217,72 @@
 
 <script>
 
-// function obterdados(idEstufa) {
-//     fetch(`/medidas/tempo-real/${idEstufa}`)
-//         .then(resposta => {
-//             if (resposta.status == 200) {
-//                 resposta.json().then(resposta => {
+  // function obterdados(idEstufa) {
+  //     fetch(`/medidas/tempo-real/${idEstufa}`)
+  //         .then(resposta => {
+  //             if (resposta.status == 200) {
+  //                 resposta.json().then(resposta => {
 
-//                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+  //                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-//                     alertar(resposta, idEstufa);
-//                     alertar2(resposta, idEstufa);
-//                     alertare(resposta, idEstufa);
-//                 });
-//             } else {
-//                 console.error(`Nenhum dado encontrado para o id ${idEstufa} ou erro na API`);
-//             }
-//         })
-//         .catch(function (error) {
-//             console.error(`Erro na obtenção dos dados do estufa p/ gráfico: ${error.message}`);
-//         });
-// }
+  //                     alertar(resposta, idEstufa);
+  //                     alertar2(resposta, idEstufa);
+  //                     alertare(resposta, idEstufa);
+  //                 });
+  //             } else {
+  //                 console.error(`Nenhum dado encontrado para o id ${idEstufa} ou erro na API`);
+  //             }
+  //         })
+  //         .catch(function (error) {
+  //             console.error(`Erro na obtenção dos dados do estufa p/ gráfico: ${error.message}`);
+  //         });
+  // }
 
-function alertare(resposta, idEstufa) {
+  function alertare(resposta, idEstufa) {
     var temp = resposta[0].temperatura;
 
     var grauDeAviso = '';
 
     //temperatura
     var limites = {
-        muito_quente: 31,
-        quente: 24,
-        idealmax: 23,
-        idealmin: 18,
-        frio: 17,
-        muito_frio: 10
+      muito_quente: 31,
+      quente: 24,
+      idealmax: 23,
+      idealmin: 18,
+      frio: 17,
+      muito_frio: 10
     };
 
     var classe_temperatura = 'cor-alerta';
 
     if (temp >= limites.muito_quente) {
 
-        grauDeAvisoCor = 'red'
+      grauDeAvisoCor = 'red'
     }
     else if (temp < limites.muito_quente && temp >= limites.quente) {
 
-        grauDeAvisoCor = 'yellow'
+      grauDeAvisoCor = 'yellow'
     }
     else if (temp < limites.idealmax && temp > limites.idealmin) {
-        classe_temperatura = 'cor-alerta ideal';
+      grauDeAvisoCor = 'green';
     }
     else if (temp <= limites.frio && temp > limites.muito_frio) {
 
-        grauDeAvisoCor = 'yellow'
+      grauDeAvisoCor = 'yellow'
     }
     else if (temp <= limites.muito_frio) {
 
-        grauDeAvisoCor = 'red'
+      grauDeAvisoCor = 'red'
     }
 
     var testee = document.getElementById(`testee1`);
     testee.style.backgroundColor = `${grauDeAvisoCor}`;
+    if (grauDeAvisoCor == 'yellow' || grauDeAvisoCor == 'green') {
+      testee.style.color = `black`;
 
-}
+    }
+
+  }
 
 
 </script>

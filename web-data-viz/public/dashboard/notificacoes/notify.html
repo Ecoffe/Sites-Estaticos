@@ -93,18 +93,6 @@
 
 </html>
 
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
     var alertas = [];
 
@@ -149,15 +137,16 @@ function alertar(resposta, idEstufa) {
 
     if (temp >= limites.muito_quente) {
         classe_temperatura = 'cor-alerta perigo-quente';
-        grauDeAviso = 'Perigo quente'
+        grauDeAviso = 'Alerta crítico'
         grauDeAvisoCor = 'cor-alerta perigo-quente'
         exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
     }
     else if (temp < limites.muito_quente && temp >= limites.quente, momento, dia) {
         classe_temperatura = 'cor-alerta alerta-quente';
-        grauDeAviso = 'Alerta quente'
+        grauDeAviso = 'Alerta perigoso'
         grauDeAvisoCor = 'cor-alerta alerta-quente'
         exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
+        alertaBanco(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
     }
     else if (temp < limites.idealmax && temp > limites.idealmin, momento, dia) {
         classe_temperatura = 'cor-alerta ideal';
@@ -165,15 +154,17 @@ function alertar(resposta, idEstufa) {
     }
     else if (temp <= limites.frio && temp > limites.muito_frio, momento, dia) {
         classe_temperatura = 'cor-alerta alerta-frio';
-        grauDeAviso = 'Alerta frio'
+        grauDeAviso = 'Alerta perigoso'
         grauDeAvisoCor = 'cor-alerta alerta-frio'
         exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
+        alertaBanco(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
     }
     else if (temp <= limites.muito_frio) {
         classe_temperatura = 'cor-alerta perigo-frio';
-        grauDeAviso = 'Perigo frio'
+        grauDeAviso = 'Alerta crítico'
         grauDeAvisoCor = 'cor-alerta perigo-frio'
         exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
+        alertaBanco(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
     }
 
     var card;
@@ -186,6 +177,121 @@ function alertar(resposta, idEstufa) {
         card = document.getElementById(`card_${idEstufa}`)
         card.className = classe_temperatura;
     }
+}
+
+function alertaBanco(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia) {
+
+    fetch("/medidas/alertaBanco", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+
+                tempServer: temp,
+                descricaoServer: grauDeAviso
+            
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                
+            });
+
+        }
+    
+
+        function alertar2(resposta, idEstufa) {
+    var umid = resposta[0].umidade;
+
+    var grauDeAviso = '';
+    var grauDeAvisoCor = '';
+
+    //umidade
+    var limitesUmi = {
+        muito_quente: 91,
+        quente: 90,
+        idealmax: 80,
+        idealmin: 60,
+        frio: 59,
+        muito_frio: 40
+    };
+
+    var classe_umidade = 'cor-alerta';
+
+    if (umid >= limitesUmi.muito_quente) {
+        classe_umidade = 'cor-alerta perigo-quente';
+        grauDeAviso = 'crítico'
+        grauDeAvisoCor = 'cor-alerta perigo-quente'
+        exibirAlertaUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor)
+        alertaBancoUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
+    }
+    else if (umid < limitesUmi.muito_quente && umid >= limitesUmi.quente) {
+        classe_umidade = 'cor-alerta alerta-quente';
+        grauDeAviso = 'perigoso'
+        grauDeAvisoCor = 'cor-alerta alerta-quente'
+        exibirAlertaUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor)
+        alertaBancoUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
+    }
+    else if (umid < limitesUmi.idealmax && umid > limitesUmi.idealmin) {
+        classe_umidade = 'cor-alerta ideal';
+        removerAlertaUmi(idEstufa);
+    }
+    else if (umid <= limitesUmi.frio && umid > limitesUmi.muito_frio) {
+        classe_umidade = 'cor-alerta alerta-frio';
+        grauDeAviso = 'perigoso'
+        grauDeAvisoCor = 'cor-alerta alerta-frio'
+        exibirAlertaUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor)
+        alertaBancoUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
+    }
+    else if (umid <= limitesUmi.muito_frio) {
+        classe_umidade = 'cor-alerta perigo-frio';
+        grauDeAviso = 'crítico'
+        grauDeAvisoCor = 'cor-alerta perigo-frio'
+        exibirAlertaUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor)
+        alertaBancoUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
+    }
+
+    var cardumi;
+
+    // if (document.getElementById(`temp_estufa_${idEstufa}`) != null) {
+    //     document.getElementById(`temp_estufa_${idEstufa}`).innerHTML = temp + "°C";
+    // }
+
+    if (document.getElementById(`card_umi_${idEstufa}`)) {
+        cardumi = document.getElementById(`card_umi_${idEstufa}`)
+        cardumi.className = classe_umidade;
+    }
+}
+
+function alertaBancoUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia) {
+    fetch("/medidas/alertaBancoUmi", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+
+                umidServer: umid,
+                descricaoServer: grauDeAviso
+            
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                
+            });
+
 }
 
 function exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia) {
@@ -220,6 +326,7 @@ function transformarEmDiv({idEstufa, temp, grauDeAviso, grauDeAvisoCor, momento,
     // var descricao = JSON.parse(sessionStorage.ID_ESTUFA).find(item => item.idEstufa == idEstufa).descricao;
     
     return `
+    
     <div class="tituloN" id="tituloN">
         <h2>${nomeEstufa.toUpperCase()} - ${grauDeAviso}</h2>
         <h2>Data: ${dia}</h2> 
