@@ -102,7 +102,10 @@ function mensalKpi(idEstufa) {
     return database.executar(instrucaoSql);
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d493050af2546e86ced260742110ac26d7734d14
 function alertaBanco(temp, descricao) {
     var instrucaoSql = `
     insert into notificacoes(descricao, temperatura) values ('${descricao}', ${temp});
