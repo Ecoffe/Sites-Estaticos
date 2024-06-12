@@ -115,98 +115,124 @@
         sessionStorage.clear();
     }
 
+    function lingua() {
+        fetch("/medidas/lingua", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }).then(function (resposta) {
+            console.log(resposta)
+            mensalKpi()
+
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+    }
+
     const ctx1 = document.getElementById('myChart1');
 
 
     function buscarMensal() {
-    // var idEstufa = sessionStorage.ID_ESTUFA
-    fetch(`/medidas/buscarMensal`, {
-        method: "GET",
-    })
-        .then(function (resposta) {
-            resposta.json().then((resposta) => {
-                plotarGraficoMensal(resposta); // Passando a resposta como parâmetro
-            });
+        var idEstufa = sessionStorage.ID_ESTUFA
+        fetch(`/medidas/buscarMensal?idEstufaServer=${idEstufa}`, {
+            method: "GET",
         })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-}
-
-function plotarGraficoMensal(resposta) { // Recebendo a resposta como parâmetro
-    console.log('iniciando plotagem do gráfico...');
-
-    let labels = [];
-    let dados = {
-        labels: labels,
-        datasets: [
-            {
-                label: 'Umidade',
-                data: [],
-                fill: false,
-                borderWidth: 0,
-                borderColor: '#527853',
-                backgroundColor: '#527853',
-                tension: 0.5
-            },
-            {
-                label: 'temperatura',
-                data: [],
-                fill: false,
-                borderWidth: 0,
-                borderColor: '#EE7214',
-                backgroundColor: '#EE7214',
-                tension: 0.5
-            }
-        ]
-    };
-
-    for (let i = 0; i < resposta.length; i++) {
-        var registro = resposta[i];
-        labels.push(registro.mes);
-        dados.datasets[0].data.push(registro.mediaUmi);
-        dados.datasets[1].data.push(registro.mediaTemp);
+            .then(function (resposta) {
+                resposta.json().then((resposta) => {
+                    plotarGraficoMensal(resposta); // Passando a resposta como parâmetro
+                });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
     }
 
-    console.log('Labels:', labels);
-    console.log('Dados do Dataset:', dados.datasets);
+    function plotarGraficoMensal(resposta) { // Recebendo a resposta como parâmetro
+        console.log('iniciando plotagem do gráfico...');
 
-    const config = {
-        type: 'bar',
-        data: dados,
-    };
+        let labels = [];
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Umidade',
+                    data: [],
+                    fill: false,
+                    borderWidth: 0,
+                    borderColor: '#527853',
+                    backgroundColor: '#527853',
+                    tension: 0.5
+                },
+                {
+                    label: 'temperatura',
+                    data: [],
+                    fill: false,
+                    borderWidth: 0,
+                    borderColor: '#EE7214',
+                    backgroundColor: '#EE7214',
+                    tension: 0.5
+                }
+            ]
+        };
 
-    let myChart = new Chart(
-        document.getElementById(`myChart1`),
-        config
-    );
-}
+        for (let i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.mes);
+            dados.datasets[0].data.push(registro.mediaUmi);
+            dados.datasets[1].data.push(registro.mediaTemp);
+        }
+
+        console.log('Labels:', labels);
+        console.log('Dados do Dataset:', dados.datasets);
+
+        const config = {
+            type: 'bar',
+            data: dados,
+        };
+
+        let myChart = new Chart(
+            document.getElementById(`myChart1`),
+            config
+        );
+    }
     buscarMensal()
 
     function mensalKpi() {
-    fetch(`/medidas/mensalKpi`, {
-        method: "GET",
-    })
-    .then(function (resposta) {
-        return resposta.json();
-    })
-    .then(function (dados) {
-        console.log("Dados recebidos:", dados);
-        // Aqui você pode manipular os dados e exibi-los na página
-        // Por exemplo, atualizando o conteúdo de um elemento HTML
-        // var resultadoDiv = document.getElementById("resultado");
-        // resultadoDiv.innerHTML = `
-        //     Mês: ${dados[0].mes}<br>
-        //     Temperatura Máxima: ${dados[0].tempMax}<br>
-        //     Umidade Mínima: ${dados[0].umidMin}
-        // `;
-    })
-    .catch(function (erro) {
-        console.log(`#ERRO: ${erro}`);
-    });
-}
+        var idEstufa = sessionStorage.ID_ESTUFA
+
+        fetch(`/medidas/mensalKpi?idEstufaServer=${idEstufa}`, {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                return resposta.json();
+            })
+            .then(function (resposta) {
+                console.log("Dados recebidos:", resposta);
+                // Aqui você pode manipular os dados e exibi-los na página
+                // Por exemplo, atualizando o conteúdo de um elemento HTML
+                // var resultadoDiv = document.getElementById("resultado");
+                // resultadoDiv.innerHTML = `
+                //     Mês: ${dados[0].mes}<br>
+                //     Temperatura Máxima: ${dados[0].tempMax}<br>
+                //     Umidade Mínima: ${dados[0].umidMin}
+                // `;
+
+                kpi1.innerHTML = `
+            <p>${resposta[0].mes}</p>
+                            <div class="kpi2" id="kpi2">
+                                <p>Temperatura: ${resposta[0].tempMax}°C</p>
+                                <p>Umidade do ar: ${resposta[0].umidMin}%</p>
+                            </div>
+        `
+
+            })
+            .catch(function (erro) {
+                console.log(`#ERRO: ${erro}`);
+            });
+    }
 
 
     mensalKpi()
-
 </script>
