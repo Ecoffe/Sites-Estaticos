@@ -55,7 +55,7 @@
             <div class="box">
                 <h1>Notificações</h1>
                 <div class="notifys" id="noti">
-                    
+
                 </div>
             </div>
         </div>
@@ -77,7 +77,9 @@
     function apagarSession() {
         sessionStorage.clear();
     }
-
+    
+    var alertas = [];
+    
     function obterdados(idEstufa) {
         fetch(`/medidas/tempo-real/${idEstufa}`)
             .then(resposta => {
@@ -171,6 +173,7 @@
         exibirCards();
     }
 
+
     function removerAlerta(idEstufa) {
         alertas = alertas.filter(item => item.idEstufa != idEstufa);
         exibirCards();
@@ -208,4 +211,61 @@
         });
         setTimeout(atualizacaoPeriodica, 2000);
     }
+
+
+    function listar() {
+        var fkEmpresaServer = sessionStorage.ID_USUARIO;
+        var estufa = sessionStorage.ID_ESTUFA
+
+        fetch(`/medidas/listar?fkEmpresaServer=${fkEmpresaServer}`, {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                resposta.json().then((resposta) => {
+                    resposta.forEach((notificacao) => {
+                        if (notificacao.umidade != null) {
+                            noti.innerHTML += `
+                        <div class="card">
+                        <div class="icon">
+                        </div>
+                        <div class="textos" id="textos">
+                            <div class="tituloN" id="tituloN">
+                                <h2>Estufa ${estufa} - ${notificacao.descricao}</h2>
+                                <h2>Data: ${notificacao.dia}</h2>
+                                <h2>Hora: ${notificacao.hora}</h2>
+                            </div>
+                            <div class="texto">
+                                <p>A Umidade passou dos limites chegando a <span style="color: red;">${notificacao.umidade}%</span></p>
+                            </div>
+                        </div>
+                    </div>`;
+                        } else if (notificacao.temperatura != null) {
+                            noti.innerHTML += `
+                        <div class="card">
+                        <div class="icon">
+                        </div>
+                        <div class="textos" id="textos">
+                            <div class="tituloN" id="tituloN">
+                                <h2>Estufa ${estufa} - ${notificacao.descricao}</h2>
+                                <h2>Data: ${notificacao.dia}</h2>
+                                <h2>Hora: ${notificacao.hora}</h2>
+                            </div>
+                            <div class="texto">
+                                <p>A temperatura passou dos limites chegando a <span style="color: red;">${notificacao.temperatura}ºC</span></p>
+                            </div>
+                        </div>
+                    </div>`;
+                        }
+                    });
+                });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+
 </script>
+
+</html>
+
+<script>
