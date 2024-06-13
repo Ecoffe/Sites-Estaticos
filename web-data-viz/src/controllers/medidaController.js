@@ -20,6 +20,17 @@ function lingua(req, res) {
 
 }
 
+function listar(req, res) {
+    var fkEmpresa = req.query.fkEmpresaServer; // Corrigido para req.query
+    if (!fkEmpresa) {
+        return res.status(400).json({ error: "fkEmpresaServer não fornecido" });
+    }
+    medidaModel.listar(fkEmpresa).then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
 function listarKpi(req, res) {
     const idEstufa = req.query.idEstufaServer;
@@ -151,6 +162,7 @@ function mensalKpi(req, res) {
 function alertaBanco(req, res) {
     var temp = req.body.tempServer
     var descricao = req.body.descricaoServer
+    var fkEmpresa = req.query.fkEmpresaServer; // Corrigido para req.query
 
     if (temp == undefined) {
         res.status(400).send("temp está undefined!");
@@ -158,21 +170,21 @@ function alertaBanco(req, res) {
         res.status(400).send("A descricao está undefined!");
     } else {
 
-        medidaModel.alertaBanco(temp, descricao)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log(
-                    "\nHouve um erro ao realizar o cadastro! Erro: ",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
+        medidaModel.alertaBanco(temp, descricao, fkEmpresa)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
     }
 }
 
@@ -180,6 +192,7 @@ function alertaBanco(req, res) {
 function alertaBancoUmi(req, res) {
     var umid = req.body.umidServer
     var descricao = req.body.descricaoServer
+    var fkEmpresa = req.query.fkEmpresaServer; // Corrigido para req.query
 
     if (umid == undefined) {
         res.status(400).send("umid está undefined!");
@@ -187,26 +200,27 @@ function alertaBancoUmi(req, res) {
         res.status(400).send("A descricao está undefined!");
     } else {
 
-        medidaModel.alertaBanco(umid, descricao)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log(
-                    "\nHouve um erro ao realizar o cadastro! Erro: ",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
+        medidaModel.alertaBanco(umid, descricao, fkEmpresa)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
     }
 }
 
 module.exports = {
     lingua,
+    listar,
     buscarUltimasMedidasTemperatura,
     buscarUltimasMedidasUmidade,
     listarKpi,

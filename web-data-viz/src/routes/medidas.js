@@ -6,6 +6,10 @@ router.post("/lingua", function (req, res) {
     medidaController.lingua(req, res);
 });
 
+router.get("/listar", function (req, res) {
+    medidaController.listar(req, res);
+});
+
 router.get("/ultimasTemperatura", function (req, res) {
     medidaController.buscarUltimasMedidasTemperatura(req, res);
 });

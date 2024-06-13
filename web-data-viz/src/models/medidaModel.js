@@ -12,6 +12,14 @@ function lingua() {
     return database.executar(instrucaoSql);
 }
 
+function listar(fkEmpresa) {
+    var instrucao = `
+        select * from notificacoes where fkEmpresa = ${fkEmpresa};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function listarKpi(idEstufa) {
     var instrucao = `
         select temperatura, umidade from dados join sensor on fkSensor = idSensor where fkSensor = 1 and fkEstufa = ${idEstufa} order by idDados desc limit 1;
@@ -55,7 +63,7 @@ async function buscarMensal(idEstufa) {
             ORDER BY 
                 mes1;
         `;
-        
+
         return await database.executar(instrucaoSql);
     } catch (error) {
         // Lidar com erros, como um problema de conexão com o banco de dados
@@ -102,30 +110,27 @@ function mensalKpi(idEstufa) {
     return database.executar(instrucaoSql);
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d493050af2546e86ced260742110ac26d7734d14
-function alertaBanco(temp, descricao) {
+function alertaBanco(temp, descricao, fkEmpresa) {
     var instrucaoSql = `
-    insert into notificacoes(descricao, temperatura) values ('${descricao}', ${temp});
+    insert into notificacoes(descricao, temperatura, diaHora, fkEmpresa) values ('${descricao}', ${temp}, default, ${fkEmpresa});
     `
 
     return database.executar(instrucaoSql)
 }
 
-function alertaBancoUmi(umid, descricao) {
+function alertaBancoUmi(umid, descricao, fkEmpresa) {
     var instrucaoSql = `
-    insert into notificacoes(descricao, umidade) values ('${descricao}', ${umid});
+    insert into notificacoes(descricao, umidade, diaHora, fkEmpresa) values ('${descricao}', ${umid}, default, ${fkEmpresa});
     `
 
     return database.executar(instrucaoSql)
-} 
+}
 
-    module.exports = {
-        buscarUltimasMedidasTemperatura,
-        buscarUltimasMedidasUmidade,
-        listarKpi,
+module.exports = {
+    listar,
+    buscarUltimasMedidasTemperatura,
+    buscarUltimasMedidasUmidade,
+    listarKpi,
     buscarMensal,
     buscarMedidasEmTempoReal,
     atualizacaoUmidade,
