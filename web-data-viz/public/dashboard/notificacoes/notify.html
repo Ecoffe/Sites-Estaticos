@@ -74,6 +74,9 @@
         </div>
     </div>
 </body>
+
+</html>
+
 <script>
     function verificar() {
         var idUsuario = sessionStorage.ID_USUARIO;
@@ -90,7 +93,7 @@
     function apagarSession() {
         sessionStorage.clear();
     }
-
+    
     var alertas = [];
 
     function obterdados(idEstufa) {
@@ -205,16 +208,16 @@
         // var descricao = JSON.parse(sessionStorage.ID_ESTUFA).find(item => item.idEstufa == idEstufa).descricao;
 
         return `
-<div class="tituloN" id="tituloN">
-    <h2>${nomeEstufa.toUpperCase()} - ${grauDeAviso}</h2>
-    <h2>Data: ${dia}</h2> 
-    <h2>Hora: ${momento}</h2>
-</div>
+    <div class="tituloN" id="tituloN">
+        <h2>${nomeEstufa.toUpperCase()} - ${grauDeAviso}</h2>
+        <h2>Data: ${dia}</h2> 
+        <h2>Hora: ${momento}</h2>
+    </div>
 
-<div class="texto">
-    <p>A temperatura chegou a <span style="color: red;">${temp}°C</span></p>
-</div>
-`;
+    <div class="texto">
+        <p>A temperatura chegou a <span style="color: red;">${temp}°C</span></p>
+    </div>
+    `;
     }
 
     function atualizacaoPeriodica() {
@@ -236,36 +239,36 @@
                     resposta.forEach((notificacao) => {
                         if (notificacao.umidade != null) {
                             noti.innerHTML += `
-                    <div class="card">
-                    <div class="icon">
-                    </div>
-                    <div class="textos" id="textos">
-                        <div class="tituloN" id="tituloN">
-                            <h2>Estufa ${estufa} - ${notificacao.descricao}</h2>
-                            <h2>Data: ${notificacao.dia}</h2>
-                            <h2>Hora: ${notificacao.hora}</h2>
+                        <div class="card">
+                        <div class="icon">
                         </div>
-                        <div class="texto">
-                            <p>A Umidade passou dos limites chegando a <span style="color: red;">${notificacao.umidade}%</span></p>
+                        <div class="textos" id="textos">
+                            <div class="tituloN" id="tituloN">
+                                <h2>Estufa ${estufa} - ${notificacao.descricao}</h2>
+                                <h2>Data: ${notificacao.dia}</h2>
+                                <h2>Hora: ${notificacao.hora}</h2>
+                            </div>
+                            <div class="texto">
+                                <p>A Umidade passou dos limites chegando a <span style="color: red;">${notificacao.umidade}%</span></p>
+                            </div>
                         </div>
-                    </div>
-                </div>`;
+                    </div>`;
                         } else if (notificacao.temperatura != null) {
                             noti.innerHTML += `
-                    <div class="card">
-                    <div class="icon">
-                    </div>
-                    <div class="textos" id="textos">
-                        <div class="tituloN" id="tituloN">
-                            <h2>Estufa ${estufa} - ${notificacao.descricao}</h2>
-                            <h2>Data: ${notificacao.dia}</h2>
-                            <h2>Hora: ${notificacao.hora}</h2>
+                        <div class="card">
+                        <div class="icon">
                         </div>
-                        <div class="texto">
-                            <p>A temperatura passou dos limites chegando a <span style="color: red;">${notificacao.temperatura}ºC</span></p>
+                        <div class="textos" id="textos">
+                            <div class="tituloN" id="tituloN">
+                                <h2>Estufa ${estufa} - ${notificacao.descricao}</h2>
+                                <h2>Data: ${notificacao.dia}</h2>
+                                <h2>Hora: ${notificacao.hora}</h2>
+                            </div>
+                            <div class="texto">
+                                <p>A temperatura passou dos limites chegando a <span style="color: red;">${notificacao.temperatura}ºC</span></p>
+                            </div>
                         </div>
-                    </div>
-                </div>`;
+                    </div>`;
                         }
                     });
                 });
@@ -275,7 +278,4 @@
             });
     }
 
-
 </script>
-
-</html>
