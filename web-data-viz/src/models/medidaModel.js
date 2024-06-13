@@ -14,7 +14,7 @@ function lingua() {
 
 function listar(fkEmpresa) {
     var instrucao = `
-        select * from notificacoes where fkEmpresa = ${fkEmpresa};
+        select descricao, date_format(diaHora, '%d/%m/%y') as dia, date_format(diaHora, '%H:%i') as hora, temperatura, umidade from notificacoes where fkEmpresa = ${fkEmpresa};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

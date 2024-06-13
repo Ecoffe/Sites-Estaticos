@@ -80,6 +80,8 @@
 
     function listar() {
         var fkEmpresaServer = sessionStorage.ID_USUARIO;
+        var estufa = sessionStorage.ID_ESTUFA
+
         fetch(`/medidas/listar?fkEmpresaServer=${fkEmpresaServer}`, {
             method: "GET",
         })
@@ -93,9 +95,9 @@
                         </div>
                         <div class="textos" id="textos">
                             <div class="tituloN" id="tituloN">
-                                <h2>Estufa 2 - ${notificacao.descricao}</h2>
-                                <h2>Data: ${notificacao.diaHora}</h2>
-                                <h2>Hora: 10:12</h2>
+                                <h2>Estufa ${estufa} - ${notificacao.descricao}</h2>
+                                <h2>Data: ${notificacao.dia}</h2>
+                                <h2>Hora: ${notificacao.hora}</h2>
                             </div>
                             <div class="texto">
                                 <p>A Umidade passou dos limites chegando a <span style="color: red;">${notificacao.umidade}%</span></p>
@@ -109,9 +111,9 @@
                         </div>
                         <div class="textos" id="textos">
                             <div class="tituloN" id="tituloN">
-                                <h2>Estufa 2 - ${notificacao.descricao}</h2>
-                                <h2>Data: ${notificacao.diaHora}</h2>
-                                <h2>Hora: 10:12</h2>
+                                <h2>Estufa ${estufa} - ${notificacao.descricao}</h2>
+                                <h2>Data: ${notificacao.dia}</h2>
+                                <h2>Hora: ${notificacao.hora}</h2>
                             </div>
                             <div class="texto">
                                 <p>A temperatura passou dos limites chegando a <span style="color: red;">${notificacao.temperatura}ºC</span></p>

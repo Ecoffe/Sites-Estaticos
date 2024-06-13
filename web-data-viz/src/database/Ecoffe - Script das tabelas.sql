@@ -5,8 +5,8 @@ create table empresa(
 	idEmpresa int primary key auto_increment,
     razaoSocial varchar(45),
 	nomeFantasia varchar(45),
-    emailContato varchar(45),
-	cnpj char(18),
+    emailContato varchar(45) unique,
+	cnpj char(18) unique,
 	senhaEmpresa varchar(45),
 	diaInscricao datetime default current_timestamp);
 
@@ -17,8 +17,8 @@ select * from empresa;
 create table funcionario(
 	idFuncionario int primary key auto_increment,
 	nomeFuncionario varchar(100),
-	cpf char(18),
-    emailFuncionario varchar(90),
+	cpf char(18) unique,
+    emailFuncionario varchar(90) unique,
 	senhaFuncionario varchar(45),
 	diaInscricao datetime default current_timestamp,
 	fkEmpresa int,
@@ -45,7 +45,7 @@ select * from endereco;
 -- TABLES P/ TELEFONES
 create table telefone(
 	idTelefone int primary key auto_increment,
-    telCelular varchar(14),
+    telCelular varchar(14) unique,
     telFixo varchar(13),
     fkEmpresa int,
     fkFuncionario int,
@@ -102,9 +102,6 @@ create table dados(
     diaHora datetime default current_timestamp);
 
 select * from dados;
-
-SET lc_time_names = 'pt_BR';
-select monthname(diaHora) as mes, round(avg(temperatura)) as 'mediaTemp', round(avg(umidade)) as 'mediaUmi'from dados group by mes order by diaHora;
 
 -- ARMAZENAR AS NOTIFICAÇÕES REGISTRADAS
 create table notificacoes(
