@@ -286,11 +286,11 @@ a {
     width: 245px;
     height: 155px;
     border-radius: 10px;
-    background-color: red;
+    background-color: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: black;
     font-weight: bold;
     font-size: 28px;
     border: solid 2px black;
@@ -301,11 +301,11 @@ a {
     width: 245px;
     height: 155px;
     border-radius: 10px;
-    background-color: red;
+    /* background-color: red; */
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: black;
     font-weight: bold;
     font-size: 28px;
     border: solid 2px black;
