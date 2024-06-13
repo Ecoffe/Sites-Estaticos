@@ -78,64 +78,6 @@
         sessionStorage.clear();
     }
 
-    function listar() {
-        var fkEmpresaServer = sessionStorage.ID_USUARIO;
-        var estufa = sessionStorage.ID_ESTUFA
-
-        fetch(`/medidas/listar?fkEmpresaServer=${fkEmpresaServer}`, {
-            method: "GET",
-        })
-            .then(function (resposta) {
-                resposta.json().then((resposta) => {
-                    resposta.forEach((notificacao) => {
-                        if (notificacao.umidade != null) {
-                            noti.innerHTML += `
-                        <div class="card">
-                        <div class="icon">
-                        </div>
-                        <div class="textos" id="textos">
-                            <div class="tituloN" id="tituloN">
-                                <h2>Estufa ${estufa} - ${notificacao.descricao}</h2>
-                                <h2>Data: ${notificacao.dia}</h2>
-                                <h2>Hora: ${notificacao.hora}</h2>
-                            </div>
-                            <div class="texto">
-                                <p>A Umidade passou dos limites chegando a <span style="color: red;">${notificacao.umidade}%</span></p>
-                            </div>
-                        </div>
-                    </div>`;
-                        } else if (notificacao.temperatura != null) {
-                            noti.innerHTML += `
-                        <div class="card">
-                        <div class="icon">
-                        </div>
-                        <div class="textos" id="textos">
-                            <div class="tituloN" id="tituloN">
-                                <h2>Estufa ${estufa} - ${notificacao.descricao}</h2>
-                                <h2>Data: ${notificacao.dia}</h2>
-                                <h2>Hora: ${notificacao.hora}</h2>
-                            </div>
-                            <div class="texto">
-                                <p>A temperatura passou dos limites chegando a <span style="color: red;">${notificacao.temperatura}ºC</span></p>
-                            </div>
-                        </div>
-                    </div>`;
-                        }
-                    });
-                });
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
-    }
-
-</script>
-
-</html>
-
-<script>
-    var alertas = [];
-
     function obterdados(idEstufa) {
         fetch(`/medidas/tempo-real/${idEstufa}`)
             .then(resposta => {
@@ -177,16 +119,15 @@
 
         if (temp >= limites.muito_quente) {
             classe_temperatura = 'cor-alerta perigo-quente';
-            grauDeAviso = 'Alerta crítico'
+            grauDeAviso = 'Estado: Crítico'
             grauDeAvisoCor = 'cor-alerta perigo-quente'
             exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
         }
         else if (temp < limites.muito_quente && temp >= limites.quente, momento, dia) {
             classe_temperatura = 'cor-alerta alerta-quente';
-            grauDeAviso = 'Alerta perigoso'
+            grauDeAviso = 'Estado: Perigoso'
             grauDeAvisoCor = 'cor-alerta alerta-quente'
             exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
-            alertaBanco(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
         }
         else if (temp < limites.idealmax && temp > limites.idealmin, momento, dia) {
             classe_temperatura = 'cor-alerta ideal';
@@ -194,17 +135,15 @@
         }
         else if (temp <= limites.frio && temp > limites.muito_frio, momento, dia) {
             classe_temperatura = 'cor-alerta alerta-frio';
-            grauDeAviso = 'Alerta perigoso'
+            grauDeAviso = 'Estado: Perigoso'
             grauDeAvisoCor = 'cor-alerta alerta-frio'
             exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
-            alertaBanco(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
         }
         else if (temp <= limites.muito_frio) {
             classe_temperatura = 'cor-alerta perigo-frio';
-            grauDeAviso = 'Alerta crítico'
+            grauDeAviso = 'Estado: Crítico'
             grauDeAvisoCor = 'cor-alerta perigo-frio'
             exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
-            alertaBanco(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
         }
 
         var card;
@@ -217,123 +156,6 @@
             card = document.getElementById(`card_${idEstufa}`)
             card.className = classe_temperatura;
         }
-    }
-
-    function alertaBanco(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia) {
-        var fkEmpresaServer = sessionStorage.ID_USUARIO;
-
-        fetch(`/medidas/alertaBanco?fkEmpresaServer=${fkEmpresaServer}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-
-                tempServer: temp,
-                descricaoServer: grauDeAviso
-
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
-
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-
-            });
-
-    }
-
-
-    function alertar2(resposta, idEstufa) {
-        var umid = resposta[0].umidade;
-
-        var grauDeAviso = '';
-        var grauDeAvisoCor = '';
-
-        //umidade
-        var limitesUmi = {
-            muito_quente: 91,
-            quente: 90,
-            idealmax: 80,
-            idealmin: 60,
-            frio: 59,
-            muito_frio: 40
-        };
-
-        var classe_umidade = 'cor-alerta';
-
-        if (umid >= limitesUmi.muito_quente) {
-            classe_umidade = 'cor-alerta perigo-quente';
-            grauDeAviso = 'crítico'
-            grauDeAvisoCor = 'cor-alerta perigo-quente'
-            exibirAlertaUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor)
-            alertaBancoUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
-        }
-        else if (umid < limitesUmi.muito_quente && umid >= limitesUmi.quente) {
-            classe_umidade = 'cor-alerta alerta-quente';
-            grauDeAviso = 'perigoso'
-            grauDeAvisoCor = 'cor-alerta alerta-quente'
-            exibirAlertaUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor)
-            alertaBancoUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
-        }
-        else if (umid < limitesUmi.idealmax && umid > limitesUmi.idealmin) {
-            classe_umidade = 'cor-alerta ideal';
-            removerAlertaUmi(idEstufa);
-        }
-        else if (umid <= limitesUmi.frio && umid > limitesUmi.muito_frio) {
-            classe_umidade = 'cor-alerta alerta-frio';
-            grauDeAviso = 'perigoso'
-            grauDeAvisoCor = 'cor-alerta alerta-frio'
-            exibirAlertaUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor)
-            alertaBancoUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
-        }
-        else if (umid <= limitesUmi.muito_frio) {
-            classe_umidade = 'cor-alerta perigo-frio';
-            grauDeAviso = 'crítico'
-            grauDeAvisoCor = 'cor-alerta perigo-frio'
-            exibirAlertaUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor)
-            alertaBancoUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia)
-        }
-
-        var cardumi;
-
-        // if (document.getElementById(`temp_estufa_${idEstufa}`) != null) {
-        //     document.getElementById(`temp_estufa_${idEstufa}`).innerHTML = temp + "°C";
-        // }
-
-        if (document.getElementById(`card_umi_${idEstufa}`)) {
-            cardumi = document.getElementById(`card_umi_${idEstufa}`)
-            cardumi.className = classe_umidade;
-        }
-    }
-
-    function alertaBancoUmi(umid, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia) {
-        var fkEmpresaServer = sessionStorage.ID_USUARIO;
-        fetch(`/medidas/alertaBancoUmi?fkEmpresaServer=${fkEmpresaServer}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-
-                umidServer: umid,
-                descricaoServer: grauDeAviso
-
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
-
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-
-            });
-
     }
 
     function exibirAlerta(temp, idEstufa, grauDeAviso, grauDeAvisoCor, momento, dia) {
@@ -354,6 +176,31 @@
         exibirCards();
     }
 
+    function exibirCards() {
+        textos.innerHTML = '';
+
+        for (var i = 0; i < alertas.length; i++) {
+            var mensagem = alertas[i];
+            textos.innerHTML += transformarEmDiv(mensagem);
+        }
+    }
+
+    function transformarEmDiv({ idEstufa, temp, grauDeAviso, grauDeAvisoCor, momento, dia }) {
+        var nomeEstufa = sessionStorage.NOME_ESTUFA;
+        // var descricao = JSON.parse(sessionStorage.ID_ESTUFA).find(item => item.idEstufa == idEstufa).descricao;
+
+        return `
+    <div class="tituloN" id="tituloN">
+        <h2>${nomeEstufa.toUpperCase()} - ${grauDeAviso}</h2>
+        <h2>Data: ${dia}</h2> 
+        <h2>Hora: ${momento}</h2>
+    </div>
+
+    <div class="texto">
+        <p>A temperatura chegou a <span style="color: red;">${temp}°C</span></p>
+    </div>
+    `;
+    }
 
     function atualizacaoPeriodica() {
         JSON.parse(sessionStorage.ID_ESTUFA).forEach(item => {

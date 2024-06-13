@@ -131,9 +131,6 @@
         })
     }
 
-    const ctx1 = document.getElementById('myChart1');
-
-
     function buscarMensal() {
         var idEstufa = sessionStorage.ID_ESTUFA
         fetch(`/medidas/buscarMensal?idEstufaServer=${idEstufa}`, {
@@ -141,7 +138,7 @@
         })
             .then(function (resposta) {
                 resposta.json().then((resposta) => {
-                    plotarGraficoMensal(resposta); // Passando a resposta como parâmetro
+                    plotarGraficoMensal(resposta); 
                 });
             })
             .catch(function (resposta) {
@@ -149,7 +146,7 @@
             });
     }
 
-    function plotarGraficoMensal(resposta) { // Recebendo a resposta como parâmetro
+    function plotarGraficoMensal(resposta) { 
         console.log('iniciando plotagem do gráfico...');
 
         let labels = [];
@@ -210,14 +207,6 @@
             })
             .then(function (resposta) {
                 console.log("Dados recebidos:", resposta);
-                // Aqui você pode manipular os dados e exibi-los na página
-                // Por exemplo, atualizando o conteúdo de um elemento HTML
-                // var resultadoDiv = document.getElementById("resultado");
-                // resultadoDiv.innerHTML = `
-                //     Mês: ${dados[0].mes}<br>
-                //     Temperatura Máxima: ${dados[0].tempMax}<br>
-                //     Umidade Mínima: ${dados[0].umidMin}
-                // `;
 
                 kpi1.innerHTML = `
             <p>${resposta[0].mes}</p>
